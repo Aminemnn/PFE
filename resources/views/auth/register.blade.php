@@ -17,15 +17,13 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <link rel="stylesheet" href="{{asset('css/register.css')}}" >
 </head>
 <body>
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+          <h1 style="font-family: 'Trebuchet MS'; font-size: 42px; color: #F19B01">Create Account</h1>
         </x-slot>
 
         <!-- Validation Errors -->
@@ -47,7 +45,28 @@
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
-
+            <div class="mt-4">
+                <div class="container">
+                 <div class="row">
+                     <div class="col">
+                <label class="radio-container">
+                    <img src="assets/icons/client.png" alt="Option 1">
+                    <p style="text-align: center;font-family: 'Trebuchet MS'">Client</p>
+                    <input type="radio" name="radio-group" value="Client" onclick="changeColor(this)">
+                    <span class="checkmark"></span>
+                </label>
+                     </div>
+                     <div class="col">
+                <label class="radio-containe2">
+                    <img src="assets/icons/travail-autonome.png" alt="Option 2">
+                    <p style="text-align: center; font-family: 'Trebuchet MS'">Freelancer</p>
+                    <input type="radio" name="radio-group" value="Freelancer" onclick="changeColor(this)">
+                    <span class="checkmark"></span>
+                </label>
+                         <div>
+            </div>
+            </div>
+            </div>
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />
@@ -79,5 +98,30 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
+<script>
+        function changeColor(radio) {
+
+        const container1 = document.querySelectorAll('.radio-container');
+        const container2 = document.querySelectorAll('.radio-containe2');
+  if (radio.value=="Client"){
+
+      container1.forEach(container => {
+          container.style.backgroundColor = "#9DC2FF";
+      });
+      container2.forEach(container => {
+          container.style.backgroundColor = "#E1ECFE";
+      });
+  }
+            if (radio.value=="Freelancer"){
+
+                container2.forEach(container => {
+                    container.style.backgroundColor = "#9DC2FF";
+                });
+                container1.forEach(container => {
+                    container.style.backgroundColor = "#E1ECFE";
+                });
+            }
+    }
+</script>
 </body>
 </html>

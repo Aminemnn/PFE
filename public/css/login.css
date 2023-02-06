@@ -1,0 +1,36 @@
+
+#img1 {
+  height: 90%;
+    width: 200%;
+ margin-top: 10.5%;
+}
+.row {
+    margin: 1px;
+}
+#col{
+    right: 21%;
+
+width: 100%;
+
+}
+#col2 {
+
+}
+@media only screen and (max-width: 600px) {
+    #img1{
+        display: none;
+    }
+    .row {
+        display: block;
+        width: 300%;
+    }
+
+    #col2 {
+        display: block;
+        float: none;
+        width: 100%;
+    }
+}
+#input{
+    border-radius: 13px;
+}
