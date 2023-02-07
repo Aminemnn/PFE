@@ -20,6 +20,9 @@ label img {
     background-color: #E1ECFE;
     border-radius: 13px;
 }
+.radio-containe2:hover{
+    background-color: #C7DCFF;
+}
 .radio-container:hover{
     background-color: #C7DCFF;
 }

@@ -107,5 +107,7 @@ return [
     */
 
     'password_timeout' => 10800,
+    'expire_on_close' => false,
+
 
 ];

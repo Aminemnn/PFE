@@ -21,7 +21,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-8" id="col"><img src="assets/Sanstitre-5.png" id="img1"> </div>
+        <div class="col-8" id="col"><img src="assets/login.png" id="img1"> </div>
         <div class="col-4" id="col2">
 <x-guest-layout>
     <x-auth-card>

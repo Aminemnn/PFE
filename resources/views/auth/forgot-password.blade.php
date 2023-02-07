@@ -23,12 +23,11 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+          <img src="assets/room-key.png"  style="width: 15%; height: 15%; margin: auto">
         </x-slot>
-
-        <div class="mb-4 text-sm text-gray-600">
+        <h1 style="text-align: center; font-size: 40px; font-family: 'Trebuchet MS'">Forget Password</h1>
+        <br>
+        <div class="mb-4 text-sm text-gray-600" style="font-family: 'Trebuchet MS'">
             {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
         </div>
 
@@ -43,13 +42,13 @@
 
             <!-- Email Address -->
             <div>
-                <x-label for="email" :value="__('Email')" />
+                <x-label for="email" :value="__('Email')" style="font-family: 'Trebuchet MS'"/>
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <x-button>
+                <x-button style="font-family: 'Trebuchet MS';background-color: #89ccff;border-color: #89ccff">
                     {{ __('Email Password Reset Link') }}
                 </x-button>
             </div>

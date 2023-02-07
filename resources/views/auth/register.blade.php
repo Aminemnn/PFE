@@ -34,14 +34,14 @@
 
             <!-- Name -->
             <div>
-                <x-label for="name" :value="__('Name')" />
+                <x-label for="name" :value="__('Name')" style="font-family: 'Trebuchet MS'" />
 
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+                <x-label for="email" :value="__('Email')" style="font-family: 'Trebuchet MS'" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
@@ -52,7 +52,7 @@
                 <label class="radio-container">
                     <img src="assets/icons/client.png" alt="Option 1">
                     <p style="text-align: center;font-family: 'Trebuchet MS'">Client</p>
-                    <input type="radio" name="radio-group" value="Client" onclick="changeColor(this)">
+                    <input type="radio" name="role" value="Client" onclick="changeColor(this)">
                     <span class="checkmark"></span>
                 </label>
                      </div>
@@ -60,7 +60,7 @@
                 <label class="radio-containe2">
                     <img src="assets/icons/travail-autonome.png" alt="Option 2">
                     <p style="text-align: center; font-family: 'Trebuchet MS'">Freelancer</p>
-                    <input type="radio" name="radio-group" value="Freelancer" onclick="changeColor(this)">
+                    <input type="radio" name="role" value="Freelancer" onclick="changeColor(this)">
                     <span class="checkmark"></span>
                 </label>
                          <div>
@@ -69,7 +69,7 @@
             </div>
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <x-label for="password" :value="__('Password')" style="font-family: 'Trebuchet MS'"/>
 
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
@@ -79,7 +79,7 @@
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-label for="password_confirmation" :value="__('Confirm Password')" style="font-family: 'Trebuchet MS'" />
 
                 <x-input id="password_confirmation" class="block mt-1 w-full"
                                 type="password"
@@ -87,11 +87,11 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}" style="font-family: 'Trebuchet MS'">
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class="ml-4">
+                <x-button class="ml-4" style="background-color: #F9B877;border-color: #F9B877; font-family: 'Trebuchet MS'">
                     {{ __('Register') }}
                 </x-button>
             </div>
@@ -104,7 +104,6 @@
         const container1 = document.querySelectorAll('.radio-container');
         const container2 = document.querySelectorAll('.radio-containe2');
   if (radio.value=="Client"){
-
       container1.forEach(container => {
           container.style.backgroundColor = "#9DC2FF";
       });
@@ -113,7 +112,6 @@
       });
   }
             if (radio.value=="Freelancer"){
-
                 container2.forEach(container => {
                     container.style.backgroundColor = "#9DC2FF";
                 });
