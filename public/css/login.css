@@ -12,9 +12,7 @@ body{
 #col{
     right: 18%;
 }
-#col2 {
 
-}
 @media only screen and (max-width: 600px) {
     #img1{
         display: block;

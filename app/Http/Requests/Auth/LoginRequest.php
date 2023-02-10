@@ -55,6 +55,7 @@ class LoginRequest extends FormRequest
         }
 
         RateLimiter::clear($this->throttleKey());
+        return(Auth::user()->role);
     }
 
     /**
