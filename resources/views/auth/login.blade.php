@@ -10,6 +10,10 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -19,6 +23,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <body>
+
 <div class="container">
     <div class="row">
         <div class="col-8" id="col"><img src="assets/login.png" id="img1"> </div>
@@ -26,6 +31,7 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
+
             <img src="assets/avatar.png" width="100px" height="70px">
             <h1 style="text-align: center; margin-top: 13px; font-family: 'Trebuchet MS'; font-size: 25px ">Welcome</h1>
         </x-slot>
@@ -35,6 +41,8 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
@@ -77,8 +85,11 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
+
         </div>
     </div>
 </div>
+
 </body>
+
 </html>
