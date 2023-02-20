@@ -26,4 +26,7 @@ class clientcontroller extends Controller
             ->with('business',$business)
             ->with('life_style',$life_style);
     }
+    public function profil(){
+        return view('client.profil');
+    }
 }

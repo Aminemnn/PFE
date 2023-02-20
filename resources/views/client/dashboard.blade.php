@@ -24,22 +24,31 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.min.css">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+<style>
+    @media only screen and (max-width: 820px) {
+        #card{
+            transform: scale(1);
+            position: relative;
+            right: 1px;
+        }
+        #button2{
+            margin-left: 145px;
+            transform: scale(0.8);
+        }
+    }
+</style>
 </head>
 <body>
 <x-client-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __(' Client Dashboard') }}
-        </h2>
-    </x-slot>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged ingg!
-                </div>
-            </div>
+    <div class="card text-center" style="width: 80%;height: 200px;margin:auto;border-radius: 56px;background-color: #E1ECFE;border-color: #E1ECFE" id="card">
+        <div class="card-body">
+            <h5 class="card-title" style="color: #F19B01">Hi ! <h5>{{Auth::user()->name}}</h5></h5>
+            <p class="card-text" style="margin-top: 23px">You can publish your work here</p>
+            <a href="#" class="btn btn-primary" style="margin-top: 23px;background-color: #F19B01;border-color: #F19B01" id="button2">Post a Work</a>
+        </div>
+    </div>
+    </div>
             @if (session('status'))
                 <script>
                     Swal.fire(
@@ -49,8 +58,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
                     )
                 </script>
             @endif
-        </div>
-    </div>
+
 </x-client-layout>
 
 @if(Auth::user()->categorie==null)

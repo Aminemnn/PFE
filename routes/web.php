@@ -30,6 +30,7 @@ Route::get('freelancer/dashboard','freelancercontroller@dashboard')->middleware(
 Route::post('freelancer/dashboard',[freelancercontroller::class,'store'])->name('freelancer');
 Route::get('freelancer/changepassword','changepassword@create')->middleware('auth','verified','freelancer')->name('changepassword');
 Route::get('client/changepassword','changepassword@create')->middleware('auth','verified','client')->name('changepassword');
+Route::get('client/profil','clientcontroller@profil')->middleware('auth','verified','client')->name('profil');
 Route::post('freelancer/changepassword',[changepassword::class,'store'])->name('changepassword');
 Route::get('/dashboard','homecontroller@dashboard')->middleware(['auth','verified','freelancer','client'])->name('dashboard');
 Route::get('logout', 'Auth\LoginController@logout')->middleware('disable-back-button');
