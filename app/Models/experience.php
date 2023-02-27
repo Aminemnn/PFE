@@ -11,7 +11,7 @@ class experience extends Model
 
     protected $fillable = [
          'title',
-          'poste',
+         'poste',
         'societe',
         'location',
         'datedeb',

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSouscategorieTable extends Migration
+class CreatePosteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateSouscategorieTable extends Migration
      */
     public function up()
     {
-        Schema::create('souscategorie', function (Blueprint $table) {
+        Schema::create('poste', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categorie')->onDelete('cascade');
+            $table->string('title')->nullable();
+            $table->integer('nb_heure')->nullable();
+            $table->integer('Price')->nullable();
+            $table->string('description')->nullable();
+            $table->binary('image')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateSouscategorieTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('souscategorie');
+        Schema::dropIfExists('poste');
     }
 }

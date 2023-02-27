@@ -34,7 +34,7 @@
                              class="rounded-circle img-fluid" style="width: 150px;">
                         <h5 class="my-3">{{Auth::user()->name}}</h5>
                         <p class="text-muted mb-1">{{Auth::user()->categorie}}</p>
-                        <p class="text-muted mb-4">{{Auth::user()->sous_categorie}}</p>
+                        <p class="text-muted mb-4">@if(Auth::user()->Other!=null){{Auth::user()->Other}}@else{{Auth::user()->sous_categorie}}@endif</p>
 
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                                 <p class="mb-0">SubCategorie</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{Auth::user()->sous_categorie}}</p>
+                                <p class="text-muted mb-0">@if(Auth::user()->Other!=null){{Auth::user()->Other}}@else{{Auth::user()->sous_categorie}}@endif</p>
                             </div>
                         </div>
                         <hr>

@@ -17,6 +17,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <script src="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
 "></script>
@@ -25,37 +27,451 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <style>
+        #myModal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: scroll;
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            -webkit-animation-name: fadeIn; /* Fade in the background */
+            -webkit-animation-duration: 0.4s;
+            animation-name: fadeIn;
+            animation-duration: 0.4s;
 
+
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: fixed;
+            bottom: 0;
+            background-color: #fefefe;
+            width: 100%;
+            overflow: scroll;
+            -webkit-animation-name: slideIn;
+            -webkit-animation-duration: 0.4s;
+            animation-name: slideIn;
+            animation-duration: 0.4s
+        }
+
+        /* The Close Button */
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            padding: 2px 16px;
+            background-color: whitesmoke;
+            color: white;
+        }
+
+        .modal-body {padding: 2px 16px;}
+
+        .modal-footer {
+            padding: 2px 16px;
+            background-color: #E1ECFE;
+            color: white;
+        }
+
+        /* Add Animation */
+        @-webkit-keyframes slideIn {
+            from {bottom: -300px; opacity: 0}
+            to {bottom: 0; opacity: 1}
+        }
+
+        @keyframes slideIn {
+            from {bottom: -300px; opacity: 0}
+            to {bottom: 0; opacity: 1}
+        }
+
+        @-webkit-keyframes fadeIn {
+            from {opacity: 0}
+            to {opacity: 1}
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0}
+            to {opacity: 1}
+        }
+        #animate{
+            --animate-duration: 1s;
+        }
+        #animate1{
+            --animate-duration: 1.1s;
+        }
+        #animate2{
+            --animate-duration: 1.2s;
+        }
+        #animate3{
+            --animate-duration: 1.3s;
+        }
+        #category{
+            --animate-duration: 1.4s;
+        }
+        #animate4{
+            --animate-duration: 1.5s;
+        }
+        #animate5{
+            --animate-duration: 1.6s;
+        }
+        #animate6{
+            --animate-duration: 1.7s;
+        }
+        #animate7{
+            --animate-duration: 1.8s;
+        }
+        /* Slideshow container */
+        .slideshow-container {
+            position: relative;
+            background: #F7CC7E;
+
+        }
+
+        /* Slides */
+        .mySlides {
+            display: none;
+            padding: 80px;
+            text-align: center;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -30px;
+            padding: 16px;
+            color: #888;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            position: absolute;
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            color: white;
+        }
+
+        /* The dot/bullet/indicator container */
+        .dot-container {
+            text-align: center;
+            padding: 20px;
+            background: #ddd;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        /* Add a background color to the active dot/circle */
+
+        /* Add an italic font style to all quotes */
+        q {font-style: italic;}
+
+        /* Add a blue color to the author */
+        .author {color: cornflowerblue;}
+        .col-3{
+            margin-left: 60px;
+            transform: scale(1.1);
+            position: relative;
+            right: 23px;
+        }
     </style>
 
 </head>
 <body>
 
 <x-freelancer-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __(' freelancer Dashboard') }}
-        </h2>
-    </x-slot>
-
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in amine freelancer
+        <div class="card text-center" style="width: 80%;height: 200px;margin:auto;border-radius: 56px;background-color: #E1ECFE;border-color: #E1ECFE" id="card">
+            <div class="card-body">
+                <h5 class="card-title" style="color: #F19B01">Hi ! <h5>{{Auth::user()->name}}</h5></h5>
+                <p class="card-text" style="margin-top: 23px">You can publish your work here</p>
+                <button type="button" class="btn btn-primary" id="myBtn" style="margin-top: 23px;background-color: #F19B01;border-color: #F19B01;color: white">
+                    Posted a Work
+                </button>
+                <div id="myModal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="close">&times;</span>
+
+                        </div>
+                        <div class="modal-body">
+                            <h1  class="animate__animated animate__backInLeft" id="animate" style="font-family: 'Trebuchet MS';text-align: center;font-size: 35px">Fill in the form</h1>
+                            <form method="POST" action="{{route('addAd')}}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="mb-1 animate__animated animate__backInLeft" id="animate1">
+                                    <input type="text" class="form-control"  id="exampleFormControlInput1" name="title" placeholder="Title"  style="width: 40%;margin: auto;height: 50px;border-radius: 19px;margin-top: 19px;font-family: 'Trebuchet MS'">
+                                </div>
+                                <br>
+
+                                <div class="mb-1 animate__animated animate__backInLeft" id="animate3">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" name="price" placeholder="Price" style="width: 40%;margin: auto;height: 50px;border-radius: 19px;font-family: 'Trebuchet MS'">
+                                </div>
+                                <br>
+
+                                <select class="form-control animate__animated animate__backInLeft" aria-label="Default select example" name="categorie" value="none" id="category" onchange="change1()" style="width: 40%;margin: auto;border-radius: 19px;height:50px ">
+                                    <option value="">Select category</option>
+                                    @foreach ($categories as $category)
+                                        <option >{{ $category->nom }}</option>
+                                    @endforeach
+                                </select>
+                                <br>
+                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory1" id="sub_category_graphics_design1" style="width: 40%;margin: auto;border-radius: 19px;height:50px">
+                                    <option value="">Select subcategory</option>
+                                    @foreach ($graphics_design as $graphics_design)
+                                        <option value="{{ $graphics_design->nom }}" >{{ $graphics_design->nom }}</option>
+                                    @endforeach
+                                </select>
+                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory2" id="sub_category_digital_marketing1" style="width: 40%;margin: auto;border-radius: 19px;height:50px" >
+                                    <option value="">Select subcategory</option>
+                                    @foreach ($digital_marketing as $digital_marketing)
+                                        <option value="{{ $digital_marketing->nom }}" >{{ $digital_marketing->nom }}</option>
+                                    @endforeach
+
+                                </select>
+                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory3" id="sub_category_writing_translation1" style="width: 40%;margin: auto;border-radius: 19px;height:50px" >
+                                    <option value="">Select subcategory</option>
+                                    @foreach ($writing_translation as $writing_translation)
+                                        <option value="{{ $writing_translation->nom }}" >{{ $writing_translation->nom }}</option>
+                                    @endforeach
+                                </select>
+                                </select>
+                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory4" id="sub_category_vedio_annimation1" style="width: 40%;margin: auto;border-radius: 19px;height:50px" >
+                                    <option value="">Select subcategory</option>
+                                    @foreach ($video_annimation as $video_annimation)
+                                        <option value="{{ $video_annimation->nom }}" >{{ $video_annimation->nom }}</option>
+                                    @endforeach
+                                </select>
+                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory5" id="sub_category_music_audio1" style="width: 40%;margin: auto;border-radius: 19px;height:50px" >
+                                    <option value="">Select subcategory</option>
+                                    @foreach ($music_audio as $music_audio)
+                                        <option value="{{ $music_audio->nom }}" >{{ $music_audio->nom }}</option>
+                                    @endforeach
+                                </select>
+                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory6" id="sub_category_programming_tech1" style="width: 40%;margin: auto;border-radius: 19px;height:50px" >
+                                    <option value="">Select subcategory</option>
+                                    @foreach ($programming_tech as $programming_tech)
+                                        <option value="{{ $programming_tech->nom }}" >{{ $programming_tech->nom }}</option>
+                                    @endforeach
+                                </select>
+                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory7" id="sub_category_business1" style="width: 40%;margin: auto;border-radius: 19px;height:50px">
+                                    <option value="">Select subcategory</option>
+                                    @foreach ($business as $business)
+                                        <option value="{{ $business->nom }}" >{{ $business->nom }}</option>
+                                    @endforeach
+                                </select>
+                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory8" id="sub_category_life_style1" style="width: 40%;margin: auto;border-radius: 19px;height:50px" >
+                                    <option value="">Select subcategory</option>
+                                    @foreach ($life_style as $life_style)
+                                        <option value="{{ $life_style->nom }}" >{{ $life_style->nom }}</option>
+                                    @endforeach
+                                </select>
+                                <br>
+                                <div class="form-group animate__animated animate__backInLeft" id="animate4">
+                                    <select class="form-control" id="exampleFormControlSelect1" name="currency" style="width: 40%;margin: auto;border-radius: 19px;height:50px ">
+                                        <option>Select Your currency</option>
+                                        <option value="USD" selected="selected">United States Dollars</option>
+                                        <option value="EUR">Euro</option>
+                                        <option value="GBP">United Kingdom Pounds</option>
+                                        <option value="DZD">Algeria Dinars</option>
+                                        <option value="ARP">Argentina Pesos</option>
+                                        <option value="AUD">Australia Dollars</option>
+                                        <option value="ATS">Austria Schillings</option>
+                                        <option value="BSD">Bahamas Dollars</option>
+                                        <option value="BBD">Barbados Dollars</option>
+                                        <option value="BEF">Belgium Francs</option>
+                                        <option value="BMD">Bermuda Dollars</option>
+                                        <option value="BRR">Brazil Real</option>
+                                        <option value="BGL">Bulgaria Lev</option>
+                                        <option value="CAD">Canada Dollars</option>
+                                        <option value="CLP">Chile Pesos</option>
+                                        <option value="CNY">China Yuan Renmimbi</option>
+                                        <option value="CYP">Cyprus Pounds</option>
+                                        <option value="CSK">Czech Republic Koruna</option>
+                                        <option value="DKK">Denmark Kroner</option>
+                                        <option value="NLG">Dutch Guilders</option>
+                                        <option value="XCD">Eastern Caribbean Dollars</option>
+                                        <option value="EGP">Egypt Pounds</option>
+                                        <option value="FJD">Fiji Dollars</option>
+                                        <option value="FIM">Finland Markka</option>
+                                        <option value="FRF">France Francs</option>
+                                        <option value="DEM">Germany Deutsche Marks</option>
+                                        <option value="XAU">Gold Ounces</option>
+                                        <option value="GRD">Greece Drachmas</option>
+                                        <option value="HKD">Hong Kong Dollars</option>
+                                        <option value="HUF">Hungary Forint</option>
+                                        <option value="ISK">Iceland Krona</option>
+                                        <option value="INR">India Rupees</option>
+                                        <option value="IDR">Indonesia Rupiah</option>
+                                        <option value="IEP">Ireland Punt</option>
+                                        <option value="ILS">Israel New Shekels</option>
+                                        <option value="ITL">Italy Lira</option>
+                                        <option value="JMD">Jamaica Dollars</option>
+                                        <option value="JPY">Japan Yen</option>
+                                        <option value="JOD">Jordan Dinar</option>
+                                        <option value="KRW">Korea (South) Won</option>
+                                        <option value="LBP">Lebanon Pounds</option>
+                                        <option value="LUF">Luxembourg Francs</option>
+                                        <option value="MYR">Malaysia Ringgit</option>
+                                        <option value="MXP">Mexico Pesos</option>
+                                        <option value="NLG">Netherlands Guilders</option>
+                                        <option value="NZD">New Zealand Dollars</option>
+                                        <option value="NOK">Norway Kroner</option>
+                                        <option value="PKR">Pakistan Rupees</option>
+                                        <option value="XPD">Palladium Ounces</option>
+                                        <option value="PHP">Philippines Pesos</option>
+                                        <option value="XPT">Platinum Ounces</option>
+                                        <option value="PLZ">Poland Zloty</option>
+                                        <option value="PTE">Portugal Escudo</option>
+                                        <option value="ROL">Romania Leu</option>
+                                        <option value="RUR">Russia Rubles</option>
+                                        <option value="SAR">Saudi Arabia Riyal</option>
+                                        <option value="XAG">Silver Ounces</option>
+                                        <option value="SGD">Singapore Dollars</option>
+                                        <option value="SKK">Slovakia Koruna</option>
+                                        <option value="ZAR">South Africa Rand</option>
+                                        <option value="KRW">South Korea Won</option>
+                                        <option value="ESP">Spain Pesetas</option>
+                                        <option value="XDR">Special Drawing Right (IMF)</option>
+                                        <option value="SDD">Sudan Dinar</option>
+                                        <option value="SEK">Sweden Krona</option>
+                                        <option value="CHF">Switzerland Francs</option>
+                                        <option value="TWD">Taiwan Dollars</option>
+                                        <option value="THB">Thailand Baht</option>
+                                        <option value="TTD">Trinidad and Tobago Dollars</option>
+                                        <option value="TRL">Turkey Lira</option>
+                                        <option value="VEB">Venezuela Bolivar</option>
+                                        <option value="ZMK">Zambia Kwacha</option>
+                                        <option value="DT">Dinar Tunisien</option>
+                                        <option value="XCD">Eastern Caribbean Dollars</option>
+                                        <option value="XDR">Special Drawing Right (IMF)</option>
+                                        <option value="XAG">Silver Ounces</option>
+                                        <option value="XAU">Gold Ounces</option>
+                                        <option value="XPD">Palladium Ounces</option>
+                                        <option value="XPT">Platinum Ounces</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <div>
+                                    <div class="d-flex justify-content-center animate__animated animate__backInLeft" id="animate5">
+                                        <div class="btn btn-primary btn-rounded" style="border-radius: 9px;background-color: #89ccff;border-color:#89ccff;width: 40%;">
+                                            <label class="form-label text-white m-1" for="customFile2" style="font-family: 'Trebuchet MS'">Choose Image</label>
+                                            <input type="file" class="form-control d-none" name="image" id="customFile2" accept="Image/*"  />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="mb-1 animate__animated animate__backInLeft" id="animate6">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description" placeholder="Description" rows="3" style="width: 40%;margin: auto;margin-top: 13px;border-radius: 19px;font-family: 'Trebuchet MS'"></textarea>
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-primary animate__animated animate__backInLeft" id="animate7"  style="width: 40%;border-radius: 9px;background-color: #F19B01;border-color: #F19B01;font-family: 'Trebuchet MS'">Publish</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-            @if (session('status'))
-                <script>
-                    Swal.fire(
-                        'Good job!',
-                        'Your data has been registered successfully!',
-                        'success'
-                    )
-                </script>
-            @endif
         </div>
     </div>
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <div class="container">
+                @php
+                    $count = 0;
+                @endphp
+                <div class="row">
+                    @foreach($image as $img)
+                        @if($count % 3 == 0 && $count != 0)
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    @endif
+                    <div class="col-3">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="{{asset('../../../uploads/poste/'.$img->image)}}" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text"><strong>Name:</strong>{{$img->name_user}}</p>
+                                <p class="card-text"><strong>Des:</strong>{{$img->description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    @php
+                        $count++;
+                    @endphp
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="mySlides">
+            <q>But man is not made for defeat. A man can be destroyed but not defeated.</q>
+            <p class="author">- Ernest Hemingway</p>
+        </div>
+
+        <div class="mySlides">
+            <q>I have not failed. I've just found 10,000 ways that won't work.</q>
+            <p class="author">- Thomas A. Edison</p>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+    </div>
+    @if (session('status'))
+        <script>
+            Swal.fire(
+                'Good job!',
+                'Your data has been registered successfully!',
+                'success'
+            )
+        </script>
+    @endif
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    @endif
 </x-freelancer-layout>
 
     @if(Auth::user()->categorie==null)
@@ -80,56 +496,66 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
                                                 @endforeach
                                             </select>
                                             <br>
-                                            <label style="font-family: 'Trebuchet MS'" id="labelcategory">Sub Category<span style="color: red " id="span">*</span></label>
-                                            <select class="form-select" aria-label="Default select example" name="subcategory1" id="sub_category_graphics_design" >
+                                            <label style="font-family: 'Trebuchet MS'" id="labelcategory">Sub Category</label>
+                                            <select class="form-select" aria-label="Default select example" name="subcategory1" id="sub_category_graphics_design" onchange="change2()" >
                                                 <option value="">Select subcategory</option>
                                                 @foreach ($graphics_design as $graphics_design)
-                                                    <option value="{{ $graphics_design->name }}" >{{ $graphics_design->name }}</option>
+                                                    <option value="{{ $graphics_design->nom }}" >{{ $graphics_design->nom }}</option>
                                                 @endforeach
+                                                <option value="Other">Other</option>
                                             </select>
-                                            <select class="form-select" aria-label="Default select example" name="subcategory2" id="sub_category_digital_marketing" >
+                                            <select class="form-select" aria-label="Default select example" name="subcategory2" id="sub_category_digital_marketing" onchange="change2()" >
                                                 <option value="">Select subcategory</option>
                                                 @foreach ($digital_marketing as $digital_marketing)
-                                                    <option value="{{ $digital_marketing->name }}" >{{ $digital_marketing->name }}</option>
+                                                    <option value="{{ $digital_marketing->nom }}" >{{ $digital_marketing->nom }}</option>
                                                 @endforeach
+                                                <option value="Other">Other</option>
                                             </select>
-                                            <select class="form-select" aria-label="Default select example" name="subcategory3" id="sub_category_writing_translation" >
+                                            <select class="form-select" aria-label="Default select example" name="subcategory3" id="sub_category_writing_translation" onchange="change2()" >
                                                 <option value="">Select subcategory</option>
                                                 @foreach ($writing_translation as $writing_translation)
-                                                    <option value="{{ $writing_translation->name }}" >{{ $writing_translation->name }}</option>
+                                                    <option value="{{ $writing_translation->nom }}" >{{ $writing_translation->nom }}</option>
                                                 @endforeach
+                                                <option value="Other">Other</option>
                                             </select>
                                             </select>
-                                            <select class="form-select" aria-label="Default select example" name="subcategory4" id="sub_category_vedio_annimation" >
+                                            <select class="form-select" aria-label="Default select example" name="subcategory4" id="sub_category_vedio_annimation" onchange="change2()" >
                                                 <option value="">Select subcategory</option>
                                                 @foreach ($video_annimation as $video_annimation)
-                                                    <option value="{{ $video_annimation->name }}" >{{ $video_annimation->name }}</option>
+                                                    <option value="{{ $video_annimation->nom }}" >{{ $video_annimation->nom }}</option>
                                                 @endforeach
+                                                <option value="Other">Other</option>
                                             </select>
-                                            <select class="form-select" aria-label="Default select example" name="subcategory5" id="sub_category_music_audio" >
+                                            <select class="form-select" aria-label="Default select example" name="subcategory5" id="sub_category_music_audio" onchange="change2()">
                                                 <option value="">Select subcategory</option>
                                                 @foreach ($music_audio as $music_audio)
-                                                    <option value="{{ $music_audio->name }}" >{{ $music_audio->name }}</option>
+                                                    <option value="{{ $music_audio->nom }}" >{{ $music_audio->nom }}</option>
                                                 @endforeach
+                                                <option value="Other">Other</option>
                                             </select>
-                                            <select class="form-select" aria-label="Default select example" name="subcategory6" id="sub_category_programming_tech" >
+                                            <select class="form-select" aria-label="Default select example" name="subcategory6" id="sub_category_programming_tech" onchange="change2()">
                                                 <option value="">Select subcategory</option>
                                                 @foreach ($programming_tech as $programming_tech)
-                                                    <option value="{{ $programming_tech->name }}" >{{ $programming_tech->name }}</option>
+                                                    <option value="{{ $programming_tech->nom }}" >{{ $programming_tech->nom }}</option>
                                                 @endforeach
+                                                <option value="Other">Other</option>
                                             </select>
-                                            <select class="form-select" aria-label="Default select example" name="subcategory7" id="sub_category_business" >
+                                            <select class="form-select" aria-label="Default select example" name="subcategory7" id="sub_category_business" onchange="change2()">
                                                 <option value="">Select subcategory</option>
                                                 @foreach ($business as $business)
-                                                    <option value="{{ $business->name }}" >{{ $business->name }}</option>
+                                                    <option value="{{ $business->nom }}" >{{ $business->nom }}</option>
                                                 @endforeach
+                                                <option value="Other">Other</option>
                                             </select>
-                                            <select class="form-select" aria-label="Default select example" name="subcategory8" id="sub_category_life_style" >
+                                            <select class="form-select" aria-label="Default select example" name="subcategory8" id="sub_category_life_style" onchange="change2()">
                                                 <option value="">Select subcategory</option>
                                                 @foreach ($life_style as $life_style)
-                                                    <option value="{{ $life_style->name }}" >{{ $life_style->name }}</option>
+                                                    <option value="{{ $life_style->nom }}" >{{ $life_style->nom }}</option>
                                             @endforeach
+                                                <option value="Other">Other</option>
                                             </select>
+                                                <br>
+                                                <input class="form-control" type="text"  aria-label="default input example" name="other" id="other" placeholder="enter your subcategory here" style="border-color: gray; border-radius: 5px">
                                                 <br>
                                                 <label for="country" style="font-family: 'Trebuchet MS'">Country</label><span style="color: red !important; display: inline; float: none;">*</span>
                                                 <select id="country" name="country" class="form-control" >
@@ -378,6 +804,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
                                                     <option value="Zimbabwe">Zimbabwe</option>
                                                 </select>
                                                 <br>
+                                                <label>Phone</label><span style="color: red !important; display: inline; float: none;">*</span>
+                                                <input class="form-control" type="text"  aria-label="default input example" name="phone" required style="border-color: gray; border-radius: 5px">
+                                                <br>
                                                 <label>City</label><span style="color: red !important; display: inline; float: none;">*</span>
                                                 <input class="form-control" type="text"  aria-label="default input example" name="ville" required style="border-color: gray; border-radius: 5px">
                                                 <br>
@@ -402,7 +831,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
             });
         </script>
     @endif
-    <script>
+<script>
 
 function change() {
     var selectElement = document.getElementById("category");
@@ -418,8 +847,9 @@ function change() {
         document.getElementById("sub_category_life_style").style.display="none";
         document.getElementById("labelcategory").style.display="none";
         document.getElementById("span").style.display="none";
+        document.getElementById("other").style.display="none";
     }
-    if (displaytext=="Graphics & Desgin"){
+    if (displaytext=="Graphics & Design"){
         document.getElementById("sub_category_graphics_design").style.display="block";
         document.getElementById("sub_category_digital_marketing").style.display="none";
         document.getElementById("sub_category_writing_translation").style.display="none";
@@ -430,6 +860,8 @@ function change() {
         document.getElementById("sub_category_life_style").style.display="none";
         document.getElementById("labelcategory").style.display="block";
         document.getElementById("span").style.display="block";
+        document.getElementById("other").style.display="none";
+        console.log(displaytext);
     }
     if (displaytext=="Digital Marketing"){
         document.getElementById("sub_category_digital_marketing").style.display="block";
@@ -441,6 +873,7 @@ function change() {
         document.getElementById("sub_category_business").style.display="none";
         document.getElementById("sub_category_life_style").style.display="none";
         document.getElementById("labelcategory").style.display="block";
+        document.getElementById("other").style.display="none";
     }
     if (displaytext=="Writing & Translation"){
         document.getElementById("sub_category_writing_translation").style.display="block";
@@ -451,8 +884,9 @@ function change() {
         document.getElementById("sub_category_business").style.display="none";
         document.getElementById("sub_category_life_style").style.display="none";
         document.getElementById("labelcategory").style.display="block";
+        document.getElementById("other").style.display="none";
     }
-    if (displaytext=="Video & annimation"){
+    if (displaytext=="Video & Animation"){
         document.getElementById("sub_category_vedio_annimation").style.display="block";
         document.getElementById("sub_category_graphics_design").style.display="none";
         document.getElementById("sub_category_digital_marketing").style.display="none";
@@ -462,6 +896,7 @@ function change() {
         document.getElementById("sub_category_business").style.display="none";
         document.getElementById("sub_category_life_style").style.display="none";
         document.getElementById("labelcategory").style.display="block";
+        document.getElementById("other").style.display="none";
     }
     if (displaytext=="Music & Audio"){
         document.getElementById("sub_category_music_audio").style.display="block";
@@ -473,6 +908,7 @@ function change() {
         document.getElementById("sub_category_writing_translation").style.display="none";
         document.getElementById("sub_category_vedio_annimation").style.display="none";
         document.getElementById("labelcategory").style.display="block";
+        document.getElementById("other").style.display="none";
 
     }
     if (displaytext=="Programming & Tech"){
@@ -485,6 +921,7 @@ function change() {
         document.getElementById("sub_category_vedio_annimation").style.display="none";
         document.getElementById("sub_category_music_audio").style.display="none";
         document.getElementById("labelcategory").style.display="block";
+        document.getElementById("other").style.display="none";
     }
     if (displaytext=="Business"){
         document.getElementById("sub_category_business").style.display="block";
@@ -496,9 +933,10 @@ function change() {
         document.getElementById("sub_category_programming_tech").style.display="none";
         document.getElementById("sub_category_life_style").style.display="none";
         document.getElementById("labelcategory").style.display="block";
+        document.getElementById("other").style.display="none";
     }
 
-    if (displaytext=="Life Style"){
+    if (displaytext=="Lifestyle"){
         document.getElementById("sub_category_life_style").style.display="block";
         document.getElementById("sub_category_graphics_design").style.display="none";
         document.getElementById("sub_category_digital_marketing").style.display="none";
@@ -508,10 +946,82 @@ function change() {
         document.getElementById("sub_category_programming_tech").style.display="none";
         document.getElementById("sub_category_business").style.display="none";
         document.getElementById("labelcategory").style.display="block";
+        document.getElementById("other").style.display="none";
     }
 
 
 }
+function change2(){
+    var graphics=document.getElementById("sub_category_graphics_design");
+    var marketing=document.getElementById("sub_category_digital_marketing");
+    var writing=document.getElementById("sub_category_writing_translation");
+    var video=document.getElementById("sub_category_vedio_annimation");
+    var music=document.getElementById("sub_category_music_audio");
+    var programming=document.getElementById("sub_category_programming_tech");
+    var business=document.getElementById("sub_category_business");
+    var lifestyle=document.getElementById("sub_category_life_style");
+
+    var displaygraphics = graphics.options[graphics.selectedIndex].text;
+    var displaymarketing=marketing.options[marketing.selectedIndex].text;
+    var displaymwriting=writing.options[writing.selectedIndex].text;
+    var displayvideo=video.options[video.selectedIndex].text;
+    var displaymusic=music.options[music.selectedIndex].text;
+    var displayprogramming=programming.options[programming.selectedIndex].text;
+    var displaybusiness=business.options[business.selectedIndex].text;
+    var displaylifestyle=lifestyle.options[lifestyle.selectedIndex].text;
+
+    if(displaymarketing=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+    if(displaygraphics=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+    if(displaymwriting=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+    if(displayvideo=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+    if(displaymusic=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+    if(displayprogramming=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+    if(displaybusiness=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+    if(displaylifestyle=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+
+    if(displaymarketing=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+    if(displaygraphics=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+    if(displaymwriting=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+    if(displayvideo=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+    if(displaymusic=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+    if(displayprogramming=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+    if(displaybusiness=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+    if(displaylifestyle=="Other"){
+        document.getElementById("other").style.display="block";
+    }
+
+}
+        document.getElementById("other").style.display="none";
         document.getElementById("sub_category_graphics_design").style.display="none";
         document.getElementById("sub_category_digital_marketing").style.display="none";
         document.getElementById("sub_category_writing_translation").style.display="none";
@@ -522,8 +1032,186 @@ function change() {
         document.getElementById("sub_category_life_style").style.display="none";
         document.getElementById("labelcategory").style.display="none";
         document.getElementById("span").style.display="none";
-    </script>
 
+    </script>
+<script>
+    function change1() {
+        var selectElement = document.getElementById("category");
+        var displaytext = selectElement.options[selectElement.selectedIndex].text;
+        if (displaytext=="Select category"){
+            document.getElementById("sub_category_graphics_design1").style.display="none";
+            document.getElementById("sub_category_digital_marketing1").style.display="none";
+            document.getElementById("sub_category_writing_translation1").style.display="none";
+            document.getElementById("sub_category_vedio_annimation1").style.display="none";
+            document.getElementById("sub_category_music_audio1").style.display="none";
+            document.getElementById("sub_category_programming_tech1").style.display="none";
+            document.getElementById("sub_category_business1").style.display="none";
+            document.getElementById("sub_category_life_style1").style.display="none";
+
+        }
+        if (displaytext=="Graphics & Design"){
+            document.getElementById("sub_category_graphics_design1").style.display="block";
+            document.getElementById("sub_category_digital_marketing1").style.display="none";
+            document.getElementById("sub_category_writing_translation1").style.display="none";
+            document.getElementById("sub_category_vedio_annimation1").style.display="none";
+            document.getElementById("sub_category_music_audio1").style.display="none";
+            document.getElementById("sub_category_programming_tech1").style.display="none";
+            document.getElementById("sub_category_business1").style.display="none";
+            document.getElementById("sub_category_life_style1").style.display="none";
+
+
+        }
+        if (displaytext=="Digital Marketing"){
+            document.getElementById("sub_category_digital_marketing1").style.display="block";
+            document.getElementById("sub_category_graphics_design1").style.display="none";
+            document.getElementById("sub_category_writing_translation1").style.display="none";
+            document.getElementById("sub_category_vedio_annimation1").style.display="none";
+            document.getElementById("sub_category_music_audio1").style.display="none";
+            document.getElementById("sub_category_programming_tech1").style.display="none";
+            document.getElementById("sub_category_business1").style.display="none";
+            document.getElementById("sub_category_life_style1").style.display="none";
+
+
+        }
+        if (displaytext=="Writing & Translation"){
+            document.getElementById("sub_category_writing_translation1").style.display="block";
+            document.getElementById("sub_category_digital_marketing1").style.display="none";
+            document.getElementById("sub_category_vedio_annimation1").style.display="none";
+            document.getElementById("sub_category_music_audio1").style.display="none";
+            document.getElementById("sub_category_programming_tech1").style.display="none";
+            document.getElementById("sub_category_business1").style.display="none";
+            document.getElementById("sub_category_life_style1").style.display="none";
+
+
+        }
+        if (displaytext=="Video & Animation"){
+            document.getElementById("sub_category_vedio_annimation1").style.display="block";
+            document.getElementById("sub_category_graphics_design1").style.display="none";
+            document.getElementById("sub_category_digital_marketing1").style.display="none";
+            document.getElementById("sub_category_writing_translation1").style.display="none";
+            document.getElementById("sub_category_music_audio1").style.display="none";
+            document.getElementById("sub_category_programming_tech1").style.display="none";
+            document.getElementById("sub_category_business1").style.display="none";
+            document.getElementById("sub_category_life_style1").style.display="none";
+
+
+        }
+        if (displaytext=="Music & Audio"){
+            document.getElementById("sub_category_music_audio1").style.display="block";
+            document.getElementById("sub_category_programming_tech1").style.display="none";
+            document.getElementById("sub_category_business1").style.display="none";
+            document.getElementById("sub_category_life_style1").style.display="none";
+            document.getElementById("sub_category_graphics_design1").style.display="none";
+            document.getElementById("sub_category_digital_marketing1").style.display="none";
+            document.getElementById("sub_category_writing_translation1").style.display="none";
+            document.getElementById("sub_category_vedio_annimation1").style.display="none";
+
+
+
+        }
+        if (displaytext=="Programming & Tech"){
+            document.getElementById("sub_category_programming_tech1").style.display="block";
+            document.getElementById("sub_category_business1").style.display="none";
+            document.getElementById("sub_category_life_style1").style.display="none";
+            document.getElementById("sub_category_graphics_design1").style.display="none";
+            document.getElementById("sub_category_digital_marketing1").style.display="none";
+            document.getElementById("sub_category_writing_translation1").style.display="none";
+            document.getElementById("sub_category_vedio_annimation1").style.display="none";
+            document.getElementById("sub_category_music_audio1").style.display="none";
+
+
+        }
+        if (displaytext=="Business"){
+            document.getElementById("sub_category_business1").style.display="block";
+            document.getElementById("sub_category_graphics_design1").style.display="none";
+            document.getElementById("sub_category_digital_marketing1").style.display="none";
+            document.getElementById("sub_category_writing_translation1").style.display="none";
+            document.getElementById("sub_category_vedio_annimation1").style.display="none";
+            document.getElementById("sub_category_music_audio1").style.display="none";
+            document.getElementById("sub_category_programming_tech1").style.display="none";
+            document.getElementById("sub_category_life_style1").style.display="none";
+
+
+        }
+
+        if (displaytext=="Lifestyle"){
+            document.getElementById("sub_category_life_style1").style.display="block";
+            document.getElementById("sub_category_graphics_design1").style.display="none";
+            document.getElementById("sub_category_digital_marketing1").style.display="none";
+            document.getElementById("sub_category_writing_translation1").style.display="none";
+            document.getElementById("sub_category_vedio_annimation1").style.display="none";
+            document.getElementById("sub_category_music_audio1").style.display="none";
+            document.getElementById("sub_category_programming_tech1").style.display="none";
+            document.getElementById("sub_category_business1").style.display="none";
+
+
+        }
+    }
+    document.getElementById("sub_category_graphics_design1").style.display="none";
+    document.getElementById("sub_category_digital_marketing1").style.display="none";
+    document.getElementById("sub_category_writing_translation1").style.display="none";
+    document.getElementById("sub_category_vedio_annimation1").style.display="none";
+    document.getElementById("sub_category_music_audio1").style.display="none";
+    document.getElementById("sub_category_programming_tech1").style.display="none";
+    document.getElementById("sub_category_business1").style.display="none";
+    document.getElementById("sub_category_life_style1").style.display="none";
+
+</script>
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+</script>
 
 </body>
 </html>

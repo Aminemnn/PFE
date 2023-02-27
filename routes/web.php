@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\changepassword;
+use App\Http\Controllers\clientcontroller;
 use App\Http\Controllers\freelancercontroller;
 use App\Mail\JOB4FREE;
 use Illuminate\Support\Facades\Mail;
@@ -31,6 +32,8 @@ Route::post('freelancer/dashboard',[freelancercontroller::class,'store'])->name(
 Route::get('freelancer/changepassword','changepassword@create')->middleware('auth','verified','freelancer')->name('changepassword');
 Route::get('client/changepassword','changepassword@create')->middleware('auth','verified','client')->name('changepassword');
 Route::get('client/profil','clientcontroller@profil')->middleware('auth','verified','client')->name('profil');
+Route::get('client/addAd','clientcontroller@addPoste')->middleware('auth','verified','client')->name('addAd');
+Route::post('client/dashboard',[clientcontroller::class,'store'])->name('addAd');
 Route::post('freelancer/changepassword',[changepassword::class,'store'])->name('changepassword');
 Route::get('/dashboard','homecontroller@dashboard')->middleware(['auth','verified','freelancer','client'])->name('dashboard');
 Route::get('logout', 'Auth\LoginController@logout')->middleware('disable-back-button');

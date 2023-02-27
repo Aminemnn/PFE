@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCategorieToUsersTable extends Migration
+class CreateSouscategorieTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddCategorieToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('categorie')->nullable();
+        Schema::create('souscategorie', function (Blueprint $table) {
+            $table->string('nom');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +26,6 @@ class AddCategorieToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('souscategorie');
     }
 }
