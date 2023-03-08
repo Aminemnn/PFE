@@ -8,17 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Poste extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'role_user',
+    protected $fillable =[
         'title',
-        'nb_heure',
-        'Price',
-        'role_user',
-        'currency',
-        'description',
+        'category',
+        'sous_category',
         'image',
+        'price',
+        'description',
+        'user_id',
         'name_user',
-        'categorie',
-        'sous_categorie'
+
     ];
 }

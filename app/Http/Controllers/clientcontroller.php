@@ -19,7 +19,7 @@ class clientcontroller extends Controller
         $programming_tech = DB::table('souscategorie')->where('name_cat','Programming & Tech')->get();
         $business = DB::table('souscategorie')->where('name_cat','Business')->get();
         $life_style = DB::table('souscategorie')->where('name_cat','Lifestyle')->get();
-        $image=DB::table('postes')->where('role_user','Freelancer')->get();
+
         return view('client.dashboard')->with('categories',$categories)->with('graphics_design',$graphics_design)
             ->with('digital_marketing',$digital_marketing)
             ->with('writing_translation',$writing_translation)
@@ -27,8 +27,8 @@ class clientcontroller extends Controller
             ->with('music_audio',$music_audio)
             ->with('programming_tech',$programming_tech)
             ->with('business',$business)
-            ->with('life_style',$life_style)
-            ->with('image',$image);
+            ->with('life_style',$life_style);
+
     }
     public function profil(){
         return view('client.profil');
@@ -44,7 +44,9 @@ class clientcontroller extends Controller
         $business = DB::table('souscategorie')->where('name_cat','Business')->get();
         $life_style = DB::table('souscategorie')->where('name_cat','Lifestyle')->get();
 
-        return view('client.addPoste')->with('categories',$categories)->with('graphics_design',$graphics_design)
+        return view('client.addPoste')
+            ->with('categories',$categories)
+            ->with('graphics_design',$graphics_design)
             ->with('digital_marketing',$digital_marketing)
             ->with('writing_translation',$writing_translation)
             ->with('video_annimation',$video_annimation)
@@ -53,46 +55,51 @@ class clientcontroller extends Controller
             ->with('business',$business)
             ->with('life_style',$life_style);
     }
-    public function store(Request $request){
-        $poste = new Poste();
+    public function request(Request $request){
         if ($_POST['subcategory1'] != null){
-            $poste->sous_categorie=$request->input('subcategory1');
+            $souscategorie=$request->input('subcategory1');
         }
         if ($_POST['subcategory2']!=null){
-            $poste->sous_categorie=$request->input('subcategory2');
+            $souscategorie=$request->input('subcategory2');
         }
         if ($_POST['subcategory3']!= null){
-            $poste->sous_categorie=$request->input('subcategory3');
+            $souscategorie=$request->input('subcategory3');
         }
         if ($_POST['subcategory4']!= null){
-            $poste->sous_categorie=$request->input('subcategory4');
+            $souscategorie=$request->input('subcategory4');
         }
         if ($_POST['subcategory5']!=null){
-            $poste->sous_categorie=$request->input('subcategory5');
+            $souscategorie=$request->input('subcategory5');
         }
         if ($_POST['subcategory6']!=null){
-            $poste->sous_categorie=$request->input('subcategory6');
+            $souscategorie=$request->input('subcategory6');
         }
         if ($_POST['subcategory7']!=null){
-            $poste->sous_categorie=$request->input('subcategory7');
+            $souscategorie=$request->input('subcategory7');
         }
-        if ($_POST['subcategory8']!=null){
-            $poste->sous_categorie=$request->input('subcategory8');
+        if ($_POST['subcategory7']!=null){
+            $souscategorie=$request->input('subcategory8');
         }
-        $poste->title=$request->input('title');
-        $poste->nb_heure=$request->input('nb_hours');
-        $poste->role_user=Auth::user()->role;
-        $poste->name_user=Auth::user()->name;
-        $poste->price=$request->input('price');
-        $poste->categorie=$request->input('categorie');
-        $poste->currency=$request->input('currency');
-            $image = $request->file('image');
-            $extension = $image->getClientOriginalExtension();
-            $filename=time().'.'.$extension;
-            $image->move('uploads/poste',$filename);
-            $poste->image=$filename;
-        $poste->description=$request->input('description');
-        $poste->save();
-        return back()->with("success", "is changed successfully!");
+        if ($_POST['other']!=null){
+            $other=$request->input('other');
+        }else{
+            $other=null;
+        }
+        if ($_POST['type']!=null){
+            $type=$request->input('type');
+        }else{
+            $type=null;
+        }
+        $categorie=$request->input('categorie');
+        $country=$request->input('country');
+        $ville=$request->input('ville');
+        $adresse=$request->input('adresse');
+        $phone=$request->input('phone');
+        $code=$request->input('code');
+        DB::table('users')
+            ->where('id',Auth::user()->id)
+            ->update(['categorie'=>$categorie,'sous_categorie'=>$souscategorie,'country'=>$country,'ville'=>$ville,'adresse'=>$adresse,'codepostal'=>$code,'phone'=>$phone,'Other'=>$other,'type'=>$type]);
+        return back()->with("status", "is changed successfully!");
     }
+
 }

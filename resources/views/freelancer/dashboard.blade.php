@@ -204,7 +204,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
         /* Add a blue color to the author */
         .author {color: cornflowerblue;}
         .col-3{
-            margin-left: 60px;
+            margin-left: 126px;
             transform: scale(1.1);
             position: relative;
             right: 23px;
@@ -221,222 +221,15 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
                 <h5 class="card-title" style="color: #F19B01">Hi ! <h5>{{Auth::user()->name}}</h5></h5>
                 <p class="card-text" style="margin-top: 23px">You can publish your work here</p>
                 <button type="button" class="btn btn-primary" id="myBtn" style="margin-top: 23px;background-color: #F19B01;border-color: #F19B01;color: white">
-                    Posted a Work
+                    <a href="{{route('addPoste')}}">Posted a Work
+                    </a>
                 </button>
-                <div id="myModal">
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <span class="close">&times;</span>
-
-                        </div>
-                        <div class="modal-body">
-                            <h1  class="animate__animated animate__backInLeft" id="animate" style="font-family: 'Trebuchet MS';text-align: center;font-size: 35px">Fill in the form</h1>
-                            <form method="POST" action="{{route('addAd')}}" enctype="multipart/form-data">
-                                @csrf
-                                <div class="mb-1 animate__animated animate__backInLeft" id="animate1">
-                                    <input type="text" class="form-control"  id="exampleFormControlInput1" name="title" placeholder="Title"  style="width: 40%;margin: auto;height: 50px;border-radius: 19px;margin-top: 19px;font-family: 'Trebuchet MS'">
-                                </div>
-                                <br>
-
-                                <div class="mb-1 animate__animated animate__backInLeft" id="animate3">
-                                    <input type="number" class="form-control" id="exampleFormControlInput1" name="price" placeholder="Price" style="width: 40%;margin: auto;height: 50px;border-radius: 19px;font-family: 'Trebuchet MS'">
-                                </div>
-                                <br>
-
-                                <select class="form-control animate__animated animate__backInLeft" aria-label="Default select example" name="categorie" value="none" id="category" onchange="change1()" style="width: 40%;margin: auto;border-radius: 19px;height:50px ">
-                                    <option value="">Select category</option>
-                                    @foreach ($categories as $category)
-                                        <option >{{ $category->nom }}</option>
-                                    @endforeach
-                                </select>
-                                <br>
-                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory1" id="sub_category_graphics_design1" style="width: 40%;margin: auto;border-radius: 19px;height:50px">
-                                    <option value="">Select subcategory</option>
-                                    @foreach ($graphics_design as $graphics_design)
-                                        <option value="{{ $graphics_design->nom }}" >{{ $graphics_design->nom }}</option>
-                                    @endforeach
-                                </select>
-                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory2" id="sub_category_digital_marketing1" style="width: 40%;margin: auto;border-radius: 19px;height:50px" >
-                                    <option value="">Select subcategory</option>
-                                    @foreach ($digital_marketing as $digital_marketing)
-                                        <option value="{{ $digital_marketing->nom }}" >{{ $digital_marketing->nom }}</option>
-                                    @endforeach
-
-                                </select>
-                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory3" id="sub_category_writing_translation1" style="width: 40%;margin: auto;border-radius: 19px;height:50px" >
-                                    <option value="">Select subcategory</option>
-                                    @foreach ($writing_translation as $writing_translation)
-                                        <option value="{{ $writing_translation->nom }}" >{{ $writing_translation->nom }}</option>
-                                    @endforeach
-                                </select>
-                                </select>
-                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory4" id="sub_category_vedio_annimation1" style="width: 40%;margin: auto;border-radius: 19px;height:50px" >
-                                    <option value="">Select subcategory</option>
-                                    @foreach ($video_annimation as $video_annimation)
-                                        <option value="{{ $video_annimation->nom }}" >{{ $video_annimation->nom }}</option>
-                                    @endforeach
-                                </select>
-                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory5" id="sub_category_music_audio1" style="width: 40%;margin: auto;border-radius: 19px;height:50px" >
-                                    <option value="">Select subcategory</option>
-                                    @foreach ($music_audio as $music_audio)
-                                        <option value="{{ $music_audio->nom }}" >{{ $music_audio->nom }}</option>
-                                    @endforeach
-                                </select>
-                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory6" id="sub_category_programming_tech1" style="width: 40%;margin: auto;border-radius: 19px;height:50px" >
-                                    <option value="">Select subcategory</option>
-                                    @foreach ($programming_tech as $programming_tech)
-                                        <option value="{{ $programming_tech->nom }}" >{{ $programming_tech->nom }}</option>
-                                    @endforeach
-                                </select>
-                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory7" id="sub_category_business1" style="width: 40%;margin: auto;border-radius: 19px;height:50px">
-                                    <option value="">Select subcategory</option>
-                                    @foreach ($business as $business)
-                                        <option value="{{ $business->nom }}" >{{ $business->nom }}</option>
-                                    @endforeach
-                                </select>
-                                <select class="form-control animate__animated animate__fadeInDown" aria-label="Default select example" name="subcategory8" id="sub_category_life_style1" style="width: 40%;margin: auto;border-radius: 19px;height:50px" >
-                                    <option value="">Select subcategory</option>
-                                    @foreach ($life_style as $life_style)
-                                        <option value="{{ $life_style->nom }}" >{{ $life_style->nom }}</option>
-                                    @endforeach
-                                </select>
-                                <br>
-                                <div class="form-group animate__animated animate__backInLeft" id="animate4">
-                                    <select class="form-control" id="exampleFormControlSelect1" name="currency" style="width: 40%;margin: auto;border-radius: 19px;height:50px ">
-                                        <option>Select Your currency</option>
-                                        <option value="USD" selected="selected">United States Dollars</option>
-                                        <option value="EUR">Euro</option>
-                                        <option value="GBP">United Kingdom Pounds</option>
-                                        <option value="DZD">Algeria Dinars</option>
-                                        <option value="ARP">Argentina Pesos</option>
-                                        <option value="AUD">Australia Dollars</option>
-                                        <option value="ATS">Austria Schillings</option>
-                                        <option value="BSD">Bahamas Dollars</option>
-                                        <option value="BBD">Barbados Dollars</option>
-                                        <option value="BEF">Belgium Francs</option>
-                                        <option value="BMD">Bermuda Dollars</option>
-                                        <option value="BRR">Brazil Real</option>
-                                        <option value="BGL">Bulgaria Lev</option>
-                                        <option value="CAD">Canada Dollars</option>
-                                        <option value="CLP">Chile Pesos</option>
-                                        <option value="CNY">China Yuan Renmimbi</option>
-                                        <option value="CYP">Cyprus Pounds</option>
-                                        <option value="CSK">Czech Republic Koruna</option>
-                                        <option value="DKK">Denmark Kroner</option>
-                                        <option value="NLG">Dutch Guilders</option>
-                                        <option value="XCD">Eastern Caribbean Dollars</option>
-                                        <option value="EGP">Egypt Pounds</option>
-                                        <option value="FJD">Fiji Dollars</option>
-                                        <option value="FIM">Finland Markka</option>
-                                        <option value="FRF">France Francs</option>
-                                        <option value="DEM">Germany Deutsche Marks</option>
-                                        <option value="XAU">Gold Ounces</option>
-                                        <option value="GRD">Greece Drachmas</option>
-                                        <option value="HKD">Hong Kong Dollars</option>
-                                        <option value="HUF">Hungary Forint</option>
-                                        <option value="ISK">Iceland Krona</option>
-                                        <option value="INR">India Rupees</option>
-                                        <option value="IDR">Indonesia Rupiah</option>
-                                        <option value="IEP">Ireland Punt</option>
-                                        <option value="ILS">Israel New Shekels</option>
-                                        <option value="ITL">Italy Lira</option>
-                                        <option value="JMD">Jamaica Dollars</option>
-                                        <option value="JPY">Japan Yen</option>
-                                        <option value="JOD">Jordan Dinar</option>
-                                        <option value="KRW">Korea (South) Won</option>
-                                        <option value="LBP">Lebanon Pounds</option>
-                                        <option value="LUF">Luxembourg Francs</option>
-                                        <option value="MYR">Malaysia Ringgit</option>
-                                        <option value="MXP">Mexico Pesos</option>
-                                        <option value="NLG">Netherlands Guilders</option>
-                                        <option value="NZD">New Zealand Dollars</option>
-                                        <option value="NOK">Norway Kroner</option>
-                                        <option value="PKR">Pakistan Rupees</option>
-                                        <option value="XPD">Palladium Ounces</option>
-                                        <option value="PHP">Philippines Pesos</option>
-                                        <option value="XPT">Platinum Ounces</option>
-                                        <option value="PLZ">Poland Zloty</option>
-                                        <option value="PTE">Portugal Escudo</option>
-                                        <option value="ROL">Romania Leu</option>
-                                        <option value="RUR">Russia Rubles</option>
-                                        <option value="SAR">Saudi Arabia Riyal</option>
-                                        <option value="XAG">Silver Ounces</option>
-                                        <option value="SGD">Singapore Dollars</option>
-                                        <option value="SKK">Slovakia Koruna</option>
-                                        <option value="ZAR">South Africa Rand</option>
-                                        <option value="KRW">South Korea Won</option>
-                                        <option value="ESP">Spain Pesetas</option>
-                                        <option value="XDR">Special Drawing Right (IMF)</option>
-                                        <option value="SDD">Sudan Dinar</option>
-                                        <option value="SEK">Sweden Krona</option>
-                                        <option value="CHF">Switzerland Francs</option>
-                                        <option value="TWD">Taiwan Dollars</option>
-                                        <option value="THB">Thailand Baht</option>
-                                        <option value="TTD">Trinidad and Tobago Dollars</option>
-                                        <option value="TRL">Turkey Lira</option>
-                                        <option value="VEB">Venezuela Bolivar</option>
-                                        <option value="ZMK">Zambia Kwacha</option>
-                                        <option value="DT">Dinar Tunisien</option>
-                                        <option value="XCD">Eastern Caribbean Dollars</option>
-                                        <option value="XDR">Special Drawing Right (IMF)</option>
-                                        <option value="XAG">Silver Ounces</option>
-                                        <option value="XAU">Gold Ounces</option>
-                                        <option value="XPD">Palladium Ounces</option>
-                                        <option value="XPT">Platinum Ounces</option>
-                                    </select>
-                                </div>
-                                <br>
-                                <div>
-                                    <div class="d-flex justify-content-center animate__animated animate__backInLeft" id="animate5">
-                                        <div class="btn btn-primary btn-rounded" style="border-radius: 9px;background-color: #89ccff;border-color:#89ccff;width: 40%;">
-                                            <label class="form-label text-white m-1" for="customFile2" style="font-family: 'Trebuchet MS'">Choose Image</label>
-                                            <input type="file" class="form-control d-none" name="image" id="customFile2" accept="Image/*"  />
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="mb-1 animate__animated animate__backInLeft" id="animate6">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description" placeholder="Description" rows="3" style="width: 40%;margin: auto;margin-top: 13px;border-radius: 19px;font-family: 'Trebuchet MS'"></textarea>
-                                </div>
-                                <br>
-                                <button type="submit" class="btn btn-primary animate__animated animate__backInLeft" id="animate7"  style="width: 40%;border-radius: 9px;background-color: #F19B01;border-color: #F19B01;font-family: 'Trebuchet MS'">Publish</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
     <div class="slideshow-container">
         <div class="mySlides">
-            <div class="container">
-                @php
-                    $count = 0;
-                @endphp
-                <div class="row">
-                    @foreach($image as $img)
-                        @if($count % 3 == 0 && $count != 0)
-                </div>
-                <br>
-                <br>
-                <div class="row">
-                    @endif
-                    <div class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="{{asset('../../../uploads/poste/'.$img->image)}}" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text"><strong>Name:</strong>{{$img->name_user}}</p>
-                                <p class="card-text"><strong>Des:</strong>{{$img->description}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    @php
-                        $count++;
-                    @endphp
-                    @endforeach
-                </div>
-            </div>
+
         </div>
         <div class="mySlides">
             <q>But man is not made for defeat. A man can be destroyed but not defeated.</q>
@@ -495,7 +288,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
                                                     <option >{{ $category->nom }}</option>
                                                 @endforeach
                                             </select>
-                                            <br>
+                                                <br>
                                             <label style="font-family: 'Trebuchet MS'" id="labelcategory">Sub Category</label>
                                             <select class="form-select" aria-label="Default select example" name="subcategory1" id="sub_category_graphics_design" onchange="change2()" >
                                                 <option value="">Select subcategory</option>
@@ -551,7 +344,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
                                                 <option value="">Select subcategory</option>
                                                 @foreach ($life_style as $life_style)
                                                     <option value="{{ $life_style->nom }}" >{{ $life_style->nom }}</option>
-                                            @endforeach
+                                                @endforeach
                                                 <option value="Other">Other</option>
                                             </select>
                                                 <br>
@@ -836,6 +629,19 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
 function change() {
     var selectElement = document.getElementById("category");
     var displaytext = selectElement.options[selectElement.selectedIndex].text;
+    console.log(displaytext);
+    if(displaytext=="Other"){
+        document.getElementById("sub_category_graphics_design").style.display="none";
+        document.getElementById("sub_category_digital_marketing").style.display="none";
+        document.getElementById("sub_category_writing_translation").style.display="none";
+        document.getElementById("sub_category_vedio_annimation").style.display="none";
+        document.getElementById("sub_category_music_audio").style.display="none";
+        document.getElementById("sub_category_programming_tech").style.display="none";
+        document.getElementById("sub_category_business").style.display="none";
+        document.getElementById("sub_category_life_style").style.display="none";
+        document.getElementById("labelcategory").style.display="none";
+        document.getElementById("other").style.display="block";
+    }
     if (displaytext=="Select category"){
         document.getElementById("sub_category_graphics_design").style.display="none";
         document.getElementById("sub_category_digital_marketing").style.display="none";
@@ -861,7 +667,7 @@ function change() {
         document.getElementById("labelcategory").style.display="block";
         document.getElementById("span").style.display="block";
         document.getElementById("other").style.display="none";
-        console.log(displaytext);
+
     }
     if (displaytext=="Digital Marketing"){
         document.getElementById("sub_category_digital_marketing").style.display="block";

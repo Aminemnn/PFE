@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class freelancercontroller extends Controller
 {
     public function dashboard(){
-        $categories = DB::select('SELECT * FROM categorie WHERE nom != ?',['Other']);
+        $categories = DB::select('SELECT * FROM categorie');
         $graphics_design = DB::table('souscategorie')->where('name_cat','Graphics & Design')->get();
         $digital_marketing = DB::table('souscategorie')->where('name_cat','Digital Marketing')->get();
         $writing_translation = DB::table('souscategorie')->where('name_cat','Writing & Translation')->get();
@@ -21,8 +21,20 @@ class freelancercontroller extends Controller
         $programming_tech = DB::table('souscategorie')->where('name_cat','Programming & Tech')->get();
         $business = DB::table('souscategorie')->where('name_cat','Business')->get();
         $life_style = DB::table('souscategorie')->where('name_cat','Lifestyle')->get();
-        $image=DB::table('postes')->where('role_user','Client')->get();
-        return view('freelancer.dashboard')->with('categories',$categories)->with('graphics_design',$graphics_design)
+
+        $graphics_design2 = DB::table('souscategorie')->where('name_cat','Graphics & Design')->get();
+        $digital_marketing2 = DB::table('souscategorie')->where('name_cat','Digital Marketing')->get();
+        $writing_translation2 = DB::table('souscategorie')->where('name_cat','Writing & Translation')->get();
+        $video_annimation2 = DB::table('souscategorie')->where('name_cat','Video & Animation')->get();
+        $music_audio2 = DB::table('souscategorie')->where('name_cat','Music & Audio')->get();
+        $programming_tech2 = DB::table('souscategorie')->where('name_cat','Programming & Tech')->get();
+        $business2 = DB::table('souscategorie')->where('name_cat','Business')->get();
+        $life_style2 = DB::table('souscategorie')->where('name_cat','Lifestyle')->get();
+
+
+        return view('freelancer.dashboard')
+            ->with('categories',$categories)
+            ->with('graphics_design',$graphics_design)
             ->with('digital_marketing',$digital_marketing)
             ->with('writing_translation',$writing_translation)
             ->with('video_annimation',$video_annimation)
@@ -30,12 +42,21 @@ class freelancercontroller extends Controller
             ->with('programming_tech',$programming_tech)
             ->with('business',$business)
             ->with('life_style',$life_style)
-        ->with('image',$image);
+            ->with('graphics_design2',$graphics_design2)
+            ->with('digital_marketing2',$digital_marketing2)
+            ->with('writing_translation2',$writing_translation2)
+            ->with('video_annimation2',$video_annimation2)
+            ->with('music_audio2',$music_audio2)
+            ->with('programming_tech2',$programming_tech2)
+            ->with('business2',$business2)
+            ->with('life_style2',$life_style2);
+
     }
-    public function store(Request $request){
-if ($_POST['subcategory1'] != null){
+public function store(Request $request){
+    $souscategorie=null;
+    if ($_POST['subcategory1'] != null){
     $souscategorie=$request->input('subcategory1');
-}
+       }
         if ($_POST['subcategory2']!=null){
             $souscategorie=$request->input('subcategory2');
         }
@@ -57,16 +78,13 @@ if ($_POST['subcategory1'] != null){
         if ($_POST['subcategory7']!=null){
             $souscategorie=$request->input('subcategory8');
         }
+
         if ($_POST['other']!=null){
             $other=$request->input('other');
         }else{
             $other=null;
         }
-        if ($_POST['type']!=null){
-            $type=$request->input('type');
-        }else{
-            $type=null;
-        }
+
         $categorie=$request->input('categorie');
          $country=$request->input('country');
          $ville=$request->input('ville');
@@ -75,8 +93,29 @@ if ($_POST['subcategory1'] != null){
          $code=$request->input('code');
       DB::table('users')
           ->where('id',Auth::user()->id)
-          ->update(['categorie'=>$categorie,'sous_categorie'=>$souscategorie,'country'=>$country,'ville'=>$ville,'adresse'=>$adresse,'codepostal'=>$code,'phone'=>$phone,'Other'=>$other,'type'=>$type]);
+          ->update(['categorie'=>$categorie,'sous_categorie'=>$souscategorie,'country'=>$country,'ville'=>$ville,'adresse'=>$adresse,'codepostal'=>$code,'phone'=>$phone,'Other'=>$other]);
         return back()->with("status", "is changed successfully!");
+    }
+    public function addPoste(){
+        $categories = DB::select('SELECT * FROM categorie WHERE nom != ?',['Other']);
+        $graphics_design = DB::table('souscategorie')->where('name_cat','Graphics & Design')->get();
+        $digital_marketing = DB::table('souscategorie')->where('name_cat','Digital Marketing')->get();
+        $writing_translation = DB::table('souscategorie')->where('name_cat','Writing & Translation')->get();
+        $video_annimation = DB::table('souscategorie')->where('name_cat','Video & Animation')->get();
+        $music_audio = DB::table('souscategorie')->where('name_cat','Music & Audio')->get();
+        $programming_tech = DB::table('souscategorie')->where('name_cat','Programming & Tech')->get();
+        $business = DB::table('souscategorie')->where('name_cat','Business')->get();
+        $life_style = DB::table('souscategorie')->where('name_cat','Lifestyle')->get();
+        return view('freelancer.addPoste')
+            ->with('categories',$categories)
+            ->with('graphics_design',$graphics_design)
+            ->with('digital_marketing',$digital_marketing)
+            ->with('writing_translation',$writing_translation)
+            ->with('video_annimation',$video_annimation)
+            ->with('music_audio',$music_audio)
+            ->with('programming_tech',$programming_tech)
+            ->with('business',$business)
+            ->with('life_style',$life_style);
     }
 
 }

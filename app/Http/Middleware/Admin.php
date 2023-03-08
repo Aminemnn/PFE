@@ -17,7 +17,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check() || Auth::user()->role != 'admin') {
+        if (!Auth::check() || Auth::user()->role != 'Admin') {
             if (Auth::user()->role == "Freelancer") {
                 return redirect('/freelancer/dashboard');
             }else{
