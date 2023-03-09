@@ -7,6 +7,7 @@ use App\Http\Controllers\clientcontroller;
 use App\Http\Controllers\ClientManagement;
 use App\Http\Controllers\freelancercontroller;
 use App\Http\Controllers\FreelancerManagement;
+use App\Http\Controllers\updateinfo;
 use App\Mail\JOB4FREE;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,8 @@ Route::get('freelancer/dashboard','freelancercontroller@dashboard')->middleware(
 Route::post('freelancer/dashboard',[freelancercontroller::class,'store'])->name('freelancer');
 Route::post('client/addAd',[addannonce::class,'store'])->name('addann');
 Route::post('freelancer/addPoste',[addposte::class,'store'])->name('addposte');
+Route::get('freelancer/info','updateinfo@create')->middleware('auth','verified','freelancer')->name('info');
+Route::post('freelancer/info',[updateinfo::class,'updateinfo'])->name('updateinfo');
 Route::get('freelancer/changepassword','changepassword@create')->middleware('auth','verified','freelancer')->name('changepassword');
 Route::get('client/changepassword','changepassword@create')->middleware('auth','verified','client')->name('changepassword');
 Route::get('client/profil','clientcontroller@profil')->middleware('auth','verified','client')->name('profil');

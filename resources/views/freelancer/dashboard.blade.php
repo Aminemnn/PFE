@@ -209,6 +209,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
             position: relative;
             right: 23px;
         }
+        #myBtn a{
+            text-decoration: none;
+            color: white;
+        }
+
     </style>
 
 </head>

@@ -53,28 +53,30 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact Us</a>
                     </li>
-                    <form>
-                        <div class="login_menu">
-                            <!--  <ul class="navbar-nav mr-auto">-->
-                            @if (Route::has('login'))
-                                @auth
-                                    @if(Auth::user()->role=="Freelancer")
-                                        <li class="nav-item"> <a href="{{ url('freelancer/dashboard') }}" class="nav-link">Dashboard</a></li>
-                                    @elseif(Auth::user()->role=="Client")
-                                        <li class="nav-item"> <a href="{{ url('client/dashboard') }}" class="nav-link">Dashboard</a></li>
-                                    @else
-                                        <li class="nav-item"> <a href="{{ url('admin/dashboard') }}" class="nav-link">Dashboard</a></li>
-                                    @endif
-                        </div>
-                    </form>
-                    @else
-                        <!-- <ul  class="navbar-nav mr-auto">-->
-                        <li  class="nav-item"><a href="{{ route('login') }}" class="nav-link" >Login</a></li>
-                        @if (Route::has('register'))
-                            <li  class="nav-item"><a href="{{ route('register') }}" class="nav-link" >Sign In</a></li>
-                        @endif
+                    <li class="nav-item">
+                        <form>
+                            <div class="login_menu">
+                                <!--  <ul class="navbar-nav mr-auto">-->
+                    @if (Route::has('login'))
+                        @auth
+                            @if(Auth::user()->role=="Freelancer")
+                                <li class="nav-item"> <a href="{{ url('freelancer/dashboard') }}" class="nav-link">Dashboard</a></li>
+                            @elseif(Auth::user()->role=="Client")
+                                <li class="nav-item"> <a href="{{ url('client/dashboard') }}" class="nav-link">Dashboard</a></li>
+                            @else
+                                <li class="nav-item"> <a href="{{ url('admin/dashboard') }}" class="nav-link">Dashboard</a></li>
+                @endif
+            </div>
+            </form>
+            @else
+                <!-- <ul  class="navbar-nav mr-auto">-->
+                <li  class="nav-item"><a href="{{ route('login') }}" class="nav-link" >Login</a></li>
+                @if (Route::has('register'))
+                    <li  class="nav-item"><a href="{{ route('register') }}" class="nav-link" >Sign In</a></li>
+                    @endif
                     @endauth
                     @endif
+                    </li>
                 </ul>
             </div>
             <div id="main">
