@@ -12,10 +12,11 @@ class experience extends Model
     protected $fillable = [
          'title',
          'poste',
-        'societe',
-        'location',
-        'datedeb',
-        'datefin',
+         'societe',
+         'location',
+         'datedeb',
+         'datefin',
+         'id_user'
 
     ];
 }

@@ -204,16 +204,15 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profil')"  style="text-decoration: none;color: #1a202c">
+                        <x-dropdown-link :href="route('profilfreelancer')"  style="text-decoration: none;color: #1a202c">
                             <i class="fa-regular fa-user"></i>{{ __(' Profile') }}
                         </x-dropdown-link>
-                        <x-dropdown-link   style="text-decoration: none;color: #1a202c">
+                        <x-dropdown-link :href="route('addPoste')"  style="text-decoration: none;color: #1a202c">
                             <i class="fa-solid fa-briefcase"></i>{{ __(' Post a Work') }}
                         </x-dropdown-link>
-                        <x-dropdown-link   style="text-decoration: none;color: #1a202c">
+                        <x-dropdown-link  :href="route('historiqueposte')" style="text-decoration: none;color: #1a202c">
                             <i class="fa-solid fa-clock-rotate-left"></i>{{ __(' Request history') }}
                         </x-dropdown-link>
-
                         <hr style="width: 90%;margin:auto;margin-top: 6px">
                         <x-dropdown-link   style="text-decoration: none;color: #1a202c">
                             <i class="fa-solid fa-gear"></i>{{ __(' Setting') }}

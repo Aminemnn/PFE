@@ -10,9 +10,10 @@ class diplome extends Model
     use HasFactory;
 
     protected $fillable = [
+        'country',
         'institut',
-        'description',
         'titre_diplome',
-        'annee'
+        'annee',
+        'id_user'
         ];
 }

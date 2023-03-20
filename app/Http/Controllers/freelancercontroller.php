@@ -54,6 +54,7 @@ class freelancercontroller extends Controller
     }
 public function store(Request $request){
     $souscategorie=null;
+    $bio=null;
     if ($_POST['subcategory1'] != null){
     $souscategorie=$request->input('subcategory1');
        }
@@ -78,22 +79,36 @@ public function store(Request $request){
         if ($_POST['subcategory7']!=null){
             $souscategorie=$request->input('subcategory8');
         }
-
         if ($_POST['other']!=null){
             $other=$request->input('other');
         }else{
             $other=null;
         }
-
+if ($_POST['bio']!=null){
+    $bio=$request->input('bio');
+}
         $categorie=$request->input('categorie');
          $country=$request->input('country');
          $ville=$request->input('ville');
          $adresse=$request->input('adresse');
          $phone=$request->input('phone');
          $code=$request->input('code');
+    $image = $request->file('img');
+    $extension = $image->getClientOriginalExtension();
+    $filename=time().'.'.$extension;
+    $image->move('uploads/photouser',$filename);
       DB::table('users')
           ->where('id',Auth::user()->id)
-          ->update(['categorie'=>$categorie,'sous_categorie'=>$souscategorie,'country'=>$country,'ville'=>$ville,'adresse'=>$adresse,'codepostal'=>$code,'phone'=>$phone,'Other'=>$other]);
+          ->update(['categorie'=>$categorie,'sous_categorie'=>$souscategorie,
+              'country'=>$country,
+              'ville'=>$ville,
+              'adresse'=>$adresse,
+              'codepostal'=>$code,
+              'phone'=>$phone,
+              'Other'=>$other,
+              'image'=>$filename,
+              'bio'=>$bio
+              ]);
         return back()->with("status", "is changed successfully!");
     }
     public function addPoste(){
@@ -117,5 +132,16 @@ public function store(Request $request){
             ->with('business',$business)
             ->with('life_style',$life_style);
     }
+public function profil(){
+        $image=DB::table('users')->select('image')->where('id',Auth::user()->id)->get();
+        $skills=DB::table('skills')->where('user_id',Auth::user()->id)->get();
+        $postes=DB::table('postes')->where('user_id',Auth::user()->id)->get();
+          $pos = DB::select('SELECT * FROM postes WHERE id = ?',[Auth::user()->id]);
+        return view('freelancer.profil')
+            ->with('image',$image)
+            ->with('skills',$skills)
+            ->with('postes',$postes)
+            ->with('pos',$pos);
 
+}
 }

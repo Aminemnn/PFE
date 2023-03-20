@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <style>
     * {
@@ -270,6 +272,7 @@
     }
 </style>
 <body>
+<p style="margin-left: 33px;margin-top: 23px"><i class="fa-solid fa-arrow-left"></i><a href="{{route('freelancer')}}" style="text-decoration: none;color: black">  Home</a></p>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-11 col-sm-9 col-md-7
@@ -425,7 +428,8 @@
                                                         <i class="glyphicon glyphicon-download-alt"></i>
                                                         <p>Choose an image file or drag it here.</p>
                                                     </div>
-                                                    <input type="file" name="image" class="dropzone" accept="Image/*">
+                                                    <input type="file" name="image" class="dropzone" id="imageUpload" accept="Image/*" >
+
                                                     @error('image')
                                                     <script>
                                                         Swal.fire({
@@ -436,12 +440,14 @@
                                                     </script>
                                                     @enderror
                                                 </div>
+                                                <p id="result1" class="text-success"></p>
+                                                <p id="result2" class="text-danger" ></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                         <input type="button" name="next-step"
-                               class="next-step" value="Next Step" />
+                               class="next-step" value="Next Step" id="next" />
                         <input type="button" name="previous-step"
                                class="previous-step"
                                value="Previous Step" />
@@ -503,6 +509,7 @@
         )
     </script>
 @endif
+
 </body>
 <script>
     $(document).ready(function () {
@@ -856,7 +863,7 @@
 
         Toast.fire({
             icon: 'success',
-            title: 'Signed in successfully'
+            title: 'Nice !'
         })
 
     }
@@ -1114,6 +1121,30 @@
         boxZone.empty();
         previewZone.addClass('hidden');
         reset(dropzone);
+    });
+</script>
+<script>
+    const imageUpload = document.getElementById('imageUpload');
+    const result1 = document.getElementById('result1');
+    const result2 = document.getElementById('result2');
+    const nextstep=document.getElementById('next');
+    imageUpload.addEventListener('change',function (){
+        const file = this.files[0];
+        const image = new Image();
+        const reader = new FileReader();
+        reader.onload=function (e){
+            image.src=e.target.result;
+            image.onload=function (){
+                if (this.width<=1024 && this.height<=1024){
+                    result1.textContent = "L'image est de la bonne taille";
+                    nextstep.style.display="block";
+                } else {
+                    result2.textContent = "L'image doit être de taille inferieur ou égale 1024x1024";
+                    nextstep.style.display="none";
+                }
+            };
+        }
+        reader.readAsDataURL(file);
     });
 </script>
 </html>

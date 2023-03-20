@@ -1,10 +1,15 @@
 <?php
 
 use App\Http\Controllers\addannonce;
+use App\Http\Controllers\adddiplome;
+use App\Http\Controllers\addexperience;
 use App\Http\Controllers\addposte;
+use App\Http\Controllers\addskills;
 use App\Http\Controllers\changepassword;
 use App\Http\Controllers\clientcontroller;
 use App\Http\Controllers\ClientManagement;
+use App\Http\Controllers\deleteannonce;
+use App\Http\Controllers\deletePoste;
 use App\Http\Controllers\freelancercontroller;
 use App\Http\Controllers\FreelancerManagement;
 use App\Http\Controllers\updateinfo;
@@ -26,7 +31,10 @@ use App\Http\Controllers\homecontroller;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/auth/facebook', 'FacebookController@redirectToFacebook');
+Route::get('/auth/facebook/callback', 'FacebookController@handleFacebookCallback');
+Route::post('delete/poste',[deletePoste::class,'delete'])->name('delete');
+Route::post('delete/annonce',[deleteannonce::class,'delete'])->name('deleteannonce');
 Route::get('/', 'welcomecontroller@create')->name('welcome');
 Route::get('/tester','testercontroller@create')->name('tester');
 Route::get('admin/UserManagement','FreelancerManagement@create')->middleware(['auth','admin'])->name('freelancerManagement');
@@ -37,11 +45,17 @@ Route::get('admin/dashboard','admincontroller@dashboard')->middleware(['auth','a
 Route::get('client/dashboard','clientcontroller@dashboard')->middleware(['auth','verified','client'])->name('client');
 Route::get('freelancer/dashboard','freelancercontroller@dashboard')->middleware(['auth','verified','freelancer'])->name('freelancer');
 Route::post('freelancer/dashboard',[freelancercontroller::class,'store'])->name('freelancer');
+Route::get('freelancer/historique','historiqueposte@create')->middleware(['auth','verified','freelancer'])->name('historiqueposte');
 Route::post('client/addAd',[addannonce::class,'store'])->name('addann');
 Route::post('freelancer/addPoste',[addposte::class,'store'])->name('addposte');
 Route::get('freelancer/info','updateinfo@create')->middleware('auth','verified','freelancer')->name('info');
 Route::post('freelancer/info',[updateinfo::class,'updateinfo'])->name('updateinfo');
+Route::get('freelancer/profil','freelancercontroller@profil')->middleware(['auth','verified','freelancer'])->name('profilfreelancer');
+Route::post('freelancer/profil',[addskills::class,'store'])->name('addskill');
 Route::get('freelancer/changepassword','changepassword@create')->middleware('auth','verified','freelancer')->name('changepassword');
+Route::post('freelancer/profill',[adddiplome::class,'store'])->name('adddiplome');
+Route::post('freelancer/profilll',[addexperience::class,'store'])->name('addexperience');
+Route::post('skill/update',[addskills::class,'update'])->name('updateskill');
 Route::get('client/changepassword','changepassword@create')->middleware('auth','verified','client')->name('changepassword');
 Route::get('client/profil','clientcontroller@profil')->middleware('auth','verified','client')->name('profil');
 Route::get('client/addAd','clientcontroller@addPoste')->middleware('auth','verified','client')->name('addAd');

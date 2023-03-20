@@ -19,8 +19,12 @@ class updateinfo extends Controller
         if ($request->name==Auth::user()->name){
             return back()->with("error","Your name is Already exists");
         }
+        if ($request->bio==Auth::user()->bio){
+            return back()->with("error","Your bio is Already exists");
+        }
         user::whereId(auth()->user()->id)->update([
-           'name'=>$request->name
+           'name'=>$request->name,
+            'bio'=>$request->bio
         ]);
         return back()->with("status","Name changed successfully!");
     }

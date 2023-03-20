@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class clientcontroller extends Controller
 {
     public function dashboard(){
-        $categories = DB::select('SELECT * FROM categorie WHERE nom != ?',['Other']);
+        $categories = DB::select('SELECT * FROM categorie ');
         $graphics_design = DB::table('souscategorie')->where('name_cat','Graphics & Design')->get();
         $digital_marketing = DB::table('souscategorie')->where('name_cat','Digital Marketing')->get();
         $writing_translation = DB::table('souscategorie')->where('name_cat','Writing & Translation')->get();
@@ -31,7 +31,9 @@ class clientcontroller extends Controller
 
     }
     public function profil(){
-        return view('client.profil');
+        $image=DB::table('users')->select('image')->where('id',Auth::user()->id)->get();
+        $postes=DB::table('annonces')->where('id_user',Auth::user()->id)->get();
+        return view('client.profil')->with('image',$image)->with('postes',$postes);
     }
     public function addPoste(){
         $categories = DB::select('SELECT * FROM categorie WHERE nom != ?',['Other']);
@@ -56,6 +58,7 @@ class clientcontroller extends Controller
             ->with('life_style',$life_style);
     }
     public function request(Request $request){
+        $bio=null;
         if ($_POST['subcategory1'] != null){
             $souscategorie=$request->input('subcategory1');
         }
@@ -90,15 +93,33 @@ class clientcontroller extends Controller
         }else{
             $type=null;
         }
+        if ($_POST['bio']!=null){
+            $bio=$request->input('bio');
+        }
         $categorie=$request->input('categorie');
         $country=$request->input('country');
         $ville=$request->input('ville');
         $adresse=$request->input('adresse');
         $phone=$request->input('phone');
         $code=$request->input('code');
+        $image = $request->file('img');
+        $extension = $image->getClientOriginalExtension();
+        $filename=time().'.'.$extension;
+        $image->move('uploads/photouser',$filename);
         DB::table('users')
             ->where('id',Auth::user()->id)
-            ->update(['categorie'=>$categorie,'sous_categorie'=>$souscategorie,'country'=>$country,'ville'=>$ville,'adresse'=>$adresse,'codepostal'=>$code,'phone'=>$phone,'Other'=>$other,'type'=>$type]);
+            ->update(['categorie'=>$categorie,
+                'sous_categorie'=>$souscategorie,
+                'country'=>$country,
+                'ville'=>$ville,
+                'adresse'=>$adresse,
+                'codepostal'=>$code,
+                'phone'=>$phone,
+                'Other'=>$other,
+                'type'=>$type,
+                'image'=>$filename,
+                'bio'=>$bio
+            ]);
         return back()->with("status", "is changed successfully!");
     }
 

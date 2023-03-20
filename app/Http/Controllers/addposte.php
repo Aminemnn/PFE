@@ -6,7 +6,7 @@ use App\Models\annonce;
 use App\Models\Poste;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Http\File;
 class addposte extends Controller
 {
     public function store(Request $request){
@@ -18,6 +18,7 @@ class addposte extends Controller
             'price'=>'required',
             'description'=>['required', 'string', 'max:255'],
         ]);
+
         $poste=new Poste();
         $poste->title=$request->input('title');
         $poste->category=$request->input('category');
