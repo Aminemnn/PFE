@@ -5,20 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Poste extends Model
+class favoris_freelancer extends Model
 {
     use HasFactory;
-    protected $fillable =[
-        'title',
-        'category',
-        'sous_category',
-        'image',
+    protected $fillable=[
+      'title',
+      'category',
+      'sous_category',
+        'price_category',
         'price',
+        'type_price',
+        'semaine',
+        'date',
         'description',
-        'etat',
-        'user_id',
+        'id_user',
         'name_user',
         'img_user'
-
     ];
 }

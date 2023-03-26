@@ -11,6 +11,9 @@ class updateinfo extends Controller
     public function create(){
         return view('freelancer.account.info');
     }
+    public function info(){
+        return view('client.account.info');
+    }
 
     public function updateinfo(Request $request){
         $request->validate([

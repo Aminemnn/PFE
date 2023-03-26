@@ -14,10 +14,10 @@ class deleteannonce extends Controller
         $json=json_decode($freelancer,true);
         $filname=$json[0]['id_freelancer'];
         if ($filname!=null){
-            return redirect('client/profil')->with("errordelete","You Can't delete because this poste linked with customer");
+            return redirect('client/historique')->with("errordelete","You Can't delete because this poste linked with customer");
         }else {
             DB::table('annonces')->where('id', "=", $id)->delete();
-            return redirect('client/profil')->with("delete", "Your Post deleted Successfully");
+            return redirect('client/historique')->with("delete", "Your Post deleted Successfully");
         }
     }
 

@@ -272,6 +272,7 @@
     }
 </style>
 <body>
+
 <p style="margin-left: 33px;margin-top: 23px"><i class="fa-solid fa-arrow-left"></i><a href="{{route('freelancer')}}" style="text-decoration: none;color: black">  Home</a></p>
 <div class="container">
     <div class="row justify-content-center">
@@ -466,7 +467,6 @@
                             </script>
                             @enderror
                         </div>
-
                         <input type="button" name="next-step"
                                class="next-step" value="Final Step" />
                         <input type="button" name="previous-step"
@@ -475,15 +475,21 @@
                     </fieldset>
                     <fieldset>
                         <div class="finish">
+                            <select class="form-control" aria-label="Default select example" name="etat">
+                                <option value="Standard">Standard</option>
+                                <option value="Personalized">Personalized</option>
+                            </select>
+                            <br>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Description</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3" required></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3" oninput="verifierTexte()" required></textarea>
+                                <p id="message"></p>
                                 @error('description')
                                 <script>
                                     Swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
-                                        text: 'Fill in the description input please !',
+                                        text: '{{$message}}',
                                     })
                                 </script>
                                 @enderror
@@ -494,7 +500,6 @@
                                class="previous-step"
                                value="Previous Step" />
                     </fieldset>
-
                 </form>
             </div>
         </div>
@@ -1146,5 +1151,20 @@
         }
         reader.readAsDataURL(file);
     });
+</script>
+<script>
+    function verifierTexte() {
+        let textarea = document.getElementById("exampleFormControlTextarea1");
+        let texte = textarea.value;
+        let longueur = texte.length;
+        if (longueur >= 70 && longueur <= 200 ) {
+            document.getElementById("message").innerHTML = "The text is valid";
+            document.getElementById("message").style.color="#17950e";
+        } else {
+            document.getElementById("message").innerHTML = "The text must contain between 70 and 200 characters";
+            document.getElementById("message").style.color="red";
+
+        }
+    }
 </script>
 </html>

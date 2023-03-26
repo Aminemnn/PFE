@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Poste extends Model
+class favoris_client extends Model
 {
     use HasFactory;
     protected $fillable =[
@@ -15,10 +15,8 @@ class Poste extends Model
         'image',
         'price',
         'description',
-        'etat',
         'user_id',
         'name_user',
         'img_user'
-
     ];
 }

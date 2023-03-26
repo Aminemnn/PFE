@@ -27,7 +27,6 @@
                 @foreach($postes as $postes)
                 <div class="col-sm-4" style="transform: scale(0.8)">
                     <div class="box_main_1" style="border-radius: 25px">
-                        <div class="zoomout frame" style="height: 290px"><img src="{{asset('uploads/poste/'.$postes->image)}}"></div>
                         <div class="padding_15">
                             <h2 class="speed_text">{{$postes->title}}</h2>
                             <div class="post_text">Post by : {{$postes->name_user}} <span style="float: right;">{{$postes->created_at}}</span></div>
@@ -43,7 +42,7 @@
                                     </div>
                                 </div>
                                 <hr class="horizontal dark my-3">
-                                        <form action="{{route('delete')}}" method="post" onsubmit=" return confirm('are you sure')">
+                                        <form action="{{route('deleteannonce')}}" method="post" onsubmit=" return confirm('are you sure')">
                                             @csrf
                                             <button type="submit" class="btn btn-warning" style="width: 100%" name="delete" value="{{$postes->id}}">Delete</button>
                                         </form>

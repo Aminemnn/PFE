@@ -16,7 +16,7 @@ class addposte extends Controller
             'sous_category'=>['required', 'string', 'max:255'],
             'image'=>'required',
             'price'=>'required',
-            'description'=>['required', 'string', 'max:255'],
+            'description'=>'required|min:70|max:200',
         ]);
 
         $poste=new Poste();
@@ -30,8 +30,10 @@ class addposte extends Controller
         $image->move('uploads/poste',$filename);
         $poste->image=$filename;
         $poste->description=$request->input('description');
+        $poste->etat=$request->input('etat');
         $poste->user_id=Auth::user()->id;
         $poste->name_user=Auth::user()->name;
+        $poste->img_user=Auth::user()->image;
         $poste->save();
         return back()->with("status", "Data Save successfully!");
     }

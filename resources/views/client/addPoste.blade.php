@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <style>
     * {
@@ -236,6 +238,7 @@
 
 </style>
 <body>
+<p style="margin-left: 33px;margin-top: 23px"><i class="fa-solid fa-arrow-left"></i><a href="{{route('client')}}" style="text-decoration: none;color: black">  Home</a></p>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-11 col-sm-9 col-md-7
@@ -249,7 +252,7 @@
                         </li>
                         <li id="step2"><strong>Payment Category</strong></li>
                         <li id="step3"><strong>Payment Type</strong></li>
-                        <li id="step4"><strong>Description</strong></li>
+                        <li id="step4"><strong>Description and number of proposals</strong></li>
                     </ul>
                     <div class="progress">
                         <div class="progress-bar"></div>
@@ -457,15 +460,23 @@
                     </fieldset>
                     <fieldset>
                         <div class="finish">
+                            <label>Number Of Proposals</label>
+                            <select class="form-control" aria-label="Default select example" name="nb_prop">
+                                @for($i=1;$i<=5;$i++)
+                                <option value="{{$i}}">{{$i}}</option>
+                                @endfor
+                            </select>
+                            <br>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Description</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3" required></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3" oninput="verifierTexte()" required></textarea>
+                                <p id="message"></p>
                                 @error('description')
                                 <script>
                                     Swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
-                                        text: 'Fill in the description input please !',
+                                        text: '{{$message}}',
                                     })
                                 </script>
                                 @enderror
@@ -476,7 +487,6 @@
                                class="previous-step"
                                value="Previous Step" />
                     </fieldset>
-
                 </form>
             </div>
         </div>
@@ -1048,6 +1058,21 @@
             return true;
         } else {
             return false;
+        }
+    }
+</script>
+<script>
+    function verifierTexte() {
+        let textarea = document.getElementById("exampleFormControlTextarea1");
+        let texte = textarea.value;
+        let longueur = texte.length;
+        if (longueur >= 70 && longueur <= 200 ) {
+            document.getElementById("message").innerHTML = "The text is valid";
+            document.getElementById("message").style.color="#17950e";
+        } else {
+            document.getElementById("message").innerHTML = "The text must contain between 70 and 200 characters";
+            document.getElementById("message").style.color="red";
+
         }
     }
 </script>

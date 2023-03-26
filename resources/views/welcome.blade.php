@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>JOB4REE</title>
+    <title>Job4Free</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('homeAssets/css/bootstrap.min.css')}}">
     <!-- style css -->
     <link rel="stylesheet" type="text/css" href="{{asset('homeAssets/css/style.css')}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Responsive-->
     <link rel="stylesheet" href="{{asset('homeAssets/css/responsive.css')}}">
     <!-- fevicon -->
@@ -30,6 +31,24 @@
     <link rel="stylesheet" href="{{asset('homeAssets/css/owl.carousel.min.css"')}}">
     <link href="{{asset('homeAssets/css/owl.theme.default.min.css')}}" rel="stylesoeet">
     <link  href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" rel="stylesheet">
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48
+        }
+        .material-symbols-sharp {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48
+        }
+
+    </style>
 </head>
 <body>
 <!-- header section start -->
@@ -53,30 +72,28 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact Us</a>
                     </li>
-                    <li class="nav-item">
-                        <form>
-                            <div class="login_menu">
-                                <!--  <ul class="navbar-nav mr-auto">-->
-                    @if (Route::has('login'))
-                        @auth
-                            @if(Auth::user()->role=="Freelancer")
-                                <li class="nav-item"> <a href="{{ url('freelancer/dashboard') }}" class="nav-link">Dashboard</a></li>
-                            @elseif(Auth::user()->role=="Client")
-                                <li class="nav-item"> <a href="{{ url('client/dashboard') }}" class="nav-link">Dashboard</a></li>
-                            @else
-                                <li class="nav-item"> <a href="{{ url('admin/dashboard') }}" class="nav-link">Dashboard</a></li>
-                @endif
-            </div>
-            </form>
-            @else
-                <!-- <ul  class="navbar-nav mr-auto">-->
-                <li  class="nav-item"><a href="{{ route('login') }}" class="nav-link" >Login</a></li>
-                @if (Route::has('register'))
-                    <li  class="nav-item"><a href="{{ route('register') }}" class="nav-link" >Sign In</a></li>
-                    @endif
+                    <form>
+                        <div class="login_menu">
+                            <!--  <ul class="navbar-nav mr-auto">-->
+                            @if (Route::has('login'))
+                                @auth
+                                    @if(Auth::user()->role=="Freelancer")
+                                        <li class="nav-item"> <a href="{{ url('freelancer/dashboard') }}" class="nav-link">Dashboard</a></li>
+                                    @elseif(Auth::user()->role=="Client")
+                                        <li class="nav-item"> <a href="{{ url('client/dashboard') }}" class="nav-link">Dashboard</a></li>
+                                    @else
+                                        <li class="nav-item"> <a href="{{ url('admin/dashboard') }}" class="nav-link">Dashboard</a></li>
+                                    @endif
+                        </div>
+                    </form>
+                    @else
+                        <!-- <ul  class="navbar-nav mr-auto">-->
+                        <li  class="nav-item"><a href="{{ route('login') }}" class="nav-link" >Login</a></li>
+                        @if (Route::has('register'))
+                            <li  class="nav-item"><a href="{{ route('register') }}" class="nav-link" >Sign In</a></li>
+                        @endif
                     @endauth
                     @endif
-                    </li>
                 </ul>
             </div>
             <div id="main">
@@ -86,34 +103,52 @@
         <!-- banner section start -->
         <div class="banner_section layout_padding">
             <div id="main_slider" class="carousel slide" data-ride="carousel">
-                @foreach ($user as $uses)
-                    <div class="carousel-inner">
-                        <!--model-->
-                        <div class="carousel-item active">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="best_text">Best</div>
+                                    <div class="image_1"><img src="{{asset('homeAssets/images/img-1.png')}}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @foreach ($user as $uses)
+                        <div class="carousel-item">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-7">
-                                        <div class="best_text">best</div>
-                                        <div class="image_1"><img src="{{asset('homeAssets/images/img-1.png')}}" alt="immg"></div>
+                                        <div class="best_text">Best</div>
+                                        <div class="image_1"><img src="{{asset('homeAssets/images/img-1.png')}}"></div>
                                     </div>
                                     <div class="col-md-5">
-                                        <h1 class="banner_taital">{{$uses->nom}} </h1>
-                                        <p class="banner_text">Join a community of talented freelancers and unlock
-                                            new opportunities to showcase your skills and earn a living doing what you love
-                                        </p>
-                                        <div class="contact_bt"><a href="{{route('tester')}}">Get Started</a></div>
+                                        <h1 class="banner_taital">{{$uses->nom}}</h1>
+                                        <p class="banner_text">It is a long established fact that a reader will be distracted by the readable content </p>
+                                        <div class="contact_bt"><a href="contact.html">Shop Now</a></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                    @endforeach
+
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="best_text">Best</div>
+                                    <div class="image_1"><img src="{{asset('homeAssets/images/img-1.png')}}"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
+                </div>
+                <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+                    <i class="fa fa-angle-right"></i>
+                </a>
             </div>
         </div>
         <!-- banner section end -->
@@ -252,15 +287,45 @@
 <!-- news section start -->
 <div class="news_section layout_padding">
     <div class="container">
-        <h1 class="news_taital">News</h1>
-        <p class="news_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using </p>
+        <h1 class="news_taital">Project Historique</h1>
+        <p class="news_text">historique in dashboard and slider in homepage </p>
         <div class="news_section_2 layout_padding">
             <div class="row">
                 <div class="col-sm-4">
                     <div class="box_main_1">
-                        <div class="zoomout frame"><img src="images/img-6.png"></div>
+                        <div class="zoomout frame"><img src=""></div>
                         <div class="padding_15">
-                            <h2 class="speed_text">Speed cycle</h2>
+                            <h2 class="speed_text">project 1 </h2>
+                            <div class="post_text">Post by : Den <span style="float: right;">20-12-2019</span></div>
+                            <p class="long_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using </p>
+                            <div class="row align-items-center px-2 mt-4 mb-2">
+                                <div class="col-sm-6" >
+                                    <div class="d-flex">
+                                        <div class="d-flex align-items-center">
+                                            <span class="material-symbols-outlined">
+                                            </span>
+                                            <span class="text-sm me-3 ">number</span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <span class="material-symbols-outlined">
+                                            </span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <span class="material-symbols-sharp">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="horizontal dark my-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="box_main_1">
+                        <div class="zoomout frame"><img src="" alt=""></div>
+                        <div class="padding_15">
+                            <h2 class="speed_text">project 2</h2>
                             <div class="post_text">Post by : Den <span style="float: right;">20-12-2019</span></div>
                             <p class="long_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using </p>
                         </div>
@@ -268,19 +333,9 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="box_main_1">
-                        <div class="zoomout frame"><img src="{{asset('homeAssets/images/img-7.png')}}" alt=""></div>
+                        <div class="zoomout frame"><img src=""></div>
                         <div class="padding_15">
-                            <h2 class="speed_text">Speed cycle</h2>
-                            <div class="post_text">Post by : Den <span style="float: right;">20-12-2019</span></div>
-                            <p class="long_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="box_main_1">
-                        <div class="zoomout frame"><img src="{{asset('homeAssets/images/img-8.png')}}"></div>
-                        <div class="padding_15">
-                            <h2 class="speed_text">Jaump cycle</h2>
+                            <h2 class="speed_text">proj 3</h2>
                             <div class="post_text">Post by : Den <span style="float: right;">20-12-2019</span></div>
                             <p class="long_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using </p>
                         </div>
@@ -296,18 +351,24 @@
     <div class="container">
         <div class="contact_main">
             <h1 class="request_text">A Call Back</h1>
-            <form action="/action_page.php">
+            <form >
                 <div class="form-group">
-                    <input type="text" class="email-bt" placeholder="Name" name="Name">
+                    <label>
+                        <input type="text" class="email-bt" placeholder="Name" name="Name" style="width: 550px">
+                    </label>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="email-bt" placeholder="Email" name="Name">
+                    <label>
+                        <input type="email" class="email-bt" placeholder="Email" name="Name" style="width: 550px">
+                    </label>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="email-bt" placeholder="Phone Numbar" name="Email">
+                    <label>
+                        <input type="number" class="email-bt" placeholder="Phone Numbar" name="Email" style="width: 550px">
+                    </label>
                 </div>
                 <div class="form-group">
-                    <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
+                    <label for="comment"></label><textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage" style="width: 550px" ></textarea>
                 </div>
             </form>
             <div class="send_btn"><a href="#">SEND</a></div>

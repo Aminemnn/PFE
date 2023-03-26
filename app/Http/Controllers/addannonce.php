@@ -17,7 +17,7 @@ class addannonce extends Controller
                 'priceCat'=>'required',
                 'price'=>'required',
                 'Price_type'=>'required',
-                'description'=>['required', 'string', 'max:255'],
+                'description'=>'required|min:70|max:200',
             ]);
             $semaine=null;
             $date=null;
@@ -34,6 +34,7 @@ $priceCat=$request->input('priceCat');
 $price=$request->input('price');
 $Price_type=$request->input('Price_type');
 $description=$request->input('description');
+$nb_prop=$request->input('nb_prop');
             $annonce=new annonce();
             $annonce->title=$title;
             $annonce->catgorie=$categorie;
@@ -44,8 +45,10 @@ $description=$request->input('description');
             $annonce->semaine=$semaine;
             $annonce->date=$date;
             $annonce->description=$description;
+            $annonce->nombre_proposition=$nb_prop;
             $annonce->id_user=Auth::user()->id;
             $annonce->name_user=Auth::user()->name;
+            $annonce->img_user=Auth::user()->image;
             $annonce->save();
         return back()->with("status", "Data Save successfully!");
     }

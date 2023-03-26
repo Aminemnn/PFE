@@ -13,6 +13,7 @@ class freelancercontroller extends Controller
 {
     public function dashboard(){
         $categories = DB::select('SELECT * FROM categorie');
+        $annonces=DB::select('SELECT * FROM annonces');
         $graphics_design = DB::table('souscategorie')->where('name_cat','Graphics & Design')->get();
         $digital_marketing = DB::table('souscategorie')->where('name_cat','Digital Marketing')->get();
         $writing_translation = DB::table('souscategorie')->where('name_cat','Writing & Translation')->get();
@@ -37,19 +38,20 @@ class freelancercontroller extends Controller
             ->with('graphics_design',$graphics_design)
             ->with('digital_marketing',$digital_marketing)
             ->with('writing_translation',$writing_translation)
-            ->with('video_annimation',$video_annimation)
+             ->with('video_annimation',$video_annimation)
             ->with('music_audio',$music_audio)
             ->with('programming_tech',$programming_tech)
             ->with('business',$business)
             ->with('life_style',$life_style)
-            ->with('graphics_design2',$graphics_design2)
+             ->with('graphics_design2',$graphics_design2)
             ->with('digital_marketing2',$digital_marketing2)
             ->with('writing_translation2',$writing_translation2)
             ->with('video_annimation2',$video_annimation2)
             ->with('music_audio2',$music_audio2)
             ->with('programming_tech2',$programming_tech2)
             ->with('business2',$business2)
-            ->with('life_style2',$life_style2);
+            ->with('life_style2',$life_style2)
+            ->with('annonces',$annonces);
 
     }
 public function store(Request $request){

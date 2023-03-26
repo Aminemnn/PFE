@@ -210,7 +210,7 @@ ul li {
                         <x-dropdown-link   style="text-decoration: none;color: #1a202c">
                             <i class="fa-solid fa-briefcase"></i>{{ __(' Post a Work') }}
                         </x-dropdown-link>
-                        <x-dropdown-link   style="text-decoration: none;color: #1a202c">
+                        <x-dropdown-link  :href="route('historiqueannonce')" style="text-decoration: none;color: #1a202c">
                             <i class="fa-solid fa-clock-rotate-left"></i>{{ __(' Request history') }}
                         </x-dropdown-link>
 
@@ -263,7 +263,7 @@ ul li {
                 <x-responsive-nav-link   style="text-decoration: none;color: #1a202c">
                     <i class="fa-solid fa-briefcase"></i>{{ __(' Post a Work') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link   style="text-decoration: none;color: #1a202c">
+                <x-responsive-nav-link :href="route('historiqueannonce')"  style="text-decoration: none;color: #1a202c">
                     <i class="fa-solid fa-clock-rotate-left"></i>{{ __(' Request history') }}
                 </x-responsive-nav-link>
 

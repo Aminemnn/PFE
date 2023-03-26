@@ -33,6 +33,8 @@ use App\Http\Controllers\homecontroller;
 */
 Route::get('/auth/facebook', 'FacebookController@redirectToFacebook');
 Route::get('/auth/facebook/callback', 'FacebookController@handleFacebookCallback');
+Route::get('client/historique','historiqueposte@historique')->middleware(['auth','verified','client'])->name('historiqueannonce');
+Route::get('freelancer/setting','setting@create')->name('setting');
 Route::post('delete/poste',[deletePoste::class,'delete'])->name('delete');
 Route::post('delete/annonce',[deleteannonce::class,'delete'])->name('deleteannonce');
 Route::get('/', 'welcomecontroller@create')->name('welcome');
@@ -49,10 +51,11 @@ Route::get('freelancer/historique','historiqueposte@create')->middleware(['auth'
 Route::post('client/addAd',[addannonce::class,'store'])->name('addann');
 Route::post('freelancer/addPoste',[addposte::class,'store'])->name('addposte');
 Route::get('freelancer/info','updateinfo@create')->middleware('auth','verified','freelancer')->name('info');
+Route::get('client/info','updateinfo@info')->middleware('auth','verified','client')->name('infoclient');
 Route::post('freelancer/info',[updateinfo::class,'updateinfo'])->name('updateinfo');
 Route::get('freelancer/profil','freelancercontroller@profil')->middleware(['auth','verified','freelancer'])->name('profilfreelancer');
 Route::post('freelancer/profil',[addskills::class,'store'])->name('addskill');
-Route::get('freelancer/changepassword','changepassword@create')->middleware('auth','verified','freelancer')->name('changepassword');
+Route::get('freelancer/changepassword','changepassword@create')->middleware('auth','verified','freelancer')->name('changepasswordfreelancer');
 Route::post('freelancer/profill',[adddiplome::class,'store'])->name('adddiplome');
 Route::post('freelancer/profilll',[addexperience::class,'store'])->name('addexperience');
 Route::post('skill/update',[addskills::class,'update'])->name('updateskill');
@@ -64,9 +67,5 @@ Route::post('client/dashboard',[clientcontroller::class,'request'])->name('clien
 Route::post('freelancer/changepassword',[changepassword::class,'store'])->name('changepassword');
 Route::get('/dashboard','homecontroller@dashboard')->middleware(['auth','verified','freelancer','client'])->name('dashboard');
 Route::get('logout', 'Auth\LoginController@logout')->middleware('disable-back-button');
-Route::get('/send',function (){
-    Mail::to('medmnedla@gmail.com')->send(new JOB4FREE());
-    return response('sending');
-});
 
 require __DIR__.'/auth.php';

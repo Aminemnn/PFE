@@ -19,7 +19,9 @@ class annonce extends Model
       'semaine',
       'date',
       'description',
+        'nombre_proposition',
       'id_user',
       'name_user',
+        'img_user'
     ];
 }

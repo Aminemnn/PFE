@@ -13,4 +13,8 @@ class historiqueposte extends Controller
         $postes=DB::table('postes')->where('user_id',Auth::user()->id)->get();
         return view('freelancer.historiqueposte')->with('postes',$postes);
     }
+    public function historique(){
+        $postes=DB::table('annonces')->where('id_user',Auth::user()->id)->get();
+        return view('client.historiqueannonce')->with('postes',$postes);
+    }
 }

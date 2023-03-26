@@ -17,7 +17,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
 
 </head>
 <body>
-
+<p style="margin-left: 33px;margin-top: 23px"><a href="{{route('setting')}}" style="text-decoration: none;color: black">EXIT</a></p>
 <div class="container">
     <div class="row">
         <div class="col-8" id="col">
@@ -84,15 +84,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
                         </script>
                 @endif
             </form>
-            <div class="loader"></div>
+
         </div>
     </div>
 </div>
-<script>
-    window.addEventListener("load", () => {
-        const loader =document.querySelector(".loader");
-        loader.classList.add("loader-hidden");
-    })
-</script>
+
 </body>
 </html>

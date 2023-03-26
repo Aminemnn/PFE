@@ -80,7 +80,7 @@ class clientcontroller extends Controller
         if ($_POST['subcategory7']!=null){
             $souscategorie=$request->input('subcategory7');
         }
-        if ($_POST['subcategory7']!=null){
+        if ($_POST['subcategory8']!=null){
             $souscategorie=$request->input('subcategory8');
         }
         if ($_POST['other']!=null){
