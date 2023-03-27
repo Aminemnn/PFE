@@ -20,7 +20,8 @@ class AdminSeeder extends Seeder
            'name'=>'Admin',
             'email'=>'admin@admin.com',
             'password'=>Hash::make('passwordadmin'),
-            'role'=>'Admin'
+            'role'=>'Admin',
+            'level'=>0
         ]);
     }
 }

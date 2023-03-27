@@ -9,6 +9,7 @@ class favoris_freelancer extends Model
 {
     use HasFactory;
     protected $fillable=[
+        'id_ann',
       'title',
       'category',
       'sous_category',

@@ -940,9 +940,9 @@ box-shadow: 0px 8px 7px 3px
 }
 .long_text {
     width: 100%;
-    float: left;
-    font-size: 16px;
-    color: #2a2929;
+    font-size: 19px;
+    text-align: left;
+    color: black;
     margin: 0px;
     padding-top: 10px;
 }

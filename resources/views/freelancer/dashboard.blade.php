@@ -9,16 +9,17 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{asset('homeAssets/css/style.css')}}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <script src="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
 "></script>
@@ -476,7 +477,118 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
     </div>
     <div class="slideshow-container">
         <div class="mySlides">
+            <div class="container">
+                    <div class="row">
+                        @foreach($annonces as $annonces)
+                            <div class="col-sm-4" style="transform: scale(0.8)">
+                                <div class="box_main_1" style="border-radius: 25px">
+                                    <div class="padding_15">
+                                        <h2 class="speed_text">{{$annonces->title}}</h2>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-3" style="display: contents">
+                                                    <img src={{asset('../../../uploads/photouser/'.$annonces->img_user)}} alt="avatar"
+                                                         class="rounded-circle img-fluid" style="width: 40px;height: 40px">
+                                                </div>
+                                                <div class="col-9" style="display: flex">
+                                                    <p>{{$annonces->name_user}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h6 class="long_text">{{$annonces->description}}</h6>
+                                        <p style="text-align: left;"> Starting At <span style="font-size: 19px">{{$annonces->price}} </span></p>
+                                            <hr class="horizontal dark my-3">
+                                             <div class="container">
+                                                 <div class="row">
+                                                     <div class="col-7">
+                                                         <button class="btn btn-warning" style="background-color: #E1ECFE;border-color: #E1ECFE">Send Request</button>
+                                                     </div>
+                                                     <div class="col-5">
+                                                         @php
+                                                             $favoriExiste = false;
+                                                         @endphp
+                                                         @foreach($favoris as $favori)
+                                                             @if($annonces->id==$favori->id_ann)
+                                                                 @php
+                                                                     $favoriExiste = true;
+                                                                 @endphp
+                                                     <form method="POST" action="{{route('freelancer_favoris_delete')}}" id="form1">
+                                                         @csrf
+                                                         <input type="hidden" name="delete" value="{{$annonces->id}}">
+                                                     <button type="submit" id="favorite-btn"><i class="fa fa-heart-o animate__animated animate__bounceIn" style="font-size: 26px;color: red"></i></button>
 
+                                                     </form>
+                                                             @endif
+                                                         @endforeach
+                                                         @if(!$favoriExiste)
+                                                             <form method="POST" action="{{route('freelancer_favoris')}}" id="form2">
+                                                                @csrf
+                                                                 <input type="hidden" name="id_ann" value="{{$annonces->id}}">
+                                                                 <input type="hidden" name="title" value="{{$annonces->title}}">
+                                                                 <input type="hidden" name="category" value="{{$annonces->catgorie}}">
+                                                                 <input type="hidden" name="sous_category" value="{{$annonces->sous_categorie}}">
+                                                                 <input type="hidden" name="price_categorie" value="{{$annonces->price_categorie}}">
+                                                                 <input type="hidden" name="price" value="{{$annonces->price}}">
+                                                                 <input type="hidden" name="type_price" value="{{$annonces->type_price}}">
+                                                                 <input type="hidden" name="semaine" value="{{$annonces->semaine}}">
+                                                                 <input type="hidden" name="date" value="{{$annonces->date}}">
+                                                                 <input type="hidden" name="description" value="{{$annonces->description}}">
+                                                                 <input type="hidden" name="id_user" value="{{$annonces->id_user}}">
+                                                                 <input type="hidden" name="name_user" value="{{$annonces->name_user}}">
+                                                                 <input type="hidden" name="img_user" value="{{$annonces->img_user}}">
+                                                                 <button type="submit" id="favorite-btn"><i class="fa fa-heart-o animate__animated animate__bounceIn" style="font-size: 26px;color: darkgrey"></i></button>
+                                                             </form>
+                                                         @endif
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        @if(session('success2'))
+                            <script>
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    }
+                                })
+
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: '{{session("success2")}}'
+                                })
+                            </script>
+                            @endif
+                            @if(session('delete'))
+                                <script>
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
+
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: '{{session("delete")}}'
+                                    })
+                                </script>
+                            @endif
+                    </div>
+
+            </div>
         </div>
         <div class="mySlides">
             <q>But man is not made for defeat. A man can be destroyed but not defeated.</q>
@@ -1513,5 +1625,6 @@ function change2(){
         reader.readAsDataURL(file);
     });
 </script>
+
 </body>
 </html>

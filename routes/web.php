@@ -12,6 +12,7 @@ use App\Http\Controllers\deleteannonce;
 use App\Http\Controllers\deletePoste;
 use App\Http\Controllers\freelancercontroller;
 use App\Http\Controllers\FreelancerManagement;
+use App\Http\Controllers\store_favoris_freelancer;
 use App\Http\Controllers\updateinfo;
 use App\Mail\JOB4FREE;
 use Illuminate\Support\Facades\Mail;
@@ -33,6 +34,8 @@ use App\Http\Controllers\homecontroller;
 */
 Route::get('/auth/facebook', 'FacebookController@redirectToFacebook');
 Route::get('/auth/facebook/callback', 'FacebookController@handleFacebookCallback');
+Route::post('freelancer/favoris',[store_favoris_freelancer::class,'store'])->name('freelancer_favoris');
+Route::post('freelancer/favoris_detele',[store_favoris_freelancer::class,'delete'])->name('freelancer_favoris_delete');
 Route::get('client/historique','historiqueposte@historique')->middleware(['auth','verified','client'])->name('historiqueannonce');
 Route::get('freelancer/setting','setting@create')->name('setting');
 Route::post('delete/poste',[deletePoste::class,'delete'])->name('delete');
