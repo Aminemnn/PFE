@@ -59,6 +59,7 @@ class clientcontroller extends Controller
     }
     public function request(Request $request){
         $bio=null;
+        $souscategorie=null;
         if ($_POST['subcategory1'] != null){
             $souscategorie=$request->input('subcategory1');
         }

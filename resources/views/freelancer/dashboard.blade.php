@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{asset('homeAssets/css/style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link
@@ -24,6 +24,12 @@
 https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
 "></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{asset('homeAssets/css/style.css')}}">
+    <link href="{{asset('FreeAssets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -35,66 +41,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
             }
 
         }
-        #myModal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: scroll;
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            -webkit-animation-name: fadeIn; /* Fade in the background */
-            -webkit-animation-duration: 0.4s;
-            animation-name: fadeIn;
-            animation-duration: 0.4s;
 
 
-        }
-
-        /* Modal Content */
-        .modal-content {
-            position: fixed;
-            bottom: 0;
-            background-color: #fefefe;
-            width: 100%;
-            overflow: scroll;
-            -webkit-animation-name: slideIn;
-            -webkit-animation-duration: 0.4s;
-            animation-name: slideIn;
-            animation-duration: 0.4s
-        }
-
-        /* The Close Button */
-        .close {
-            color: white;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .modal-header {
-            padding: 2px 16px;
-            background-color: whitesmoke;
-            color: white;
-        }
-
-        .modal-body {padding: 2px 16px;}
-
-        .modal-footer {
-            padding: 2px 16px;
-            background-color: #E1ECFE;
-            color: white;
-        }
 
         /* Add Animation */
         @-webkit-keyframes slideIn {
@@ -459,6 +407,46 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
             border: 1px solid #212121;
         }
     </style>
+    <style>
+    /* The Modal (background) */
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    }
+
+    /* The Close Button */
+    .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    }
+    </style>
 </head>
 <body>
 
@@ -475,96 +463,98 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
             </div>
         </div>
     </div>
-    <div class="slideshow-container">
-        <div class="mySlides">
-            <div class="container">
-                    <div class="row">
-                        @foreach($annonces as $annonces)
-                            <div class="col-sm-4" style="transform: scale(0.8)">
-                                <div class="box_main_1" style="border-radius: 25px">
-                                    <div class="padding_15">
-                                        <h2 class="speed_text">{{$annonces->title}}</h2>
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-3" style="display: contents">
-                                                    <img src={{asset('../../../uploads/photouser/'.$annonces->img_user)}} alt="avatar"
-                                                         class="rounded-circle img-fluid" style="width: 40px;height: 40px">
-                                                </div>
-                                                <div class="col-9" style="display: flex">
-                                                    <p>{{$annonces->name_user}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <h6 class="long_text">{{$annonces->description}}</h6>
-                                        <p style="text-align: left;"> Starting At <span style="font-size: 19px">{{$annonces->price}} </span></p>
-                                            <hr class="horizontal dark my-3">
-                                             <div class="container">
-                                                 <div class="row">
-                                                     <div class="col-7">
-                                                         <button class="btn btn-warning" style="background-color: #E1ECFE;border-color: #E1ECFE">Send Request</button>
-                                                     </div>
-                                                     <div class="col-5">
-                                                         @php
-                                                             $favoriExiste = false;
-                                                         @endphp
-                                                         @foreach($favoris as $favori)
-                                                             @if($annonces->id==$favori->id_ann)
-                                                                 @php
-                                                                     $favoriExiste = true;
-                                                                 @endphp
-                                                     <form method="POST" action="{{route('freelancer_favoris_delete')}}" id="form1">
-                                                         @csrf
-                                                         <input type="hidden" name="delete" value="{{$annonces->id}}">
-                                                     <button type="submit" id="favorite-btn"><i class="fa fa-heart-o animate__animated animate__bounceIn" style="font-size: 26px;color: red"></i></button>
+    <section class="latest-podcast-section section-padding" id="section_2">
+        <div class="container">
+            <div class="col-lg-12 col-12">
+                <div class="section-title-wrap mb-5">
+                    <h4 class="section-title">Lastest job offres</h4>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                @foreach($annonces as $annonces)
+                <div class="col-lg-12" style="margin: 13px">
+                    <div class="custom-block d-flex">
+                        <div class="custom-block-info">
 
-                                                     </form>
-                                                             @endif
-                                                         @endforeach
-                                                         @if(!$favoriExiste)
-                                                             <form method="POST" action="{{route('freelancer_favoris')}}" id="form2">
-                                                                @csrf
-                                                                 <input type="hidden" name="id_ann" value="{{$annonces->id}}">
-                                                                 <input type="hidden" name="title" value="{{$annonces->title}}">
-                                                                 <input type="hidden" name="category" value="{{$annonces->catgorie}}">
-                                                                 <input type="hidden" name="sous_category" value="{{$annonces->sous_categorie}}">
-                                                                 <input type="hidden" name="price_categorie" value="{{$annonces->price_categorie}}">
-                                                                 <input type="hidden" name="price" value="{{$annonces->price}}">
-                                                                 <input type="hidden" name="type_price" value="{{$annonces->type_price}}">
-                                                                 <input type="hidden" name="semaine" value="{{$annonces->semaine}}">
-                                                                 <input type="hidden" name="date" value="{{$annonces->date}}">
-                                                                 <input type="hidden" name="description" value="{{$annonces->description}}">
-                                                                 <input type="hidden" name="id_user" value="{{$annonces->id_user}}">
-                                                                 <input type="hidden" name="name_user" value="{{$annonces->name_user}}">
-                                                                 <input type="hidden" name="img_user" value="{{$annonces->img_user}}">
-                                                                 <button type="submit" id="favorite-btn"><i class="fa fa-heart-o animate__animated animate__bounceIn" style="font-size: 26px;color: darkgrey"></i></button>
-                                                             </form>
-                                                         @endif
-                                                     </div>
-                                                 </div>
-                                             </div>
-                                    </div>
-                                </div>
+                            <h5 class="mb-2">
+                                <a href="detail-page.html">
+                                    {{$annonces->title}}
+                                </a>
+                            </h5>
+                            <div class="profile-block d-flex">
+                                <img src="{{asset('../../../uploads/photouser/'.$annonces->img_user)}}" class="profile-block-image img-fluid" alt="">
+                                <p>
+                                {{$annonces->name_user}}
                             </div>
-                        @endforeach
-                        @if(session('success2'))
-                            <script>
-                                const Toast = Swal.mixin({
-                                    toast: true,
-                                    position: 'top-end',
-                                    showConfirmButton: false,
-                                    timer: 3000,
-                                    timerProgressBar: true,
-                                    didOpen: (toast) => {
-                                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                    }
-                                })
+                            <p class="mb-0">{{$annonces->description}}</p>
+                            <div class="custom-block-bottom d-flex justify-content-between mt-3">
+                                <a href="#" class="fa-solid fa-headphones me-1" style="color: #a8ccfb">
+                                    <span>120k</span>
+                                </a>
+                                <a href="#" class="fa-solid fa-heart me-1" style="color: #a8ccfb">
+                                    <span>42.5k</span>
+                                </a>
+                                <a href="#" class="fa-solid fa-comment me-1" style="color: #a8ccfb">
+                                    <span>11k</span>
+                                </a>
+                                <a href="#" class="fa-solid fa-download" style="color: #a8ccfb">
+                                    <span>50k</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="social-share d-flex flex-column ms-auto">
+                            @php
+                                $favoriExiste = false;
+                            @endphp
+                            @foreach($favoris as $favori)
+                                @if($annonces->id==$favori->id_ann)
+                                    @php
+                                        $favoriExiste = true;
+                                    @endphp
+                                    <form method="POST" action="{{route('freelancer_favoris_delete')}}" id="form1">
+                                        @csrf
+                                        <input type="hidden" name="delete" value="{{$annonces->id}}">
+                                        <button type="submit" id="favorite-btn"><i class="fa-solid fa-heart-o animate__animated animate__bounceIn" style="font-size: 26px;color: red"></i></button>
+                                    </form>
+                                @endif
+                            @endforeach
+                            @if(!$favoriExiste)
+                                <form method="POST" action="{{route('freelancer_favoris')}}" id="form2">
+                                    @csrf
+                                    <input type="hidden" name="id_ann" value="{{$annonces->id}}">
+                                    <input type="hidden" name="title" value="{{$annonces->title}}">
+                                    <input type="hidden" name="category" value="{{$annonces->catgorie}}">
+                                    <input type="hidden" name="sous_category" value="{{$annonces->sous_categorie}}">
+                                    <input type="hidden" name="price_categorie" value="{{$annonces->price_categorie}}">
+                                    <input type="hidden" name="price" value="{{$annonces->price}}">
+                                    <input type="hidden" name="type_price" value="{{$annonces->type_price}}">
+                                    <input type="hidden" name="semaine" value="{{$annonces->semaine}}">
+                                    <input type="hidden" name="date" value="{{$annonces->date}}">
+                                    <input type="hidden" name="description" value="{{$annonces->description}}">
 
-                                Toast.fire({
-                                    icon: 'success',
-                                    title: '{{session("success2")}}'
-                                })
-                            </script>
+                                    <input type="hidden" name="img_user" value="{{$annonces->img_user}}">
+                                    <button type="submit" id="favorite-btn"><i class="fa-solid fa-heart-o animate__animated animate__bounceIn" style="font-size: 26px;color: darkgrey"></i></button>
+                                </form>
+                            @endif
+                            @if(session('success2'))
+                                <script>
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
+
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: '{{session("success2")}}'
+                                    })
+                                </script>
                             @endif
                             @if(session('delete'))
                                 <script>
@@ -586,24 +576,189 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
                                     })
                                 </script>
                             @endif
+
+                            <a href="{{route('detailannonce',['id'=>$annonces->id])}}" style="margin-top: 13px">
+                                <i class="fa-solid fa-circle-info" style="font-size: 26px;"></i>
+                            </a>
+                        </div>
                     </div>
+                </div>
+
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <section class="trending-podcast-section section-padding pt-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-10">
+                    <div class="section-title-wrap mb-5">
+                        <h4 class="section-title">your projects</h4>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                    <div class="custom-block custom-block-full">
+                        <div class="custom-block-image-wrap">
+                            <a href="detail-page.html">
+                                <img src="images/podcast/27376480_7326766.jpg" class="custom-block-image img-fluid" alt="">
+                            </a>
+                        </div>
+
+                        <div class="custom-block-info">
+                            <h5 class="mb-2">
+                                <a href="detail-page.html">
+                                    Vintage Show
+                                </a>
+                            </h5>
+
+                            <div class="profile-block d-flex">
+                                <img src="images/profile/woman-posing-black-dress-medium-shot.jpg" class="profile-block-image img-fluid" alt="">
+
+                                <p>Elsa
+                                    <strong>Influencer</strong></p>
+                            </div>
+
+                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+
+                            <div class="custom-block-bottom d-flex justify-content-between mt-3">
+                                <a href="#" class="bi-headphones me-1">
+                                    <span>100k</span>
+                                </a>
+
+                                <a href="#" class="bi-heart me-1">
+                                    <span>2.5k</span>
+                                </a>
+
+                                <a href="#" class="bi-chat me-1">
+                                    <span>924k</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="social-share d-flex flex-column ms-auto">
+                            <a href="#" class="badge ms-auto">
+                                <i class="bi-heart"></i>
+                            </a>
+
+                            <a href="#" class="badge ms-auto">
+                                <i class="bi-bookmark"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                    <div class="custom-block custom-block-full">
+                        <div class="custom-block-image-wrap">
+                            <a href="detail-page.html">
+                                <img src="images/podcast/27670664_7369753.jpg" class="custom-block-image img-fluid" alt="">
+                            </a>
+                        </div>
+
+                        <div class="custom-block-info">
+                            <h5 class="mb-2">
+                                <a href="detail-page.html">
+                                    Vintage Show
+                                </a>
+                            </h5>
+
+                            <div class="profile-block d-flex">
+                                <img src="images/profile/cute-smiling-woman-outdoor-portrait.jpg" class="profile-block-image img-fluid" alt="">
+
+                                <p>
+                                    Taylor
+                                    <img src="images/verified.png" class="verified-image img-fluid" alt="">
+                                    <strong>Creator</strong>
+                                </p>
+                            </div>
+
+                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+
+                            <div class="custom-block-bottom d-flex justify-content-between mt-3">
+                                <a href="#" class="bi-headphones me-1">
+                                    <span>100k</span>
+                                </a>
+
+                                <a href="#" class="bi-heart me-1">
+                                    <span>2.5k</span>
+                                </a>
+
+                                <a href="#" class="bi-chat me-1">
+                                    <span>924k</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="social-share d-flex flex-column ms-auto">
+                            <a href="#" class="badge ms-auto">
+                                <i class="bi-heart"></i>
+                            </a>
+
+                            <a href="#" class="badge ms-auto">
+                                <i class="bi-bookmark"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-12">
+                    <div class="custom-block custom-block-full">
+                        <div class="custom-block-image-wrap">
+                            <a href="detail-page.html">
+                                <img src="images/podcast/12577967_02.jpg" class="custom-block-image img-fluid" alt="">
+                            </a>
+                        </div>
+
+                        <div class="custom-block-info">
+                            <h5 class="mb-2">
+                                <a href="detail-page.html">
+                                    Daily Talk
+                                </a>
+                            </h5>
+
+                            <div class="profile-block d-flex">
+                                <img src="images/profile/handsome-asian-man-listening-music-through-headphones.jpg" class="profile-block-image img-fluid" alt="">
+
+                                <p>
+                                    William
+                                    <img src="images/verified.png" class="verified-image img-fluid" alt="">
+                                    <strong>Vlogger</strong></p>
+                            </div>
+
+                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+
+                            <div class="custom-block-bottom d-flex justify-content-between mt-3">
+                                <a href="#" class="bi-headphones me-1">
+                                    <span>100k</span>
+                                </a>
+
+                                <a href="#" class="bi-heart me-1">
+                                    <span>2.5k</span>
+                                </a>
+
+                                <a href="#" class="bi-chat me-1">
+                                    <span>924k</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="social-share d-flex flex-column ms-auto">
+                            <a href="#" class="badge ms-auto">
+                                <i class="bi-heart"></i>
+                            </a>
+
+                            <a href="#" class="badge ms-auto">
+                                <i class="bi-bookmark"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
-        <div class="mySlides">
-            <q>But man is not made for defeat. A man can be destroyed but not defeated.</q>
-            <p class="author">- Ernest Hemingway</p>
-        </div>
+    </section>
 
-        <div class="mySlides">
-            <q>I have not failed. I've just found 10,000 ways that won't work.</q>
-            <p class="author">- Thomas A. Edison</p>
-        </div>
-
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
-        <a class="next" onclick="plusSlides(1)">❯</a>
-
-    </div>
     @if (session('status'))
         <script>
             Swal.fire(
@@ -1445,34 +1600,7 @@ function change2(){
         }
     }
 </script>
-<script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
 
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
-    }
-</script>
 <script>
     /**
      * Define a function to navigate betweens form steps.
@@ -1624,6 +1752,33 @@ function change2(){
         }
         reader.readAsDataURL(file);
     });
+</script>
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 </script>
 
 </body>

@@ -21,7 +21,7 @@ class addannonce extends Controller
             ]);
             $semaine=null;
             $date=null;
-if ($_POST['semaine']!=null){
+if ($_POST['semaine']!=0){
     $semaine=$request->input('semaine');
 }
 if ($_POST['date']!=null){
@@ -46,6 +46,7 @@ $nb_prop=$request->input('nb_prop');
             $annonce->date=$date;
             $annonce->description=$description;
             $annonce->nombre_proposition=$nb_prop;
+            $annonce->propostion=0;
             $annonce->id_user=Auth::user()->id;
             $annonce->name_user=Auth::user()->name;
             $annonce->img_user=Auth::user()->image;

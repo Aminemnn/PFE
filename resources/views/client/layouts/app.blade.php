@@ -29,5 +29,6 @@
                 {{ $slot }}
             </main>
         </div>
+    @yield('scipts')
     </body>
 </html>

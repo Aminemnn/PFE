@@ -21,7 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \App\Http\Middleware\DisableBackButton::class,
+
     ];
 
     /**
@@ -37,6 +37,7 @@ class Kernel extends HttpKernel
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
+
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
@@ -67,5 +68,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\Admin::class,
         'client' => \App\Http\Middleware\Client::class,
         'freelancer' => \App\Http\Middleware\Freelancer::class,
+        'disable_back' => \App\Http\Middleware\DisableBackButton::class,
     ];
 }

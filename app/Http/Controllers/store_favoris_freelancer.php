@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\favoris_freelancer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class store_favoris_freelancer extends Controller
@@ -19,9 +20,9 @@ class store_favoris_freelancer extends Controller
         $semaine=$request->input('semaine');
         $date=$request->input('date');
         $description=$request->input('description');
-        $id_user=$request->input('id_user');
-        $name_user=$request->input('name_user');
-        $img_user=$request->input('img_user');
+        $id_user=Auth::user()->id;
+        $name_user=Auth::user()->name;
+        $img_user=Auth::user()->image;
 
         $favoris_freelancer=new favoris_freelancer();
         $favoris_freelancer->id_ann=$id_ann;

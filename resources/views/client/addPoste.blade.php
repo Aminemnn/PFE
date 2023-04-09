@@ -444,6 +444,7 @@
                         </div>
                         <div class="form-group" id="semaine" style="display: block">
                             <select class="form-control" id="exampleFormControlSelect1" name="semaine">
+                                <option value="0" selected>0</option>
                                     @for($i=1;$i<=156;$i++)
                                         <option value="{{$i}}">{{$i}}</option>
                                     @endfor

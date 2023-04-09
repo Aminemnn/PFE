@@ -23,7 +23,7 @@ class CreateAnnoncesTable extends Migration
             $table->string('type_price')->nullable();
             $table->string('semaine')->nullable();
             $table->date('date')->nullable();
-            $table->date('description')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

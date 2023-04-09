@@ -17,19 +17,9 @@ class DisableBackButton
     public function handle(Request $request, Closure $next)
     {
         $response = $next($request);
-        $response->header('Cache-Control', 'no-cache, no-store, must-revalidate');
-        $response->header('Pragma', 'no-cache');
-        $response->header('Expires', '0');
-        $response->setContent("
-        <script>
-            if (typeof history.pushState === 'function') {
-                history.pushState('forward', null, '');
-                window.addEventListener('popstate', function () {
-                    history.pushState('forward', null, '');
-                });
-            }
-        </script>
-        " . $response->content());
-        return $response;
+
+        return $response->header('Cache-Control','nocache, no-store, max-age=0, must-revalidate')
+            ->header('Pragma','no-cache')
+            ->header('Expires','Sat, 26 Jul 1997 05:00:00 GMT');
     }
 }

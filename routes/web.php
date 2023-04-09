@@ -12,6 +12,7 @@ use App\Http\Controllers\deleteannonce;
 use App\Http\Controllers\deletePoste;
 use App\Http\Controllers\freelancercontroller;
 use App\Http\Controllers\FreelancerManagement;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\store_favoris_freelancer;
 use App\Http\Controllers\updateinfo;
 use App\Mail\JOB4FREE;
@@ -36,6 +37,9 @@ Route::get('/auth/facebook', 'FacebookController@redirectToFacebook');
 Route::get('/auth/facebook/callback', 'FacebookController@handleFacebookCallback');
 Route::post('freelancer/favoris',[store_favoris_freelancer::class,'store'])->name('freelancer_favoris');
 Route::post('freelancer/favoris_detele',[store_favoris_freelancer::class,'delete'])->name('freelancer_favoris_delete');
+Route::post('/order', [OrderController::class,'store'])->name('order.store');
+Route::get('freelancer/annonce/detail/{id}','detailcontroller@create')->middleware(['auth','verified','freelancer'])->name('detailannonce');
+Route::get('freelancer/user/detail/{id}','userdetailcontroller@create')->middleware(['auth','verified','freelancer'])->name('userdetail');
 Route::get('client/historique','historiqueposte@historique')->middleware(['auth','verified','client'])->name('historiqueannonce');
 Route::get('freelancer/setting','setting@create')->name('setting');
 Route::post('delete/poste',[deletePoste::class,'delete'])->name('delete');
@@ -46,9 +50,9 @@ Route::get('admin/UserManagement','FreelancerManagement@create')->middleware(['a
 Route::post('admin/UserManagement',[FreelancerManagement::class,'destroy'])->name('freelancer_destroy');
 Route::get('admin/ClientManagement','ClientManagement@create')->middleware(['auth','admin'])->name('ClientManagement');
 Route::post('admin/ClientManagement',[ClientManagement::class,'drop'])->name('client_destroy');
-Route::get('admin/dashboard','admincontroller@dashboard')->middleware(['auth','admin'])->name('admin');
-Route::get('client/dashboard','clientcontroller@dashboard')->middleware(['auth','verified','client'])->name('client');
-Route::get('freelancer/dashboard','freelancercontroller@dashboard')->middleware(['auth','verified','freelancer'])->name('freelancer');
+Route::get('admin/dashboard','admincontroller@dashboard')->middleware(['auth','admin','disable_back'])->name('admin');
+Route::get('client/dashboard','clientcontroller@dashboard')->middleware(['auth','verified','client','disable_back'])->name('client');
+Route::get('freelancer/dashboard','freelancercontroller@dashboard')->middleware(['auth','verified','freelancer','disable_back'])->name('freelancer');
 Route::post('freelancer/dashboard',[freelancercontroller::class,'store'])->name('freelancer');
 Route::get('freelancer/historique','historiqueposte@create')->middleware(['auth','verified','freelancer'])->name('historiqueposte');
 Route::post('client/addAd',[addannonce::class,'store'])->name('addann');
@@ -69,6 +73,6 @@ Route::get('freelancer/addPoste','freelancercontroller@addPoste')->middleware('a
 Route::post('client/dashboard',[clientcontroller::class,'request'])->name('client');
 Route::post('freelancer/changepassword',[changepassword::class,'store'])->name('changepassword');
 Route::get('/dashboard','homecontroller@dashboard')->middleware(['auth','verified','freelancer','client'])->name('dashboard');
-Route::get('logout', 'Auth\LoginController@logout')->middleware('disable-back-button');
+
 
 require __DIR__.'/auth.php';

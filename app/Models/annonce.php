@@ -20,6 +20,7 @@ class annonce extends Model
       'date',
       'description',
         'nombre_proposition',
+        'propostion',
       'id_user',
       'name_user',
         'img_user'
