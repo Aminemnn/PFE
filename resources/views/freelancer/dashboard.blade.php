@@ -456,7 +456,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
             <div class="card-body">
                 <h5 class="card-title" style="color: #F19B01">Hi ! <h5>{{Auth::user()->name}}</h5></h5>
                 <p class="card-text" style="margin-top: 23px">You can publish your work here</p>
-                <button type="button" class="btn btn-primary" id="myBtn" style="margin-top: 23px;background-color: #F19B01;border-color: #F19B01;color: white">
+                <button type="button" class="btn btn-primary" id="myBtn" style="margin-top: 1px;background-color: #F19B01;border-color: #F19B01;color: white">
                     <a href="{{route('addPoste')}}" id="posted">Posted a Work
                     </a>
                 </button>

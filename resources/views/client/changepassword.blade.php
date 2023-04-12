@@ -17,7 +17,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
 
 </head>
 <body>
-
+<p style="margin-left: 33px;margin-top: 23px"><a href="{{route('settingclient')}}" style="text-decoration: none;color: black">EXIT</a></p>
 <div class="container">
     <div class="row">
         <div class="col-8" id="col">
@@ -29,27 +29,27 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
                 <h1 style="font-family: 'Trebuchet MS';text-align: center">Change Password</h1>
                 <br>
                 <div class="mb-3">
-                <label for="inputPassword5" class="form-label" style="font-family: 'Trebuchet MS'">Old Password <span style="color: red">*</span></label>
-                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="old_password" required style="border-radius: 80px;padding: 20px;border-color: #F19B01">
+                    <label for="inputPassword5" class="form-label" style="font-family: 'Trebuchet MS'">Old Password <span style="color: red">*</span></label>
+                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="old_password" required style="border-radius: 80px;padding: 20px;border-color: #F19B01">
                     @error('old_password')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
-                <label for="inputPassword5" class="form-label" style="font-family: 'Trebuchet MS'">New Password <span style="color: red">*</span></label>
-                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="new_password" required style="border-radius: 80px;padding: 20px;border-color: #F19B01">
+                    <label for="inputPassword5" class="form-label" style="font-family: 'Trebuchet MS'">New Password <span style="color: red">*</span></label>
+                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="new_password" required style="border-radius: 80px;padding: 20px;border-color: #F19B01">
                     @error('new_password')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
-                <label for="inputPassword5" class="form-label" style="font-family: 'Trebuchet MS'">Confirmed New Password <span style="color: red">*</span></label>
-                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="new_password_confirmation" required style="border-radius: 80px;padding: 20px;border-color: #F19B01">
+                    <label for="inputPassword5" class="form-label" style="font-family: 'Trebuchet MS'">Confirmed New Password <span style="color: red">*</span></label>
+                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="new_password_confirmation" required style="border-radius: 80px;padding: 20px;border-color: #F19B01">
                     @error('new_password_confirmation')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                    <br>
+                <br>
                 <button type="submit" class="btn btn-info" id="button" style="width: 100%;font-family: 'Trebuchet MS';background-color: #E1ECFE;color: black;border-color: #E1ECFE;padding: 10px;border-radius: 80px">Change</button>
                 <br>
 
@@ -76,23 +76,18 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
                         </script>
                     @elseif (session('error'))
                         <script>
-                        Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: "Old Password Doesn't match!",
-                        })
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: "Old Password Doesn't match!",
+                            })
                         </script>
                 @endif
             </form>
-            <div class="loader"></div>
+
         </div>
     </div>
 </div>
-<script>
-    window.addEventListener("load", () => {
-        const loader =document.querySelector(".loader");
-        loader.classList.add("loader-hidden");
-    })
-</script>
+
 </body>
 </html>

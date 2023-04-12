@@ -9,281 +9,168 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.min.js"></script>
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
+"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{asset('homeAssets/css/style.css')}}">
+    <link href="{{asset('FreeAssets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
     <style>
-    @media only screen and (max-width: 820px) {
-        #card{
-            transform: scale(1);
-            position: relative;
-            right: 1px;
+        @media only screen and (max-width: 820px) {
+            #posted{
+                position: relative;
+                left: 1px;
+            }
+
         }
-        #button2{
-            margin-left: 145px;
-            transform: scale(0.8);
+
+
+
+        /* Add Animation */
+        @-webkit-keyframes slideIn {
+            from {bottom: -300px; opacity: 0}
+            to {bottom: 0; opacity: 1}
         }
-        #exampleFormControlInput1{
-            width: 100%;
+
+        @keyframes slideIn {
+            from {bottom: -300px; opacity: 0}
+            to {bottom: 0; opacity: 1}
         }
-      h1{
-          font-size: 30px;
-      }
+
+        @-webkit-keyframes fadeIn {
+            from {opacity: 0}
+            to {opacity: 1}
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0}
+            to {opacity: 1}
+        }
+        #animate{
+            --animate-duration: 1s;
+        }
         #animate1{
-            width: 250%;
-            right: 198px;
-            position: relative;
+            --animate-duration: 1.1s;
         }
         #animate2{
-            width: 250%;
-            right: 198px;
-            position: relative;
+            --animate-duration: 1.2s;
         }
         #animate3{
-            width: 250%;
-            right: 198px;
-            position: relative;
+            --animate-duration: 1.3s;
         }
-        #category2{
-            width: 250%;
-            right: 198px;
-            position: relative;
+        #category{
+            --animate-duration: 1.4s;
         }
         #animate4{
-            width: 250%;
-            right: 198px;
-            position: relative;
+            --animate-duration: 1.5s;
         }
         #animate5{
-            width: 250%;
-            right: 198px;
-            position: relative;
+            --animate-duration: 1.6s;
         }
         #animate6{
-            width: 250%;
-            right: 198px;
+            --animate-duration: 1.7s;
+        }
+        #animate7{
+            --animate-duration: 1.8s;
+        }
+        /* Slideshow container */
+        .slideshow-container {
             position: relative;
+            background: #F7CC7E;
+
         }
-        #button23{
-            width: 250%;
-            right: 198px;
+
+        /* Slides */
+        .mySlides {
+            display: none;
+            padding: 80px;
+            text-align: center;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -30px;
+            padding: 16px;
+            color: #888;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            position: absolute;
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            color: white;
+        }
+
+        /* The dot/bullet/indicator container */
+        .dot-container {
+            text-align: center;
+            padding: 20px;
+            background: #ddd;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        /* Add a background color to the active dot/circle */
+
+        /* Add an italic font style to all quotes */
+        q {font-style: italic;}
+
+        /* Add a blue color to the author */
+        .author {color: cornflowerblue;}
+        .col-3{
+            margin-left: 126px;
+            transform: scale(1.1);
             position: relative;
+            right: 23px;
         }
-        .container{
-            position: relative;
-            right: 50px;
-        }
-        .prev{
-           margin-right: 252px;
-            transform: scale(1);
-        }
-        .next{
-            margin-right: 9px;
-            transform: scale(1);
+        #myBtn a{
+            text-decoration: none;
+            color: white;
         }
 
-    }
-
-    #myModal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: scroll;
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        -webkit-animation-name: fadeIn; /* Fade in the background */
-        -webkit-animation-duration: 0.4s;
-        animation-name: fadeIn;
-        animation-duration: 0.4s;
-
-
-    }
-
-    /* Modal Content */
-    .modal-content {
-        position: fixed;
-        bottom: 0;
-        background-color: #fefefe;
-        width: 100%;
-        overflow: scroll;
-        -webkit-animation-name: slideIn;
-        -webkit-animation-duration: 0.4s;
-        animation-name: slideIn;
-        animation-duration: 0.4s
-    }
-
-    /* The Close Button */
-    .close {
-        color: white;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    .modal-header {
-        padding: 2px 16px;
-        background-color: whitesmoke;
-        color: white;
-    }
-
-    .modal-body {padding: 2px 16px;}
-
-    .modal-footer {
-        padding: 2px 16px;
-        background-color: #E1ECFE;
-        color: white;
-    }
-
-    /* Add Animation */
-    @-webkit-keyframes slideIn {
-        from {bottom: -300px; opacity: 0}
-        to {bottom: 0; opacity: 1}
-    }
-
-    @keyframes slideIn {
-        from {bottom: -300px; opacity: 0}
-        to {bottom: 0; opacity: 1}
-    }
-
-    @-webkit-keyframes fadeIn {
-        from {opacity: 0}
-        to {opacity: 1}
-    }
-
-    @keyframes fadeIn {
-        from {opacity: 0}
-        to {opacity: 1}
-    }
-    #animate{
-        --animate-duration: 1s;
-    }
-    #animate1{
-        --animate-duration: 1.1s;
-    }
-    #animate2{
-        --animate-duration: 1.2s;
-    }
-    #animate3{
-        --animate-duration: 1.3s;
-    }
-    #category{
-        --animate-duration: 1.4s;
-    }
-    #animate4{
-        --animate-duration: 1.5s;
-    }
-    #animate5{
-        --animate-duration: 1.6s;
-    }
-    #animate6{
-        --animate-duration: 1.7s;
-    }
-    #animate7{
-        --animate-duration: 1.8s;
-    }
-    /* Slideshow container */
-    .slideshow-container {
-        position: relative;
-        background: #F7CC7E;
-
-    }
-
-    /* Slides */
-    .mySlides {
-        display: none;
-        padding: 80px;
-        text-align: center;
-    }
-
-    /* Next & previous buttons */
-    .prev, .next {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        width: auto;
-        margin-top: -30px;
-        padding: 16px;
-        color: #888;
-        font-weight: bold;
-        font-size: 20px;
-        border-radius: 0 3px 3px 0;
-        user-select: none;
-
-    }
-
-    /* Position the "next button" to the right */
-    .next {
-        position: absolute;
-        right: 0;
-        border-radius: 3px 0 0 3px;
-    }
-
-    /* On hover, add a black background color with a little bit see-through */
-    .prev:hover, .next:hover {
-        color: white;
-    }
-
-    /* The dot/bullet/indicator container */
-    .dot-container {
-        text-align: center;
-        padding: 20px;
-        background: #ddd;
-    }
-
-    /* The dots/bullets/indicators */
-    .dot {
-        cursor: pointer;
-        height: 15px;
-        width: 15px;
-        margin: 0 2px;
-        background-color: #bbb;
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.6s ease;
-    }
-
-    /* Add a background color to the active dot/circle */
-
-    /* Add an italic font style to all quotes */
-    q {font-style: italic;}
-
-    /* Add a blue color to the author */
-    .author {color: cornflowerblue;}
-    .col-3{
-        margin-left: 60px;
-        transform: scale(1.1);
-        position: relative;
-        right: 23px;
-    }
-    #myBtn a{
-        text-decoration: none;
-        color: white;
-    }
-
-</style>
+    </style>
     <style>
         h1 {
             text-align: center;
@@ -443,6 +330,7 @@
         .form-stepper a {
             cursor: default;
         }
+
     </style>
     <style>e.cssCSS
             /* Code By Webdevtrick ( https://webdevtrick.com ) */
@@ -519,52 +407,201 @@
             border: 1px solid #212121;
         }
     </style>
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+
 <x-client-layout>
     <div class="py-12">
-    <div class="card text-center" style="width: 80%;height: 200px;margin:auto;border-radius: 56px;background-color: #E1ECFE;border-color: #E1ECFE" id="card">
-        <div class="card-body">
-            <h5 class="card-title" style="color: #F19B01">Hi ! <h5>{{Auth::user()->name}}</h5></h5>
-            <p class="card-text" style="margin-top: 23px">You can publish your annonce here</p>
-            <button type="button" class="btn btn-primary" id="myBtn" style="margin-top: 23px;background-color: #F19B01;border-color: #F19B01;color: white;">
-                <a href="{{route('addAd')}}"> Posted ad
-                </a>
-            </button>
-
+        <div class="card text-center" style="width: 80%;height: 200px;margin:auto;border-radius: 56px;background-color: #E1ECFE;border-color: #E1ECFE" id="card">
+            <div class="card-body">
+                <h5 class="card-title" style="color: #F19B01">Hi ! <h5>{{Auth::user()->name}}</h5></h5>
+                <p class="card-text" style="margin-top: 23px">You can publish your work here</p>
+                <button type="button" class="btn btn-primary" id="myBtn" style="margin-top: 1px;background-color: #F19B01;border-color: #F19B01;color: white">
+                    <a href="{{route('addAd')}}" id="posted" >Posted a Work
+                    </a>
+                </button>
+            </div>
         </div>
     </div>
-    </div>
-    <div class="slideshow-container">
-        <div class="mySlides">
 
+    <section class="trending-podcast-section section-padding pt-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-10">
+                    <div class="section-title-wrap mb-5">
+                        <h4 class="section-title">Lastest job offres</h4>
+                    </div>
+                </div>
+                @foreach($annonces as $annonces)
+                <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                    <div class="custom-block custom-block-full">
+                        <div class="custom-block-image-wrap">
+                            <a href="detail-page.html">
+                                <img src="{{asset('../../../uploads/poste/'.$annonces->image)}}" class="custom-block-image img-fluid" alt="">
+                            </a>
+                        </div>
+
+                        <div class="custom-block-info">
+                            <h5 class="mb-2">
+                                <a href="detail-page.html">
+                                    Vintage Show
+                                </a>
+                            </h5>
+
+                            <div class="profile-block d-flex">
+                                <img src="{{asset('../../../uploads/photouser/'.$annonces->img_user)}}" class="profile-block-image img-fluid" alt="">
+                                <p>{{$annonces->name_user}}</p>
+                            </div>
+
+                            <p class="mb-0">{{$annonces->description}}</p>
+
+                            <div class="custom-block-bottom d-flex justify-content-between mt-3">
+                                <a href="#" class="bi-headphones me-1">
+                                    <span>100k</span>
+                                </a>
+
+                                <a href="#" class="bi-heart me-1">
+                                    <span>2.5k</span>
+                                </a>
+
+                                <a href="#" class="bi-chat me-1">
+                                    <span>924k</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="social-share d-flex flex-column ms-auto">
+                            @php
+                                $favoriExiste = false;
+                            @endphp
+                            @foreach($favoris as $favori)
+                                @if($annonces->id==$favori->id_poste)
+                                    @php
+                                        $favoriExiste = true;
+                                    @endphp
+                                    <form method="POST" action="{{route('client_favoris_delete')}}" id="form1">
+                                        @csrf
+                                        <input type="hidden" name="delete" value="{{$annonces->id}}">
+                                        <button type="submit" id="favorite-btn"><i class="fa-solid fa-heart-o animate__animated animate__bounceIn" style="font-size: 26px;color: red"></i></button>
+                                    </form>
+                                @endif
+                            @endforeach
+                            @if(!$favoriExiste)
+                                <form method="POST" action="{{route('client_favoris')}}" id="form2">
+                                    @csrf
+                                    <input type="hidden" name="id_ann" value="{{$annonces->id}}">
+                                    <input type="hidden" name="title" value="{{$annonces->title}}">
+                                    <input type="hidden" name="category" value="{{$annonces->category}}">
+                                    <input type="hidden" name="sous_category" value="{{$annonces->sous_category}}">
+                                    <input type="hidden" name="image" value="{{$annonces->image}}">
+                                    <input type="hidden" name="price" value="{{$annonces->price}}">
+                                    <input type="hidden" name="etat" value="{{$annonces->etat}}">
+                                    <input type="hidden" name="description" value="{{$annonces->description}}">
+                                    <input type="hidden" name="user_id" value="{{$annonces->user_id }}">
+                                    <button type="submit" id="favorite-btn"><i class="fa-solid fa-heart-o animate__animated animate__bounceIn" style="font-size: 26px;color: darkgrey"></i></button>
+                                </form>
+                            @endif
+                            @if(session('success2'))
+                                <script>
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
+
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: '{{session("success2")}}'
+                                    })
+                                </script>
+                            @endif
+                            @if(session('delete'))
+                                <script>
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
+
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: '{{session("delete")}}'
+                                    })
+                                </script>
+                            @endif
+
+                            <a href="{{route('detailposte',['id'=>$annonces->id])}}" style="margin-top: 13px">
+                                <i class="fa-solid fa-circle-info" style="font-size: 26px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
-        <div class="mySlides">
-            <q>But man is not made for defeat. A man can be destroyed but not defeated.</q>
-            <p class="author">- Ernest Hemingway</p>
-        </div>
+    </section>
 
-        <div class="mySlides">
-            <q>I have not failed. I've just found 10,000 ways that won't work.</q>
-            <p class="author">- Thomas A. Edison</p>
-        </div>
-
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
-        <a class="next" onclick="plusSlides(1)">❯</a>
-
-    </div>
-
-
-
-            @if (session('status'))
-                <script>
-                    Swal.fire(
-                        'Good job!',
-                        'Your data has been registered successfully!',
-                        'success'
-                    )
-                </script>
-            @endif
+    @if (session('status'))
+        <script>
+            Swal.fire(
+                'Good job!',
+                'Your data has been registered successfully!',
+                'success'
+            )
+        </script>
+    @endif
     @if (session('success'))
         <script>
             Swal.fire({
@@ -576,8 +613,8 @@
             })
         </script>
     @endif
+    </x-client-layout>
 
-</x-client-layout>
 @if(Auth::user()->categorie==null)
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -621,7 +658,7 @@
                                 </li>
                             </ul>
                             <!-- Step Wise Form Content -->
-                            <form id="userAccountSetupForm" action="{{route('client')}}" method="POST" enctype="multipart/form-data">
+                            <form id="userAccountSetupForm" action="{{route('freelancer')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <!-- Step 1 Content -->
                                 <section id="step-1" class="form-step">
@@ -696,12 +733,6 @@
                                         </select>
                                         <br>
                                         <input class="form-control" type="text"  aria-label="default input example" name="other" id="other" placeholder="enter your subcategory here" style="border-color: gray; border-radius: 5px">
-                                        <br>
-                                        <label for="type">Type</label><span style="color: red">*</span>
-                                        <select id="type" name="type" class="form-control">
-                                            <option value="Client">Client</option>
-                                            <option value="Company">Company</option>
-                                        </select>
                                         <br>
                                         <label for="country" style="font-family: 'Trebuchet MS'">Country</label><span style="color: red !important; display: inline; float: none;">*</span>
                                         <select id="country" name="country" class="form-control" >
@@ -993,7 +1024,7 @@
                                                                 <i class="glyphicon glyphicon-download-alt"></i>
                                                                 <p>Choose an image file or drag it here.</p>
                                                             </div>
-                                                            <input type="file" name="img" class="dropzone" id="imageUpload" accept="Image/*">
+                                                            <input type="file" name="img" class="dropzone" id="imageUpload" accept="Image/*" required>
                                                         </div>
                                                         <p id="result1" class="text-success"></p>
                                                         <p id="result2" class="text-danger" ></p>
@@ -1027,8 +1058,6 @@
                             </form>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -1046,7 +1075,6 @@
         var selectElement = document.getElementById("category");
         var displaytext = selectElement.options[selectElement.selectedIndex].text;
         if(displaytext=="Other"){
-
             document.getElementById("sub_category_graphics_design").style.display="none";
             document.getElementById("sub_category_digital_marketing").style.display="none";
             document.getElementById("sub_category_writing_translation").style.display="none";
@@ -1055,9 +1083,8 @@
             document.getElementById("sub_category_programming_tech").style.display="none";
             document.getElementById("sub_category_business").style.display="none";
             document.getElementById("sub_category_life_style").style.display="none";
-
+            document.getElementById("labelcategory").style.display="none";
             document.getElementById("other").style.display="block";
-
         }
         if (displaytext=="Select category"){
             document.getElementById("sub_category_graphics_design").style.display="none";
@@ -1081,8 +1108,10 @@
             document.getElementById("sub_category_programming_tech").style.display="none";
             document.getElementById("sub_category_business").style.display="none";
             document.getElementById("sub_category_life_style").style.display="none";
+            document.getElementById("labelcategory").style.display="block";
+            document.getElementById("span").style.display="block";
             document.getElementById("other").style.display="none";
-            console.log(displaytext);
+
         }
         if (displaytext=="Digital Marketing"){
             document.getElementById("sub_category_digital_marketing").style.display="block";
@@ -1093,7 +1122,7 @@
             document.getElementById("sub_category_programming_tech").style.display="none";
             document.getElementById("sub_category_business").style.display="none";
             document.getElementById("sub_category_life_style").style.display="none";
-
+            document.getElementById("labelcategory").style.display="block";
             document.getElementById("other").style.display="none";
         }
         if (displaytext=="Writing & Translation"){
@@ -1104,7 +1133,7 @@
             document.getElementById("sub_category_programming_tech").style.display="none";
             document.getElementById("sub_category_business").style.display="none";
             document.getElementById("sub_category_life_style").style.display="none";
-
+            document.getElementById("labelcategory").style.display="block";
             document.getElementById("other").style.display="none";
         }
         if (displaytext=="Video & Animation"){
@@ -1116,7 +1145,7 @@
             document.getElementById("sub_category_programming_tech").style.display="none";
             document.getElementById("sub_category_business").style.display="none";
             document.getElementById("sub_category_life_style").style.display="none";
-
+            document.getElementById("labelcategory").style.display="block";
             document.getElementById("other").style.display="none";
         }
         if (displaytext=="Music & Audio"){
@@ -1128,7 +1157,7 @@
             document.getElementById("sub_category_digital_marketing").style.display="none";
             document.getElementById("sub_category_writing_translation").style.display="none";
             document.getElementById("sub_category_vedio_annimation").style.display="none";
-
+            document.getElementById("labelcategory").style.display="block";
             document.getElementById("other").style.display="none";
 
         }
@@ -1141,7 +1170,7 @@
             document.getElementById("sub_category_writing_translation").style.display="none";
             document.getElementById("sub_category_vedio_annimation").style.display="none";
             document.getElementById("sub_category_music_audio").style.display="none";
-
+            document.getElementById("labelcategory").style.display="block";
             document.getElementById("other").style.display="none";
         }
         if (displaytext=="Business"){
@@ -1153,7 +1182,7 @@
             document.getElementById("sub_category_music_audio").style.display="none";
             document.getElementById("sub_category_programming_tech").style.display="none";
             document.getElementById("sub_category_life_style").style.display="none";
-
+            document.getElementById("labelcategory").style.display="block";
             document.getElementById("other").style.display="none";
         }
 
@@ -1166,6 +1195,7 @@
             document.getElementById("sub_category_music_audio").style.display="none";
             document.getElementById("sub_category_programming_tech").style.display="none";
             document.getElementById("sub_category_business").style.display="none";
+            document.getElementById("labelcategory").style.display="block";
             document.getElementById("other").style.display="none";
         }
 
@@ -1192,8 +1222,6 @@
 
         if(displaymarketing=="Other"){
             document.getElementById("other").style.display="block";
-        }else {
-            document.getElementById("other").style.display="none";
         }
         if(displaygraphics=="Other"){
             document.getElementById("other").style.display="block";
@@ -1217,7 +1245,30 @@
             document.getElementById("other").style.display="block";
         }
 
-
+        if(displaymarketing=="Other"){
+            document.getElementById("other").style.display="block";
+        }
+        if(displaygraphics=="Other"){
+            document.getElementById("other").style.display="block";
+        }
+        if(displaymwriting=="Other"){
+            document.getElementById("other").style.display="block";
+        }
+        if(displayvideo=="Other"){
+            document.getElementById("other").style.display="block";
+        }
+        if(displaymusic=="Other"){
+            document.getElementById("other").style.display="block";
+        }
+        if(displayprogramming=="Other"){
+            document.getElementById("other").style.display="block";
+        }
+        if(displaybusiness=="Other"){
+            document.getElementById("other").style.display="block";
+        }
+        if(displaylifestyle=="Other"){
+            document.getElementById("other").style.display="block";
+        }
 
     }
     document.getElementById("other").style.display="none";
@@ -1345,8 +1396,6 @@
 
 
         }
-
-
     }
     document.getElementById("sub_category_graphics_design1").style.display="none";
     document.getElementById("sub_category_digital_marketing1").style.display="none";
@@ -1385,34 +1434,7 @@
         }
     }
 </script>
-<script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
 
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
-    }
-</script>
 <script>
     /**
      * Define a function to navigate betweens form steps.
@@ -1566,10 +1588,32 @@
     });
 </script>
 <script>
-    window.Echo.channel('orders')
-        .listen('.NewOrder', (data) => {
-            console.log(data);
-        })
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 </script>
+
 </body>
 </html>

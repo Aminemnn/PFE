@@ -15,6 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('id_projet');
             $table->string('title_projet');
             $table->string('categorie');
             $table->string('sous_categorie');

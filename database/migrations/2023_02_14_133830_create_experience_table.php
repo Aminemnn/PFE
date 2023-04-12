@@ -21,6 +21,7 @@ class CreateExperienceTable extends Migration
             $table->string('location');
             $table->date('datedeb');
             $table->date('datefin');
+            $table->bigInteger('id_user');
             $table->timestamps();
         });
     }

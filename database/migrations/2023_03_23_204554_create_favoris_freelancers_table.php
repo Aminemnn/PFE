@@ -26,6 +26,8 @@ class CreateFavorisFreelancersTable extends Migration
             $table->string('description');
             $table->bigInteger('id_user');
             $table->string('name_user');
+            $table->bigInteger('id_ann');
+            $table->string('img_user');
             $table->timestamps();
         });
     }

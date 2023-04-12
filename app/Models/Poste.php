@@ -18,7 +18,8 @@ class Poste extends Model
         'etat',
         'user_id',
         'name_user',
-        'img_user'
+        'img_user',
+        'bio_user'
 
     ];
 }

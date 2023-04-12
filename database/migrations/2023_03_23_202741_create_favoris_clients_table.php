@@ -15,6 +15,7 @@ class CreateFavorisClientsTable extends Migration
     {
         Schema::create('favoris_clients', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('id_poste');
             $table->string('title');
             $table->string('category');
             $table->string('sous_category');
@@ -22,8 +23,10 @@ class CreateFavorisClientsTable extends Migration
             $table->string('price');
             $table->string('description');
             $table->integer('user_id');
+            $table->bigInteger('id_destinateur ');
             $table->string('name_user');
             $table->string('img_user');
+            $table->string('etat');
             $table->timestamps();
         });
     }

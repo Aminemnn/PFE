@@ -658,7 +658,7 @@
                             <a class="dropdown-item" href="{{route('addPoste')}}"><i class="fa-solid fa-briefcase" style="color: #787878"></i><span class="align-middle">Post a Work</span></a>
                             <a class="dropdown-item" href="{{route('historiqueposte')}}"><i class="fa-solid fa-clock-rotate-left" style="color: #787878"></i> <span class="align-middle">Post history</span></a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Balance : <b>$5971.67</b></span></a>
+                            <a class="dropdown-item" href="{{route('historiquepropostion')}}"><i class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Proposal History</span></a>
                             <a class="dropdown-item" href="{{route('setting')}}"><span class="badge bg-soft-success text-success mt-1 float-end">New</span><i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Settings</span></a>
                             <a class="dropdown-item" href="auth-lockscreen-basic.html"><i class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Lock screen</span></a>
                             <form method="POST" action="{{ route('logout') }}">

@@ -15,6 +15,7 @@ class CreateSouscategorieTable extends Migration
     {
         Schema::create('souscategorie', function (Blueprint $table) {
             $table->string('nom');
+            $table->string('name_cat');
             $table->timestamps();
         });
     }

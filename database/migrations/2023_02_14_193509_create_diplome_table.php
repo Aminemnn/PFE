@@ -16,9 +16,10 @@ class CreateDiplomeTable extends Migration
         Schema::create('diplome', function (Blueprint $table) {
             $table->id();
             $table->string('institut')->nullable();
-            $table->string('description')->nullable();
+            $table->string('country')->nullable();
             $table->string('titre_diplome')->nullable();
             $table->integer('annee')->nullable();
+            $table->bigInteger('id_user');
             $table->timestamps();
         });
     }

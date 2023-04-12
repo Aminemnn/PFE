@@ -20,9 +20,12 @@ class CreatePostesTable extends Migration
             $table->string('sous_category');
             $table->string('image');
             $table->integer('price');
+            $table->string('etat');
             $table->string('description');
             $table->bigInteger('user_id');
             $table->string('name_user');
+            $table->string('img_user');
+            $table->string('bio_user');
             $table->timestamps();
         });
     }

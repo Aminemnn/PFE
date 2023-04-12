@@ -11,6 +11,9 @@ class changepassword extends Controller
     public function create(){
         return view('freelancer.changepassword');
     }
+    public function createclient(){
+        return view('client.changepassword');
+    }
     public function store(Request $request)
     {
 

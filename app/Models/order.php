@@ -23,6 +23,7 @@ class order extends Model
         'id_user',
         'name_user',
         'image_user',
-        'id_destinateur'
+        'id_destinateur',
+        'etat'
     ];
 }

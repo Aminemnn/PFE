@@ -34,6 +34,7 @@ class addposte extends Controller
         $poste->user_id=Auth::user()->id;
         $poste->name_user=Auth::user()->name;
         $poste->img_user=Auth::user()->image;
+        $poste->bio_user=Auth::user()->bio;
         $poste->save();
         return back()->with("status", "Data Save successfully!");
     }

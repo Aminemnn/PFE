@@ -24,6 +24,11 @@ class CreateAnnoncesTable extends Migration
             $table->string('semaine')->nullable();
             $table->date('date')->nullable();
             $table->string('description')->nullable();
+            $table->integer('nombre_proposition');
+            $table->integer('propostion');
+            $table->bigInteger('id_user');
+            $table->string('name_user');
+            $table->string('img_user');
             $table->timestamps();
         });
     }
