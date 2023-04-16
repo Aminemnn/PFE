@@ -32,9 +32,9 @@ class freelancercontroller extends Controller
         $programming_tech2 = DB::table('souscategorie')->where('name_cat','Programming & Tech')->get();
         $business2 = DB::table('souscategorie')->where('name_cat','Business')->get();
         $life_style2 = DB::table('souscategorie')->where('name_cat','Lifestyle')->get();
-
-
-        return view('freelancer.dashboard')
+        $user=Auth::user()->id;
+        $notify=DB::table('notiffications')->where("id_destinateur",$user)->get();
+        return view('freelancer.dashboard',['notify' => $notify])
             ->with('categories',$categories)
             ->with('graphics_design',$graphics_design)
             ->with('digital_marketing',$digital_marketing)
@@ -146,6 +146,5 @@ public function profil(){
             ->with('skills',$skills)
             ->with('postes',$postes)
             ->with('pos',$pos);
-
 }
 }

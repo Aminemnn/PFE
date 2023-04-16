@@ -39,11 +39,11 @@
                 <div class="card" id="contact-view-detail">
                     <div class="card-body text-center">
                         <div class="position-relative d-inline-block">
-                            <img src="assets/images/users/avatar-10.jpg" alt="" class="avatar-lg rounded-circle img-thumbnail">
+                            <img src="{{asset('../../../uploads/photouser/'.$user->first()->image)}}" alt="" class="avatar-lg rounded-circle img-thumbnail">
                             <span class="contact-active position-absolute rounded-circle bg-success"><span class="visually-hidden"></span>
                         </div>
-                        <h5 class="mt-4 mb-1">Client Name</h5>
-                        <p class="text-muted">interested</p>
+                        <h5 class="mt-4 mb-1">{{$user->first()->name}}</h5>
+                        <p class="text-muted">{{$user->first()->role}}</p>
 
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item avatar-xs">
@@ -65,36 +65,35 @@
                     </div>
                     <div class="card-body">
                         <h6 class="text-muted text-uppercase fw-semibold mb-3">Personal Information</h6>
-                        <p class="text-muted mb-4">Hello, I'm Tonya Noble, The most effective objective is one that is tailored to the job you are applying for. It states what kind of career you are seeking, and what skills and experiences.</p>
+                        <p class="text-muted mb-4">{{$user->first()->bio}}</p>
                         <div class="table-responsive table-card">
                             <table class="table table-borderless mb-0">
                                 <tbody>
                                 <tr>
                                     <td class="fw-medium" scope="row">Designation</td>
-                                    <td>Lead Designer / Developer</td>
+                                    <td>{{$user->first()->categorie}} / {{$user->first()->sous_categorie}}</td>
                                 </tr>
                                 <tr>
                                     <td class="fw-medium" scope="row">Email ID</td>
-                                    <td>tonyanoble@velzon.com</td>
+                                    <td>{{$user->first()->email}}</td>
                                 </tr>
                                 <tr>
                                     <td class="fw-medium" scope="row">Phone No</td>
-                                    <td>414-453-5725</td>
+                                    <td>{{$user->first()->phone}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-medium" scope="row">Lead Score</td>
-                                    <td>154</td>
+                                    <td class="fw-medium" scope="row">Adress</td>
+                                    <td>{{$user->first()->adresse}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-medium" scope="row">Tags</td>
+                                    <td class="fw-medium" scope="row">Level</td>
                                     <td>
-                                        <span class="badge badge-soft-primary">Lead</span>
-                                        <span class="badge badge-soft-primary">Partner</span>
+                                        <span class="badge badge-soft-primary">{{$user->first()->level}}</span>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-medium" scope="row">Last Contacted</td>
-                                    <td>15 Dec, 2021 <small class="text-muted">08:58AM</small></td>
+                                    <td class="fw-medium" scope="row">Date Of Creation</td>
+                                    <td>{{$user->first()->created_at}}</td>
                                 </tr>
                                 </tbody>
                             </table>

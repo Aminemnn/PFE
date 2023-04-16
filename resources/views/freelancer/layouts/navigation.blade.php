@@ -379,7 +379,7 @@
                     <div class="dropdown topbar-head-dropdown ms-1 header-item" id="notificationDropdown">
                         <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
                             <i class='bx bx-bell fs-22'></i>
-                            <span class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger">3<span class="visually-hidden">unread messages</span></span>
+                            <span class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger" id="nb"><span class="visually-hidden">unread messages</span></span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">
 
@@ -399,7 +399,7 @@
                                     <ul class="nav nav-tabs dropdown-tabs nav-tabs-custom" data-dropdown-tabs="true" id="notificationItemsTab" role="tablist">
                                         <li class="nav-item waves-effect waves-light">
                                             <a class="nav-link active" data-bs-toggle="tab" href="#all-noti-tab" role="tab" aria-selected="true">
-                                                All (4)
+                                                Notifications
                                             </a>
                                         </li>
                                         <li class="nav-item waves-effect waves-light">
@@ -407,20 +407,18 @@
                                                 Messages
                                             </a>
                                         </li>
-                                        <li class="nav-item waves-effect waves-light">
-                                            <a class="nav-link" data-bs-toggle="tab" href="#alerts-tab" role="tab" aria-selected="false">
-                                                Alerts
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
 
                             </div>
-
+                            @php
+                                $user=Auth::user()->id;
+                                $notify=DB::table('notiffications')->where("id_destinateur",$user)->get();
+                            @endphp
                             <div class="tab-content position-relative" id="notificationItemsTabContent">
                                 <div class="tab-pane fade show active py-2 ps-2" id="all-noti-tab" role="tabpanel">
-                                    <div data-simplebar style="max-height: 300px;" class="pe-2">
-                                        <div class="text-reset notification-item d-block dropdown-item position-relative">
+                                    <div data-simplebar  style="max-height: 300px;" class="pe-2">
+                                        <div class="text-reset notification-item d-block dropdown-item position-relative" >
                                             <div class="d-flex">
                                                 <div class="avatar-xs me-3">
                                                     <span class="avatar-title bg-soft-info text-info rounded-circle fs-16">
@@ -446,79 +444,9 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div id="notification">
 
-                                        <div class="text-reset notification-item d-block dropdown-item position-relative">
-                                            <div class="d-flex">
-                                                <img src="assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
-                                                <div class="flex-1">
-                                                    <a href="#!" class="stretched-link">
-                                                        <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
-                                                    </a>
-                                                    <div class="fs-13 text-muted">
-                                                        <p class="mb-1">Answered to your comment on the cash flow forecast's
-                                                            graph 🔔.</p>
-                                                    </div>
-                                                    <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                                                        <span><i class="mdi mdi-clock-outline"></i> 48 min ago</span>
-                                                    </p>
-                                                </div>
-                                                <div class="px-2 fs-15">
-                                                    <div class="form-check notification-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="all-notification-check02">
-                                                        <label class="form-check-label" for="all-notification-check02"></label>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
-
-                                        <div class="text-reset notification-item d-block dropdown-item position-relative">
-                                            <div class="d-flex">
-                                                <div class="avatar-xs me-3">
-                                                    <span class="avatar-title bg-soft-danger text-danger rounded-circle fs-16">
-                                                        <i class='bx bx-message-square-dots'></i>
-                                                    </span>
-                                                </div>
-                                                <div class="flex-1">
-                                                    <a href="#!" class="stretched-link">
-                                                        <h6 class="mt-0 mb-2 fs-13 lh-base">You have received <b class="text-success">20</b> new messages in the conversation
-                                                        </h6>
-                                                    </a>
-                                                    <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                                                        <span><i class="mdi mdi-clock-outline"></i> 2 hrs ago</span>
-                                                    </p>
-                                                </div>
-                                                <div class="px-2 fs-15">
-                                                    <div class="form-check notification-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="all-notification-check03">
-                                                        <label class="form-check-label" for="all-notification-check03"></label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="text-reset notification-item d-block dropdown-item position-relative">
-                                            <div class="d-flex">
-                                                <img src="assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
-                                                <div class="flex-1">
-                                                    <a href="#!" class="stretched-link">
-                                                        <h6 class="mt-0 mb-1 fs-13 fw-semibold">Maureen Gibson</h6>
-                                                    </a>
-                                                    <div class="fs-13 text-muted">
-                                                        <p class="mb-1">We talked about a project on linkedin.</p>
-                                                    </div>
-                                                    <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                                                        <span><i class="mdi mdi-clock-outline"></i> 4 hrs ago</span>
-                                                    </p>
-                                                </div>
-                                                <div class="px-2 fs-15">
-                                                    <div class="form-check notification-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="all-notification-check04">
-                                                        <label class="form-check-label" for="all-notification-check04"></label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                         <div class="my-3 text-center view-all">
                                             <button type="button" class="btn btn-soft-success waves-effect waves-light">View
                                                 All Notifications <i class="ri-arrow-right-line align-middle"></i></button>
@@ -557,7 +485,7 @@
                                                 <img src="assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-1">
                                                     <a href="#!" class="stretched-link">
-                                                        <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
+                                                        <h6 class="mt-0 mb-1 fs-13 fw-semibold" id="json">Angela Bernier</h6>
                                                     </a>
                                                     <div class="fs-13 text-muted">
                                                         <p class="mb-1">Answered to your comment on the cash flow forecast's
@@ -658,13 +586,13 @@
                             <a class="dropdown-item" href="{{route('addPoste')}}"><i class="fa-solid fa-briefcase" style="color: #787878"></i><span class="align-middle">Post a Work</span></a>
                             <a class="dropdown-item" href="{{route('historiqueposte')}}"><i class="fa-solid fa-clock-rotate-left" style="color: #787878"></i> <span class="align-middle">Post history</span></a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('historiquepropostion')}}"><i class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Proposal History</span></a>
+                            <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Balance : <b>$5971.67</b></span></a>
                             <a class="dropdown-item" href="{{route('setting')}}"><span class="badge bg-soft-success text-success mt-1 float-end">New</span><i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Settings</span></a>
                             <a class="dropdown-item" href="auth-lockscreen-basic.html"><i class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Lock screen</span></a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                            <a class="dropdown-item" :href="route('logout')"
-                               onclick="event.preventDefault();
+                                <a class="dropdown-item" :href="route('logout')"
+                                   onclick="event.preventDefault();
                                                 this.closest('form').submit();" style="cursor: pointer"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
                             </form>
                         </div>
@@ -1826,9 +1754,68 @@
 
 <!-- Dashboard init -->
 <script src="{{asset('FreeAssets/js/pages/dashboard-analytics.init.js')}}"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <!-- App js -->
 <script src="{{asset('FreeAssets/js/app.js')}}"></script>
+<script>
+    setInterval(function () {
+    $(document).ready(function() {
+            $.ajax({
+                url: '/get-notifications',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    var notifications = '';
+                    for (var i=0;i< data.length;i++) {
+                        notifications+='<div class="text-reset notification-item d-block dropdown-item">'
+                        notifications += '<div class="d-flex">';
+                        notifications += '<img src="../../../uploads/photouser/'+ data[i].img_expedietur + '" class="me-3 rounded-circle avatar-xs" alt="user-pic">';
+                        notifications += '<div class="flex-1">';
+                        notifications += '<a href="#!" class="stretched-link">';
+                        notifications += '<h6 class="mt-0 mb-1 fs-13 fw-semibold" id="json">' + data[i].name_expediteur + '</h6>';
+                        notifications += '</a>';
+                        notifications += '<div class="fs-13 text-muted">';
+                        notifications += '<p class="mb-1">' + data[i].message + '</p>';
+                        notifications += '</div>';
+                        notifications += '<p class="mb-0 fs-11 fw-medium text-uppercase text-muted">';
+                        notifications += '<span><i class="mdi mdi-clock-outline"></i> ' + data[i].created_at + '</span>';
+                        notifications += '</p>';
+                        notifications += '</div>';
+                        notifications += '<div class="px-2 fs-15">';
+                        notifications += '<div class="form-check notification-check">';
+                        notifications += '</div>';
+                        notifications += '</div>';
+                        notifications += '</div>';
+                        notifications += '</div>';
+                    }
+                    $("#notification").html(notifications);
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+    });
+    },1000);
+</script>
+
+<script>
+    setInterval(function () {
+        $(document).ready(function() {
+            $.ajax({
+                url: '/nb-notification',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+
+                    $("#nb").html(data);
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+    },1000);
+</script>
 
 </body>
 

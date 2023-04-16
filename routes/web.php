@@ -18,6 +18,8 @@ use App\Http\Controllers\store_favoris_client;
 use App\Http\Controllers\store_favoris_freelancer;
 use App\Http\Controllers\updateinfo;
 use App\Mail\JOB4FREE;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admincontroller;
@@ -49,6 +51,23 @@ Route::get('client/user/detail/{id}','userdetailcontroller@createclient')->middl
 Route::get('freelancer/historiquepropostion','historiquepropostionfreelancer@create')->middleware(['auth','verified','freelancer'])->name('historiquepropostion');
 Route::get('client/historiquepropostion','historiquepropostionfreelancer@createclient')->middleware(['auth','verified','client'])->name('historiquepropostionclient');
 Route::post('propostion/refuser',[historiquepropostionfreelancer::class,'refuser'])->name('refuser');
+
+Route::get('/get-notifications', function() {
+    $user = Auth::user();
+    $notifications = DB::table('notiffications')
+        ->orderBy('id','desc')
+        ->where('id_destinateur', $user->id)
+        ->get();
+      return $notifications;
+});
+Route::get('/nb-notification',function (){
+   $user=Auth::user()->id;
+   $notify= DB::table('notiffications')
+       ->where('id_destinateur',$user)
+       ->where('read','false')
+       ->count();
+   return $notify;
+});
 
 Route::get('client/historique','historiqueposte@historique')->middleware(['auth','verified','client'])->name('historiqueannonce');
 Route::get('freelancer/setting','setting@create')->middleware(['auth','verified','freelancer'])->name('setting');

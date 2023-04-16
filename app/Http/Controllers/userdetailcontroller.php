@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\DB;
 class userdetailcontroller extends Controller
 {
     public function create($id){
-        return view('freelancer.userdetail');
+        $user=DB::table('users')->where('id',$id)->get();
+        return view('freelancer.userdetail')->with('user',$user);
     }
     public function createclient($id){
         $user=DB::table('users')->where('id',$id)->get();
