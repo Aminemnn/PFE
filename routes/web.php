@@ -48,10 +48,10 @@ Route::get('freelancer/annonce/detail/{id}','detailcontroller@create')->middlewa
 Route::get('freelancer/user/detail/{id}','userdetailcontroller@create')->middleware(['auth','verified','freelancer'])->name('userdetail');
 Route::get('client/poste/detail/{id}','detailcontroller@createclient')->middleware(['auth','verified','client'])->name('detailposte');
 Route::get('client/user/detail/{id}','userdetailcontroller@createclient')->middleware(['auth','verified','client'])->name('userdetailclient');
+Route::get('freelancer/conversation/{id}','freelancerconversation@create')->middleware(['auth','verified','auth'])->name('freelancerconversation');
 Route::get('freelancer/historiquepropostion','historiquepropostionfreelancer@create')->middleware(['auth','verified','freelancer'])->name('historiquepropostion');
 Route::get('client/historiquepropostion','historiquepropostionfreelancer@createclient')->middleware(['auth','verified','client'])->name('historiquepropostionclient');
 Route::post('propostion/refuser',[historiquepropostionfreelancer::class,'refuser'])->name('refuser');
-
 Route::get('/get-notifications', function() {
     $user = Auth::user();
     $notifications = DB::table('notiffications')
@@ -68,7 +68,41 @@ Route::get('/nb-notification',function (){
        ->count();
    return $notify;
 });
-
+Route::get('/get-conversation' ,function () {
+ $user=Auth::user()->id;
+ $con=DB::table('conversations')
+     ->orderBy('id','desc')
+     ->where('user_id2',$user)
+     ->get();
+ return $con;
+});
+Route::get('/nb-message',function (){
+   $user=Auth::user()->id;
+   $nb=DB::table('conversations')
+       ->where('user_id2',$user)
+       ->where('read','false')
+       ->count();
+    $nbb=DB::table('chats')
+        ->where('id_destinateur',$user)
+        ->where('read','false')
+        ->count();
+   return $nb+$nbb;
+});
+Route::post('/update_nb_notification',function (){
+    $user=Auth::user()->id;
+    DB::table('notiffications')
+        ->where('id_destinateur',$user)
+        ->update(['read'=>'true']);
+})->name('update_nb_notification');
+Route::post('/update_nb_message',function (){
+    $user=Auth::user()->id;
+    DB::table('conversations')
+        ->where('user_id2',$user)
+        ->update(['read'=>'true']);
+    DB::table('chats')
+        ->where('id_destinateur',$user)
+        ->update(['read'=>'true']);
+})->name('update_nb_message');
 Route::get('client/historique','historiqueposte@historique')->middleware(['auth','verified','client'])->name('historiqueannonce');
 Route::get('freelancer/setting','setting@create')->middleware(['auth','verified','freelancer'])->name('setting');
 Route::get('client/setting','setting@createclient')->middleware(['auth','verified','client'])->name('settingclient');
