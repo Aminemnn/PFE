@@ -127,32 +127,26 @@
                                 <div>
                                     <ul class="nav nav-tabs nav-tabs-custom nav-success mb-3" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active All py-3" data-bs-toggle="tab" id="All" href="#home1" role="tab" aria-selected="true">
+                                            <a class="nav-link active All py-3" data-bs-toggle="tab" id="All" href="#home1" role="tab" aria-selected="false" onclick="orders()" >
                                                 <i class="ri-store-2-fill me-1 align-bottom"></i> All Orders
                                             </a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link py-3 Delivered" data-bs-toggle="tab" id="Delivered" href="#delivered" role="tab" aria-selected="false">
-                                                <i class="ri-checkbox-circle-line me-1 align-bottom"></i> Delivered
+                                        <li class="nav-item" >
+                                            <a class="nav-link py-3 Delivered" data-bs-toggle="tab" id="Delivered" href="#delivered" role="tab" aria-selected="false" onclick="accept()" >
+                                                <i class="ri-checkbox-circle-line me-1 align-bottom"></i> Accept
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link py-3 Pickups" data-bs-toggle="tab" id="Pickups" href="#pickups" role="tab" aria-selected="false">
-                                                <i class="ri-truck-line me-1 align-bottom"></i> Pickups <span class="badge bg-danger align-middle ms-1">2</span>
+                                            <a class="nav-link py-3 Pickups" data-bs-toggle="tab" id="Pickups" href="#pickups" role="tab" aria-selected="false"  >
+                                                <i class="ri-truck-line me-1 align-bottom"></i> In Progress <span class="badge bg-danger align-middle ms-1">2</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link py-3 Returns" data-bs-toggle="tab" id="Returns" href="#returns" role="tab" aria-selected="false">
-                                                <i class="ri-arrow-left-right-fill me-1 align-bottom"></i> Returns
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link py-3 Cancelled" data-bs-toggle="tab" id="Cancelled" href="#cancelled" role="tab" aria-selected="false">
-                                                <i class="ri-close-circle-line me-1 align-bottom"></i> Cancelled
+                                            <a class="nav-link py-3 Cancelled" data-bs-toggle="tab" id="Cancelled" href="#cancelled" role="tab" aria-selected="false" onclick="refuser()">
+                                                <i class="ri-close-circle-line me-1 align-bottom"></i> Refuse
                                             </a>
                                         </li>
                                     </ul>
-
                                     <div class="table-responsive table-card mb-1">
                                         <table class="table table-nowrap align-middle" id="orderTable">
                                             <thead class="text-muted table-light">
@@ -170,13 +164,12 @@
                                                 <th class="sort" data-sort="payment">Payment Method</th>
                                                 <th class="sort" data-sort="status">Price Category</th>
                                                 <th class="sort" data-sort="status">Week Or Date</th>
-                                                <th class="sort" data-sort="status"> Status</th>
-
+                                                <th class="sort" data-sort="status">Status</th>
                                             </tr>
                                             </thead>
-                                            <tbody class="list form-check-all">
+                                            <tbody class="list form-check-all" id="list">
+                                            @foreach($proposition as $proposition)
                                             <tr>
-                                                @foreach($proposition as $proposition)
                                                 <th scope="row">
                                                     #
                                                 </th>
@@ -188,10 +181,17 @@
                                                 <td class="payment">{{$proposition->price_categorie}}</td>
                                                     <td class="payment">{{$proposition->type_price}}</td>
                                                     <td class="payment">@if($proposition->semaine==null){{$proposition->date}}@else{{$proposition->semaine}}@endif</td>
-                                                <td class="status"><form style="display: inline-block;margin: 13px"> <button type="submit" class="btn btn-success"><a href="#" style="text-decoration: none;color: #FFFFFF">Accept</a></button></form><form action="{{route('refuser')}}" method="post" style="display: inline-block"> @csrf <button type="submit" value="{{$proposition->id}}" name="refuser" class="btn btn-danger">Refuse</button></form>
+                                                <td class="status"><form style="display: inline-block;margin: 13px">
+                                                        @if($proposition->etat=='Refuser' || $proposition->etat=='Accept')
+                                                            <button type="submit" class="btn btn-success" disabled><a href="#" style="text-decoration: none;color: #FFFFFF" >Accept</a></button>
+                                                        @else<button type="submit" class="btn btn-success"><a href="{{route('contrat',['id'=>$proposition->id])}}" style="text-decoration: none;color: #FFFFFF">Accept</a></button>@endif</form>
+                                                    <form action="{{route('refuser')}}" method="post" style="display: inline-block"> @csrf
+                                                        @if($proposition->etat=='Refuser' || $proposition->etat=='Accept')
+                                                            <button type="submit" value="{{$proposition->id}}" name="refuser" class="btn btn-danger" disabled>Refuse</button>
+                                                        @else <button type="submit" value="{{$proposition->id}}" name="refuser" class="btn btn-danger">Refuse</button>@endif</form>
                                                 </td>
-                                                @endforeach
                                             </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                         @if(session('refuser'))
@@ -214,6 +214,15 @@
                                                 })
                                             </script>
                                         @endif
+                                        @if(session('contrat_success'))
+                                            <script>
+                                                Swal.fire(
+                                                    'Contrat Send !',
+                                                    '{{session('contrat_success')}}',
+                                                    'success'
+                                                )
+                                            </script>
+                                        @endif
                                         <div class="noresult" style="display: none">
                                             <div class="text-center">
                                                 <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
@@ -234,8 +243,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <!-- Modal -->
                                 <div class="modal fade flip" id="deleteOrder" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
@@ -290,12 +297,173 @@
 
 <!-- Dashboard init -->
 <script src="{{asset('FreeAssets/js/pages/dashboard-analytics.init.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- App js -->
 <script src="{{asset('Freeassets/js/app.js')}}"></script>
+<script>
+    function accept() {
+        $(document).ready(function() {
+            $.ajax({
+                url: '/acceptclient',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                    var accept='<thead class="text-muted table-light">'
+                    accept+='<tr class="text-uppercase">'
+                    accept+='<th scope="col" style="width: 25px;">'
+                    accept+='<div class="form-check">'
+                    accept+='<input class="form-check-input" type="checkbox" id="checkAll" value="option">'
+                    accept+='</div>'
+                    accept+='</th>'
+                    accept+='<th class="sort" data-sort="id">Proposal ID</th>'
+                    accept+='<th class="sort" data-sort="customer_name">Customer</th>'
+                    accept+='<th class="sort" data-sort="product_name">Title</th>'
+                    accept+='<th class="sort" data-sort="date">Order Date</th>'
+                    accept+='<th class="sort" data-sort="amount">Amount</th>'
+                    accept+='<th class="sort" data-sort="payment">Payment Method</th>'
+                    accept+='<th class="sort" data-sort="status"> Status</th>'
+                    accept+='</tr>'
+                    accept+='</thead>';
+                    for (var i=0;i< data.length;i++) {
+                        accept+= '<tr>'
+                        accept+='<th scope="row">#</th>'
+                        accept+='<td class="id"><a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">' +data[i].id +'</a></td>'
+                        accept+='<td class="customer_name">' +data[i].name_user +'</td>'
+                        accept+='<td class="product_name">' +data[i].title_projet +'</td>'
+                        accept+='<td class="date"> '+data[i].created_at +'</td>'
+                        accept+='<td class="amount">'+data[i].price +'</td>'
+                        accept+='<td class="payment">'+data[i].price_categorie+'</td>'
+                        accept+='<td class="status">'
+                        accept+= '<span class="badge badge-soft-success text-uppercase">'+data[i].etat+'<i class="fa-solid fa-check" style="margin-left: 5px"></i></span>'
+                        accept+='</td>'
+                        accept+='</tr>'
+                    }
+                    $("#orderTable").html(accept);
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+    }
 
+</script>
+<script>
+    function orders(){
+        $(document).ready(function() {
+            $.ajax({
+                url: '/allclient',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    console.log("amine");
+                    var accept='<thead class="text-muted table-light">'
+                    accept+='<tr class="text-uppercase">'
+                    accept+='<th scope="col" style="width: 25px;">'
+                    accept+='<div class="form-check">'
+                    accept+='<input class="form-check-input" type="checkbox" id="checkAll" value="option">'
+                    accept+='</div>'
+                    accept+='</th>'
+                    accept+='<th class="sort" data-sort="id">Proposal ID</th>'
+                    accept+='<th class="sort" data-sort="customer_name">Customer</th>'
+                    accept+='<th class="sort" data-sort="product_name">Title</th>'
+                    accept+='<th class="sort" data-sort="date">Order Date</th>'
+                    accept+='<th class="sort" data-sort="amount">Amount</th>'
+                    accept+='<th class="sort" data-sort="payment">Payment Method</th>'
+                    accept+='<th class="sort" data-sort="status">Price Category</th>'
+                    accept+='<th class="sort" data-sort="status">Week Or Data</th>'
+                    accept+='<th class="sort" data-sort="status"> Status</th>'
+                    accept+='</tr>'
+                    accept+='</thead>';
+                    for (var i=0;i< data.length;i++) {
+                        accept+='<tbody class="list-check-all" id="list">'
+                        accept+= '<tr>'
+                        accept+='<th scope="row">#</th>'
+                        accept+='<td class="id"><a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">' +data[i].id +'</a></td>'
+                        accept+='<td class="customer_name">' +data[i].name_user +'</td>'
+                        accept+='<td class="product_name">' +data[i].title_projet +'</td>'
+                        accept+='<td class="date"> '+ data[i].created_at +'</td>'
+                        accept+='<td class="amount">'+ data[i].price +'</td>'
+                        accept+='<td class="payment">'+data[i].price_categorie+'</td>'
+                        accept+='<td class="payment">'+data[i].type_price+'</td>'
+                        accept+='<td class="payment">'+data[i].type_price+'</td>'
+                        accept+='<td class="payment">';if(data[i].semaine==null){data[i].data}else{data[i].semaine}'</td>'
+                        accept+='<td class="status">'
+                        if (data[i].etat != 'Refuser' || data[i].etat != 'Accept') {
+                            accept += '<form style="display: inline-block;margin: 13px"><button type="submit" class="btn btn-success" disabled><a href="#" style="text-decoration: none;color: #FFFFFF" >Accept</a></button></form>'
+                        }
+                        else {
+                            accept += '<form style="display: inline-block;margin: 13px"><button type="submit" class="btn btn-success" ><a href="#" style="text-decoration: none;color: #FFFFFF" >Accept</a></button></form>'
+                        }
+                        if (data[i].etat=='Refuser' || data[i].etat =='Accept'){
+                            accept+='<button type="submit" value="'+data[i].id+'" name="refuser" class="btn btn-danger" disabled>Refuse</button>'
+                        }else {
+                            accept+='<form action="{{route('refuser')}}" method="post" style="display: inline-block"> @csrf'
+                            accept+='<button type="submit" value="'+data[i].id+'" name="refuser" class="btn btn-danger">Refuse</button>'
+                        }
+                        accept+='</td>'
+                        accept+='</tr>'
+                        accept+='</tbody>'
+                    }
+                    $("#orderTable").html(accept);
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+    }
+</script>
+<script>
+    function refuser(){
+        $(document).ready(function() {
+            $.ajax({
+                url: '/refuseclient',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    console.log("amine");
+                    var accept='<thead class="text-muted table-light">'
+                    accept+='<tr class="text-uppercase">'
+                    accept+='<th scope="col" style="width: 25px;">'
+                    accept+='<div class="form-check">'
+                    accept+='<input class="form-check-input" type="checkbox" id="checkAll" value="option">'
+                    accept+='</div>'
+                    accept+='</th>'
+                    accept+='<th class="sort" data-sort="id">Proposal ID</th>'
+                    accept+='<th class="sort" data-sort="customer_name">Customer</th>'
+                    accept+='<th class="sort" data-sort="product_name">Title</th>'
+                    accept+='<th class="sort" data-sort="date">Order Date</th>'
+                    accept+='<th class="sort" data-sort="amount">Amount</th>'
+                    accept+='<th class="sort" data-sort="payment">Payment Method</th>'
+                    accept+='<th class="sort" data-sort="status"> Status</th>'
+                    accept+='</tr>'
+                    accept+='</thead>';
+                    for (var i=0;i< data.length;i++) {
+                        accept+= '<tr>'
+                        accept+='<th scope="row">#</th>'
+                        accept+='<td class="id"><a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">' +data[i].id +'</a></td>'
+                        accept+='<td class="customer_name">' +data[i].name_user +'</td>'
+                        accept+='<td class="product_name">' +data[i].title_projet +'</td>'
+                        accept+='<td class="date"> '+data[i].created_at +'</td>'
+                        accept+='<td class="amount">'+data[i].price +'</td>'
+                        accept+='<td class="payment">'+data[i].price_categorie+'</td>'
+                        accept+='<td class="status">'
+                        accept+= '<span class="badge badge-soft-danger text-uppercase">'+data[i].etat+'<i class="fa-solid fa-check" style="margin-left: 5px"></i></span>'
+                        accept+='</td>'
+                        accept+='</tr>'
+                    }
+                    $("#orderTable").html(accept);
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+    }
+</script>
 </body>
-
-
 <!-- Mirrored from themesbrand.com/velzon/html/default/layouts-horizontal.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Apr 2023 04:14:23 GMT -->
 </html>

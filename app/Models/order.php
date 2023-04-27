@@ -24,6 +24,14 @@ class order extends Model
         'name_user',
         'image_user',
         'id_destinateur',
-        'etat'
+        'etat',
+        'adresse_user',
+        'country_user',
+        'ville_user',
+        'phone_user'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

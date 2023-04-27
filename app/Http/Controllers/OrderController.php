@@ -37,6 +37,10 @@ class OrderController extends Controller
             $order->id_user = Auth::user()->id;
             $order->name_user = Auth::user()->name;
             $order->image_user = Auth::user()->image;
+            $order->adresse_user=Auth::user()->adresse;
+            $order->country_user=Auth::user()->country;
+            $order->ville_user=Auth::user()->ville;
+            $order->phone_user=Auth::user()->phone;
             $order->etat="Inprogress";
             $order->save();
             DB::table('annonces')->where('id',$request->input('id_projet'))->update(['propostion'=>$filname+1]);

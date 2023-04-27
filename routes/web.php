@@ -8,6 +8,7 @@ use App\Http\Controllers\addskills;
 use App\Http\Controllers\changepassword;
 use App\Http\Controllers\clientcontroller;
 use App\Http\Controllers\ClientManagement;
+use App\Http\Controllers\contratstore;
 use App\Http\Controllers\deleteannonce;
 use App\Http\Controllers\deletePoste;
 use App\Http\Controllers\freelancercontroller;
@@ -60,6 +61,8 @@ Route::get('/get-notifications', function() {
         ->get();
       return $notifications;
 });
+
+Route::post('client/contrat',[contratstore::class,'store'])->name('store_contrat');
 Route::get('/nb-notification',function (){
    $user=Auth::user()->id;
    $notify= DB::table('notiffications')
@@ -103,6 +106,62 @@ Route::post('/update_nb_message',function (){
         ->where('id_destinateur',$user)
         ->update(['read'=>'true']);
 })->name('update_nb_message');
+Route::get('/accept',function (){
+    $id=Auth::user()->id;
+   $accept= DB::table('orders')
+        ->orderBy('id','desc')
+        ->where('id_user',$id)
+       ->where('etat','Accept')
+        ->get();
+   return $accept;
+});
+Route::get('/acceptclient',function (){
+    $id=Auth::user()->id;
+    $accept= DB::table('orders')
+        ->orderBy('id','desc')
+        ->where('id_destinateur',$id)
+        ->where('etat','Accept')
+        ->get();
+    return $accept;
+});
+Route::get('/refuse',function (){
+    $id=Auth::user()->id;
+    $accept= DB::table('orders')
+        ->orderBy('id','desc')
+        ->where('id_user',$id)
+        ->where('etat','Refuser')
+        ->get();
+    return $accept;
+});
+Route::get('/refuseclient',function (){
+    $id=Auth::user()->id;
+    $accept= DB::table('orders')
+        ->orderBy('id','desc')
+        ->where('id_destinateur',$id)
+        ->where('etat','Refuser')
+        ->get();
+    return $accept;
+});
+Route::get('/all',function (){
+    $id=Auth::user()->id;
+   $all=DB::table('orders')
+   ->orderBy('id','desc')
+   ->where('id_user',$id)
+   ->get();
+   return $all;
+});
+Route::get('/allclient',function (){
+    $id=Auth::user()->id;
+    $all=DB::table('orders')
+        ->orderBy('id','desc')
+        ->where('id_destinateur',$id)
+        ->get();
+    return $all;
+});
+
+Route::get('client/contrat/{id}','contratcontroller@create')->middleware(['auth','verified','client'])->name('contrat');
+
+Route::get('freelancer/favoris','favoriscontroller@create')->middleware(['auth','verified','freelancer'])->name('favorisfreelancer');
 Route::get('client/historique','historiqueposte@historique')->middleware(['auth','verified','client'])->name('historiqueannonce');
 Route::get('freelancer/setting','setting@create')->middleware(['auth','verified','freelancer'])->name('setting');
 Route::get('client/setting','setting@createclient')->middleware(['auth','verified','client'])->name('settingclient');

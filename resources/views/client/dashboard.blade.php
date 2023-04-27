@@ -981,6 +981,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
                                             <option value="Zimbabwe">Zimbabwe</option>
                                         </select>
                                         <br>
+                                        <label for="country" style="font-family: 'Trebuchet MS'">Type</label><span style="color: red !important; display: inline; float: none;">*</span>
+                                        <select id="type" name="type" class="form-control">
+                                            <option value="Client">Client</option>
+                                            <option value="Company">Company</option>
+                                        </select>
+                                        <br>
                                         <label>Phone</label><span style="color: red !important; display: inline; float: none;">*</span>
                                         <input class="form-control" type="text"  aria-label="default input example" name="phone" required style="border-color: gray; border-radius: 5px">
                                         <br>

@@ -21,6 +21,9 @@ class favoris_freelancer extends Model
         'description',
         'id_user',
         'name_user',
-        'img_user'
+        'img_user',
+        'img_client',
+        'name_client',
+        'id_client'
     ];
 }

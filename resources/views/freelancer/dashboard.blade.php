@@ -456,7 +456,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
             <div class="card-body">
                 <h5 class="card-title" style="color: #F19B01">Hi ! <h5>{{Auth::user()->name}}</h5></h5>
                 <p class="card-text" style="margin-top: 23px">You can publish your work here</p>
-                <button type="button" class="btn btn-primary" id="myBtn" style="margin-top: 23px;background-color: #F19B01;border-color: #F19B01;color: white">
+                <button type="button" class="btn btn-primary" id="myBtn" style="margin-top: 3px;background-color: #F19B01;border-color: #F19B01;color: white">
                     <a href="{{route('addPoste')}}" id="posted">Posted a Work
                     </a>
                 </button>
@@ -483,12 +483,16 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
                                 </h5>
                                 <div class="profile-block d-flex">
                                     <img src="{{asset('../../../uploads/photouser/'.$annonces->img_user)}}" class="profile-block-image img-fluid" alt="">
-                                    <p>
-                                    {{$annonces->name_user}}
+                                    <p style="position: relative; right: 13px;top: 2px;display: inline-flex;">
+                                        {{$annonces->name_user}}<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-patch-check" style="color: blue;margin-left: 7px;margin-top: 3px" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M10.354 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                            <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911l-1.318.016z"/>
+                                        </svg>
+                                    </p>
                                 </div>
-                                <p class="mb-0">{{$annonces->description}}</p>
+                                <p class="mb-0" style="position: relative;right: 13px;top: 5px">{{$annonces->description}}</p>
                                 <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="fa-solid fa-headphones me-1" style="color: #a8ccfb">
+                                    <a href="#" class="fa-solid fa-patch-check me-1" style="color: #a8ccfb">
                                         <span>120k</span>
                                     </a>
                                     <a href="#" class="fa-solid fa-heart me-1" style="color: #a8ccfb">
@@ -531,8 +535,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
                                         <input type="hidden" name="semaine" value="{{$annonces->semaine}}">
                                         <input type="hidden" name="date" value="{{$annonces->date}}">
                                         <input type="hidden" name="description" value="{{$annonces->description}}">
-
                                         <input type="hidden" name="img_user" value="{{$annonces->img_user}}">
+                                        <input type="hidden" name="name_client" value="{{$annonces->name_user}}">
+                                        <input type="hidden" name="id_client" value="{{$annonces->id_user}}">
                                         <button type="submit" id="favorite-btn"><i class="fa-solid fa-heart-o animate__animated animate__bounceIn" style="font-size: 26px;color: darkgrey"></i></button>
                                     </form>
                                 @endif
@@ -1780,6 +1785,5 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
         }
     }
 </script>
-
 </body>
 </html>

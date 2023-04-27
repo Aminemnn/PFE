@@ -20,6 +20,9 @@ class store_favoris_freelancer extends Controller
         $semaine=$request->input('semaine');
         $date=$request->input('date');
         $description=$request->input('description');
+        $img_client=$request->input('img_user');
+        $name_client=$request->input('name_client');
+        $id_client=$request->input('id_client');
         $id_user=Auth::user()->id;
         $name_user=Auth::user()->name;
         $img_user=Auth::user()->image;
@@ -38,6 +41,9 @@ class store_favoris_freelancer extends Controller
         $favoris_freelancer->id_user=$id_user;
         $favoris_freelancer->name_user=$name_user;
         $favoris_freelancer->img_user=$img_user;
+        $favoris_freelancer->img_client=$img_client;
+        $favoris_freelancer->name_client=$name_client;
+        $favoris_freelancer->id_client=$id_client;
         $favoris_freelancer->save();
         return redirect('freelancer/dashboard')->with("success2","The item saved in: My first list.");
     }

@@ -194,14 +194,15 @@
                                             </div>
                                             <form method="post" action="{{route('order.store')}}">
                                                 @csrf
-                                            <div class="modal-body">
+                                                <div class="modal-body">
                                                 <input type="hidden" name="id_projet" value="{{$annonce->first()->id}}">
                                                 <input type="hidden" name="title_projet" value="{{$annonce->first()->title}}">
                                                 <input type="hidden" name="categorie" value="{{$annonce->first()->catgorie }}">
                                                 <input type="hidden" name="sous_categorie" value="{{$annonce->first()->sous_categorie}}">
                                                 <input type="hidden" name="description" value="{{$annonce->first()->description }}">
                                                 <input type="hidden" name="id_user" value="{{$annonce->first()->id_user}}">
-                                                <select class="form-select" aria-label="Default select example" name="price_categorie">
+
+                                                    <select class="form-select" aria-label="Default select example" name="price_categorie">
                                                     <option value="{{$annonce->first()->price_categorie }}" selected>{{$annonce->first()->price_categorie }}</option>
                                                     <option value="@if($annonce->first()->price_categorie=='Fixed Price') Per /hour @else Fixed Price @endif">@if($annonce->first()->price_categorie=="Fixed Price") Per /hour @else Fixed Price @endif</option>
                                                 </select>
@@ -213,18 +214,31 @@
                                                     <option value="@if($annonce->first()->type_price=='Per semaine') Specific date @else Per semaine @endif">@if($annonce->first()->type_price=='Per semaine') Specific date @else Per semaine @endif</option>
                                                 </select>
                                                 <br>
-                                                <div class="form-group" id="semaine" style="display: block">
+                                                @if($annonce->first()->type_price=='Per semaine')
+                                                <div class="form-group" id="semaine" style="display: block;">
                                                     <select class="form-select" id="exampleFormControlSelect1" name="semaine">
-                                                        <option value="0" selected>0</option>
+                                                        <option value="{{$annonce->first()->semaine}}" selected>{{$annonce->first()->semaine}}</option>
                                                         @for($i=1;$i<=156;$i++)
                                                             <option value="{{$i}}">{{$i}}</option>
                                                         @endfor
                                                     </select>
                                                 </div>
-                                                <div class="form-group" id="date" style="display: none">
+                                                    <div class="form-group" id="date" style="display: none">
+                                                        <input type="date" class="form-control" id="date" aria-describedby="emailHelp" name="date" value="{{$annonce->first()->date}}">
+                                                    </div>
+                                                @else
+                                                    <div class="form-group" id="semaine" style="display: none;">
+                                                        <select class="form-select" id="exampleFormControlSelect1" name="semaine">
+                                                            <option value="0" selected>0</option>
+                                                            @for($i=1;$i<=156;$i++)
+                                                                <option value="{{$i}}">{{$i}}</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                <div class="form-group" id="date" style="display: block">
                                                     <input type="date" class="form-control" id="date" aria-describedby="emailHelp" name="date" value="{{$annonce->first()->date}}">
                                                 </div>
-
+                                                @endif
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

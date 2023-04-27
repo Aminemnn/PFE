@@ -27,7 +27,7 @@
     <link href="{{asset('FreeAssets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="{{asset('FreeAssets/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -127,32 +127,26 @@
                                 <div>
                                     <ul class="nav nav-tabs nav-tabs-custom nav-success mb-3" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active All py-3" data-bs-toggle="tab" id="All" href="#home1" role="tab" aria-selected="true">
+                                            <a class="nav-link active All py-3" data-bs-toggle="tab" id="All" href="#home1" role="tab" aria-selected="false" onclick="orders()" >
                                                 <i class="ri-store-2-fill me-1 align-bottom"></i> All Orders
                                             </a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link py-3 Delivered" data-bs-toggle="tab" id="Delivered" href="#delivered" role="tab" aria-selected="false">
-                                                <i class="ri-checkbox-circle-line me-1 align-bottom"></i> Delivered
+                                        <li class="nav-item" >
+                                            <a class="nav-link py-3 Delivered" data-bs-toggle="tab" id="Delivered" href="#delivered" role="tab" aria-selected="false" onclick="accept()" >
+                                                <i class="ri-checkbox-circle-line me-1 align-bottom"></i> Accept
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link py-3 Pickups" data-bs-toggle="tab" id="Pickups" href="#pickups" role="tab" aria-selected="false">
-                                                <i class="ri-truck-line me-1 align-bottom"></i> Pickups <span class="badge bg-danger align-middle ms-1">2</span>
+                                            <a class="nav-link py-3 Pickups" data-bs-toggle="tab" id="Pickups" href="#pickups" role="tab" aria-selected="false" >
+                                                <i class="ri-truck-line me-1 align-bottom"></i> In Progress <span class="badge bg-danger align-middle ms-1">2</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link py-3 Returns" data-bs-toggle="tab" id="Returns" href="#returns" role="tab" aria-selected="false">
-                                                <i class="ri-arrow-left-right-fill me-1 align-bottom"></i> Returns
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link py-3 Cancelled" data-bs-toggle="tab" id="Cancelled" href="#cancelled" role="tab" aria-selected="false">
-                                                <i class="ri-close-circle-line me-1 align-bottom"></i> Cancelled
+                                            <a class="nav-link py-3 Cancelled" data-bs-toggle="tab" id="Cancelled" href="#cancelled" role="tab" aria-selected="false" onclick="refuser()">
+                                                <i class="ri-close-circle-line me-1 align-bottom"></i> Refuse
                                             </a>
                                         </li>
                                     </ul>
-
                                     <div class="table-responsive table-card mb-1">
                                         <table class="table table-nowrap align-middle" id="orderTable">
                                             <thead class="text-muted table-light">
@@ -171,23 +165,35 @@
                                                 <th class="sort" data-sort="status"> Status</th>
                                             </tr>
                                             </thead>
-                                            <tbody class="list form-check-all">
-                                            <tr>
-                                                @foreach($proposition as $proposition)
-                                                <th scope="row">
-                                                    #
-                                                </th>
-                                                <td class="id"><a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">{{$proposition->id}}</a></td>
-                                                <td class="customer_name">{{$proposition->name_user}}</td>
-                                                <td class="product_name">{{$proposition->title_projet}}</td>
-                                                <td class="date">{{$proposition->created_at}}</td>
-                                                <td class="amount">{{$proposition->price}}</td>
-                                                <td class="payment">{{$proposition->price_categorie}}</td>
-                                                <td class="status"><span class="badge badge-soft-warning text-uppercase">{{$proposition->etat}}</span>
-                                                </td>
+                                            <tbody class="list form-check-all" id="list">
 
+                                                @foreach($proposition as $proposition)
+                                                    <tr>
+                                                    <th scope="row">#</th>
+                                                    <td class="id"><a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">{{$proposition->id}}</a></td>
+                                                    <td class="customer_name">{{$proposition->name_user}}</td>
+                                                    <td class="product_name">{{$proposition->title_projet}}</td>
+                                                    <td class="date">{{$proposition->created_at}}</td>
+                                                    <td class="amount">{{$proposition->price}}</td>
+                                                    <td class="payment">{{$proposition->price_categorie}}</td>
+                                                    <td class="status">
+                                                          @if($proposition->etat=='Refuser')
+                                                            <span class="badge badge-soft-danger text-uppercase">
+                                                                Refuser <i class="fa-solid fa-x" style="margin-left: 5px"></i>
+                                                            </span>
+                                                            @elseif($proposition->etat=='Accept')
+                                                            <span class="badge badge-soft-success text-uppercase">
+                                                                Accept<i class="fa-solid fa-check" style="margin-left: 5px"></i>
+                                                            </span>
+                                                            @else
+                                                            <span class="badge badge-soft-warning text-uppercase">
+                                                                In Progress
+                                                            </span>
+                                                            @endif
+                                                           </td>
+                                                    </tr>
                                                 @endforeach
-                                            </tr>
+
                                             </tbody>
                                         </table>
                                         <div class="noresult" style="display: none">
@@ -247,8 +253,8 @@
     <!-- end main content-->
 
 </div>
-</x-freelancer-layout>
 
+</x-freelancer-layout>
 <!-- JAVASCRIPT -->
 <script src="{{asset('FreeAssets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('FreeAssets/libs/simplebar/simplebar.min.js')}}"></script>
@@ -269,7 +275,119 @@
 
 <!-- App js -->
 <script src="{{asset('Freeassets/js/app.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function accept() {
+        $(document).ready(function() {
+            $.ajax({
+                url: '/accept',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                    var accept='';
+                    for (var i=0;i< data.length;i++) {
+                       accept+= '<tr>'
+                            accept+='<th scope="row">#</th>'
+                            accept+='<td class="id"><a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">' +data[i].id +'</a></td>'
+                            accept+='<td class="customer_name">' +data[i].name_user +'</td>'
+                            accept+='<td class="product_name">' +data[i].title_projet +'</td>'
+                            accept+='<td class="date"> '+data[i].created_at +'</td>'
+                            accept+='<td class="amount">'+data[i].price +'</td>'
+                            accept+='<td class="payment">'+data[i].price_categorie+'</td>'
+                            accept+='<td class="status">'
+                            accept+= '<span class="badge badge-soft-success text-uppercase">'+data[i].etat+'<i class="fa-solid fa-check" style="margin-left: 5px"></i></span>'
+                            accept+='</td>'
+                        accept+='</tr>'
+                    }
+                    $("#list").html(accept);
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+    }
 
+</script>
+<script>
+    function orders(){
+        $(document).ready(function() {
+            $.ajax({
+                url: '/all',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    console.log("amine");
+                    var accept='';
+                    for (var i=0;i< data.length;i++) {
+                        accept+= '<tr>'
+                        accept+='<th scope="row">#</th>'
+                        accept+='<td class="id"><a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">' +data[i].id +'</a></td>'
+                        accept+='<td class="customer_name">' +data[i].name_user +'</td>'
+                        accept+='<td class="product_name">' +data[i].title_projet +'</td>'
+                        accept+='<td class="date"> '+data[i].created_at +'</td>'
+                        accept+='<td class="amount">'+data[i].price +'</td>'
+                        accept+='<td class="payment">'+data[i].price_categorie+'</td>'
+                        accept+='<td class="status">'
+                        if (data[i].etat=='Refuser') {
+                            accept += '<span class="badge badge-soft-danger text-uppercase">' + data[i].etat + '<i class="fa-solid fa-x" style="margin-left: 5px"></span>'
+                        }else if(data[i].etat=='Accept'){
+                            accept+= '<span class="badge badge-soft-success text-uppercase">'+data[i].etat+'<i class="fa-solid fa-check" style="margin-left: 5px"></i></span>'
+                        }else {
+                            accept += '<span class="badge badge-soft-warning text-uppercase">' + data[i].etat + '</span>'
+                        }
+                        accept+='</td>'
+                        accept+='</tr>'
+                    }
+                    $("#list").html(accept);
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+    }
+</script>
+<script>
+    function refuser(){
+        $(document).ready(function() {
+            $.ajax({
+                url: '/refuse',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    console.log("amine");
+                    var accept='';
+                    for (var i=0;i< data.length;i++) {
+                        accept+= '<tr>'
+                        accept+='<th scope="row">#</th>'
+                        accept+='<td class="id"><a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">' +data[i].id +'</a></td>'
+                        accept+='<td class="customer_name">' +data[i].name_user +'</td>'
+                        accept+='<td class="product_name">' +data[i].title_projet +'</td>'
+                        accept+='<td class="date"> '+data[i].created_at +'</td>'
+                        accept+='<td class="amount">'+data[i].price +'</td>'
+                        accept+='<td class="payment">'+data[i].price_categorie+'</td>'
+                        accept+='<td class="status">'
+                        if (data[i].etat=='Refuser') {
+                            accept += '<span class="badge badge-soft-danger text-uppercase">' + data[i].etat + '<i class="fa-solid fa-x" style="margin-left: 5px"></span>'
+                        }else if(data[i].etat=='Accept'){
+                            accept+= '<span class="badge badge-soft-success text-uppercase">'+data[i].etat+'<i class="fa-solid fa-check" style="margin-left: 5px"></i></span>'
+                        }else {
+                            accept += '<span class="badge badge-soft-warning text-uppercase">' + data[i].etat + '</span>'
+                        }
+                        accept+='</td>'
+                        accept+='</tr>'
+                    }
+                    $("#list").html(accept);
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+    }
+</script>
 </body>
 
 
